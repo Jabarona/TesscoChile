@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Favoritos - Tessco Chile</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/header.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/cart-offcanvas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+      min-height: 100vh;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, rgba(45,45,45,0.9), rgba(30,30,30,0.95));
+      padding: 3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .wishlist-card {
+      background: rgba(45,45,45,0.95);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+
+    .wishlist-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 36px rgba(255, 107, 53, 0.18);
+    }
+
+    .wishlist-card-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .wishlist-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .wishlist-card:hover .wishlist-card-image img {
+      transform: scale(1.02);
+    }
+
+    .wishlist-card-body {
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      height: calc(100% - 220px);
+    }
+
+    .wishlist-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin: 0;
+      color: #ffffff;
+    }
+
+    .wishlist-card-price {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #FF6B35;
+    }
+
+    .wishlist-card-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .empty-state {
+      border-radius: 24px;
+      padding: 3rem;
+      border: 1px dashed rgba(255,255,255,0.1);
+      background: rgba(45,45,45,0.7);
+      text-align: center;
+    }
+
+    .empty-state i {
+      color: rgba(255,107,53,0.6);
+    }
+
+    .wishlist-counter-badge {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: #FF6B35;
+      color: #ffffff;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      padding: 4px 6px;
+      display: none;
+    }
+
+    .wishlist-summary {
+      background: rgba(45,45,45,0.8);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 1.5rem;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <div id="header"></div>
+
+  <section class="page-header">
+    <div class="container" style="max-width: 1200px;">
+      <div class="d-flex flex-column flex-md-row align-items-md-end justify-content-between gap-3">
+        <div>
+          <h1 class="display-5 fw-bold text-white mb-2">Mis Favoritos</h1>
+          <p class="text-muted mb-0">Revisa y administra los productos que te gustaron.</p>
+        </div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-primary">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/shop" class="text-decoration-none text-primary">Tienda</a></li>
+            <li class="breadcrumb-item active text-white" aria-current="page">Favoritos</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <main class="py-5">
+    <div class="container" style="max-width: 1200px;">
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div id="wishlist-container" class="row g-4">
+            <!-- Items -->
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <aside class="wishlist-summary h-100">
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <h5 class="mb-0 text-white">Resumen</h5>
+              <span class="badge bg-primary" id="wishlist-count-badge">0 productos</span>
+            </div>
+            <p class="text-muted mb-4">Los productos guardados se mantendrán aquí hasta que los elimines o los agregues al carrito.</p>
+            <div class="d-grid gap-2">
+              <button class="btn btn-primary" id="go-to-shop">
+                <i class="fas fa-store me-2"></i>Explorar más productos
+              </button>
+              <button class="btn btn-outline-primary" id="clear-wishlist">
+                <i class="fas fa-heart-broken me-2"></i>Limpiar favoritos
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Configuración global -->
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../components/header.js"></script>
+  <script src="../../components/footer.js"></script>
+  <script src="../../assets/js/ecommerce-config.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../assets/js/smart-navigation.js"></script>
+  <script src="../../assets/js/cart.js"></script>
+  <script src="../../assets/js/cart-offcanvas.js"></script>
+
+  <script>
+    const WISHLIST_STORAGE_BASE_KEY = 'tessco_wishlist';
+    let wishlistItems = [];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadHeader({
+        activeLink: 'tienda',
+        showSearch: true,
+        showCart: true,
+        showWishlist: true
+      });
+
+      setTimeout(() => {
+        initializeWishlist();
+      }, 600);
+
+      document.getElementById('go-to-shop').addEventListener('click', () => {
+        window.location.href = '/shop';
+      });
+
+      document.getElementById('clear-wishlist').addEventListener('click', clearWishlist);
+
+      window.addEventListener('wishlist:updated', (event) => {
+        if (event?.detail?.origin === 'wishlist-page') {
+          return;
+        }
+        initializeWishlist();
+      });
+
+      window.addEventListener('auth:login', () => {
+        initializeWishlist();
+      });
+
+      window.addEventListener('auth:logout', () => {
+        wishlistItems = loadGuestWishlist();
+        renderWishlist();
+        updateWishlistSummary();
+      });
+    });
+
+    function isUserLoggedIn() {
+      return !!(window.auth && typeof window.auth.isAuthenticated === 'function' && window.auth.isAuthenticated());
+    }
+
+    function getApiBaseUrl() {
+      return (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+    }
+
+    function getWishlistStorageKey() {
+      const userId = window.auth?.user?.id;
+      return userId ? `${WISHLIST_STORAGE_BASE_KEY}_${userId}` : `${WISHLIST_STORAGE_BASE_KEY}_guest`;
+    }
+
+    function loadGuestWishlist() {
+      try {
+        const stored = localStorage.getItem(getWishlistStorageKey());
+        const parsed = stored ? JSON.parse(stored) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        console.error('Error leyendo favoritos:', error);
+        return [];
+      }
+    }
+
+    function saveGuestWishlist(items, { silent = false, origin = 'wishlist-page' } = {}) {
+      try {
+        localStorage.setItem(getWishlistStorageKey(), JSON.stringify(items));
+        if (!silent) {
+          window.dispatchEvent(new CustomEvent('wishlist:updated', { detail: { items, origin } }));
+        }
+      } catch (error) {
+        console.error('Error guardando favoritos:', error);
+      }
+    }
+
+    function normalizeFavorite(entry) {
+      if (!entry) return null;
+      const productId = entry.productId ?? entry.id;
+      const product = entry.product || null;
+
+      return {
+        id: productId,
+        productId,
+        createdAt: entry.createdAt || null,
+        name: product?.name || entry.name || 'Producto',
+        price: product?.price ?? entry.price ?? 0,
+      imageUrl: product?.imageUrl || product?.imageThumbnail || entry.imageUrl || null,
+      imageVariants: product?.imageVariants || entry.imageVariants || null,
+        product,
+      };
+    }
+
+    async function initializeWishlist() {
+      if (isUserLoggedIn()) {
+        await migrateGuestWishlist();
+        await fetchWishlistFromServer();
+      } else {
+        wishlistItems = loadGuestWishlist();
+      }
+
+      renderWishlist();
+      updateWishlistSummary();
+    }
+
+    async function migrateGuestWishlist() {
+      const guestKey = `${WISHLIST_STORAGE_BASE_KEY}_guest`;
+      let guestItems = [];
+
+      try {
+        guestItems = JSON.parse(localStorage.getItem(guestKey) || '[]');
+      } catch (error) {
+        guestItems = [];
+      }
+
+      if (!Array.isArray(guestItems) || guestItems.length === 0) {
+        return;
+      }
+
+      for (const item of guestItems) {
+        const productId = item?.productId || item?.id;
+        if (!productId) continue;
+
+        try {
+          await fetch(`${getApiBaseUrl()}/api/favorites`, {
+            method: 'POST',
+            headers: window.auth.getAuthHeaders(),
+            body: JSON.stringify({ productId }),
+          });
+        } catch (error) {
+          console.error('Error migrando favorito:', error);
+        }
+      }
+
+      localStorage.removeItem(guestKey);
+    }
+
+    async function fetchWishlistFromServer() {
+      try {
+        const response = await fetch(`${getApiBaseUrl()}/api/favorites`, {
+          headers: window.auth.getAuthHeaders(),
+        });
+
+        if (!response.ok) {
+          throw new Error('No se pudo obtener favoritos');
+        }
+
+        const data = await response.json();
+        wishlistItems = (data.data || []).map(normalizeFavorite).filter(Boolean);
+        saveGuestWishlist(wishlistItems, { silent: true });
+      } catch (error) {
+        console.error('Error cargando favoritos:', error);
+        wishlistItems = [];
+      }
+    }
+
+    function renderWishlist() {
+      const container = document.getElementById('wishlist-container');
+
+      if (!container) return;
+
+      if (!wishlistItems || wishlistItems.length === 0) {
+        container.innerHTML = `
+          <div class="col-12">
+            <div class="empty-state">
+              <i class="fas fa-heart fa-3x mb-3"></i>
+              <h4 class="text-white">No tienes productos en favoritos</h4>
+              <p class="text-muted mb-4">Guarda tus productos preferidos para verlos y comprarlos más tarde.</p>
+              <button class="btn btn-primary" onclick="window.location.href='/shop'">
+                <i class="fas fa-store me-2"></i>Ir a la tienda
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = wishlistItems.map(item => {
+        const name = item.name || item.product?.name || 'Producto';
+        const price = item.product?.price ?? item.price ?? 0;
+    const variants = (item.imageVariants && typeof item.imageVariants === 'object')
+      ? item.imageVariants
+      : (item.product?.imageVariants && typeof item.product.imageVariants === 'object'
+        ? item.product.imageVariants
+        : {});
+    const imageUrl = variants.medium || variants.small || item.imageUrl || item.product?.imageUrl || null;
+    const placeholder = variants.placeholder || variants.thumbnail || item.product?.imageThumbnail || item.imageUrl || null;
+    const srcsetParts = [];
+
+    if (variants.small) srcsetParts.push(`${variants.small} 420w`);
+    if (variants.medium) srcsetParts.push(`${variants.medium} 700w`);
+    if (variants.large) srcsetParts.push(`${variants.large} 1000w`);
+    if (variants.large2x) srcsetParts.push(`${variants.large2x} 2000w`);
+
+    const srcsetAttr = srcsetParts.length ? ` srcset="${srcsetParts.join(', ')}"` : '';
+    const sizesAttr = srcsetParts.length ? ` sizes="(min-width: 1200px) 280px, (min-width: 992px) 45vw, 90vw"` : '';
+        const productId = item.productId ?? item.id;
+
+        return `
+        <div class="col-md-6">
+          <div class="wishlist-card" data-product-id="${productId}">
+        <div class="wishlist-card-image"${placeholder ? ` style="background-image:url('${(placeholder || '').replace(/'/g, "\\'")}');"` : ''}>
+          ${imageUrl ? `
+            <img src="${imageUrl}"${srcsetAttr}${sizesAttr} alt="${name}" loading="lazy" decoding="async" onerror="this.src='https://via.placeholder.com/400x220?text=Sin+Imagen'">
+          ` : `
+            <div class="d-flex align-items-center justify-content-center" style="height: 220px; background: rgba(255,255,255,0.04);">
+              <i class="fas fa-image fa-3x text-muted"></i>
+            </div>
+          `}
+        </div>
+            <div class="wishlist-card-body">
+              <h3 class="wishlist-card-title">${name}</h3>
+              <p class="wishlist-card-price mb-2">${formatCurrency(price)}</p>
+              <div class="wishlist-card-actions">
+                <button class="btn btn-primary flex-grow-1" onclick="addWishlistItemToCart('${productId}')">
+                  <i class="fas fa-cart-plus me-2"></i>Agregar al carrito
+                </button>
+                <button class="btn btn-outline-primary" onclick="viewProduct('${productId}')">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="btn btn-outline-danger" onclick="removeFromWishlist('${productId}')">
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;}).join('');
+    }
+
+    function updateWishlistSummary() {
+      const badge = document.getElementById('wishlist-count-badge');
+      if (!badge) return;
+      const count = wishlistItems.length;
+      badge.textContent = count === 1 ? '1 producto' : `${count} productos`;
+    }
+
+    async function removeFromWishlist(productId) {
+      if (isUserLoggedIn()) {
+        try {
+          const response = await fetch(`${getApiBaseUrl()}/api/favorites/${productId}`, {
+            method: 'DELETE',
+            headers: window.auth.getAuthHeaders(),
+          });
+
+          if (!response.ok) {
+            throw new Error('No se pudo eliminar el favorito');
+          }
+
+          await fetchWishlistFromServer();
+          showNotification('Producto eliminado de favoritos', 'info');
+        } catch (error) {
+          console.error('Error eliminando favorito:', error);
+          showNotification('No se pudo eliminar el favorito', 'danger');
+        }
+      } else {
+        wishlistItems = wishlistItems.filter(item => String(item.productId ?? item.id) !== String(productId));
+        saveGuestWishlist(wishlistItems);
+        showNotification('Producto eliminado de favoritos', 'info');
+      }
+
+      renderWishlist();
+      updateWishlistSummary();
+    }
+
+    async function clearWishlist() {
+      if (wishlistItems.length === 0) {
+        showNotification('Tu lista de favoritos ya está vacía', 'info');
+        return;
+      }
+
+      if (!confirm('¿Seguro que deseas eliminar todos los productos de tus favoritos?')) {
+        return;
+      }
+
+      if (isUserLoggedIn()) {
+        try {
+          const response = await fetch(`${getApiBaseUrl()}/api/favorites`, {
+            method: 'DELETE',
+            headers: window.auth.getAuthHeaders(),
+          });
+
+          if (!response.ok) {
+            throw new Error('No se pudo limpiar favoritos');
+          }
+
+          wishlistItems = [];
+          showNotification('Se vació tu lista de favoritos', 'info');
+        } catch (error) {
+          console.error('Error limpiando favoritos:', error);
+          showNotification('No se pudo limpiar tus favoritos', 'danger');
+        }
+      } else {
+        wishlistItems = [];
+        showNotification('Se vació tu lista de favoritos', 'info');
+      }
+
+      saveGuestWishlist(wishlistItems, { origin: 'wishlist-page' });
+
+      renderWishlist();
+      updateWishlistSummary();
+    }
+
+    function addWishlistItemToCart(productId) {
+      const item = wishlistItems.find(entry => String(entry.productId ?? entry.id) === String(productId));
+      if (!item) {
+        showNotification('Producto no disponible', 'warning');
+        return;
+      }
+
+      if (window.cart && typeof window.cart.addFromProduct === 'function') {
+        window.cart.addFromProduct(productId, 1);
+        showNotification(`${item.name || 'Producto'} agregado al carrito`, 'success');
+      } else {
+        showNotification('No fue posible agregar al carrito. Intenta nuevamente.', 'warning');
+      }
+    }
+
+    function viewProduct(productId) {
+      window.location.href = `/product/${productId}`;
+    }
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('es-CL', {
+        style: 'currency',
+        currency: 'CLP',
+        minimumFractionDigits: 0
+      }).format(value || 0);
+    }
+  </script>
+</body>
+
+</html>
+

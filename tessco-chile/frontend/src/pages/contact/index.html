@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto - Tessco Chile</title>
+  <meta name="description" content="Contáctanos para cualquier consulta sobre nuestros productos tecnológicos. Estamos ubicados en Santiago, Chile.">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Header CSS -->
+  <link href="../../assets/css/header.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/cart-offcanvas.css">
+
+  <style>
+    body {
+      background-color: #1a1a1a;
+      color: #ffffff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .breadcrumb {
+      background-color: transparent;
+      padding: 1rem 0;
+    }
+    
+    .breadcrumb-item + .breadcrumb-item::before {
+      color: #FF6B35;
+    }
+    
+    .breadcrumb-item a {
+      color: #FF6B35;
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: #cccccc;
+    }
+    
+    .contact-card {
+      background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+      border: 1px solid #404040;
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(255, 107, 53, 0.2);
+      border-color: #FF6B35;
+    }
+    
+    .contact-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: #ffffff;
+    }
+    
+    .contact-info h5 {
+      color: #ffffff;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-info p {
+      color: #cccccc;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+    }
+    
+    .contact-form-section {
+      background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+      border: 1px solid #404040;
+      border-radius: 15px;
+      padding: 2.5rem;
+    }
+    
+    .contact-form-section h2 {
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .contact-form-section p {
+      color: #cccccc;
+      margin-bottom: 2rem;
+    }
+    
+    .form-control {
+      background-color: #1a1a1a;
+      border: 1px solid #404040;
+      color: #ffffff;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-control:focus {
+      background-color: #1a1a1a;
+      border-color: #FF6B35;
+      color: #ffffff;
+      box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+    }
+    
+    .form-control::placeholder {
+      color: #888888;
+    }
+    
+    .btn-send {
+      background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+      border: none;
+      color: #ffffff;
+      padding: 0.75rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-send:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+      color: #ffffff;
+    }
+    
+    .map-container {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+    
+    .whatsapp-widget {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 1000;
+    }
+    
+    .whatsapp-button {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp-button:hover {
+      transform: scale(1.1);
+      color: #ffffff;
+    }
+    
+    .whatsapp-tooltip {
+      position: absolute;
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid #404040;
+    }
+    
+    .whatsapp-widget:hover .whatsapp-tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .section-title {
+      color: #ffffff;
+      font-weight: 700;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+      margin: 1rem auto 0;
+      border-radius: 2px;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-card {
+        margin-bottom: 2rem;
+      }
+      
+      .contact-form-section {
+        margin-top: 2rem;
+      }
+      
+      .whatsapp-widget {
+        bottom: 1rem;
+        right: 1rem;
+      }
+      
+      .whatsapp-tooltip {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <!-- Header Component -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <main class="py-5">
+    <div class="container">
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Contacto</li>
+        </ol>
+      </nav>
+
+      <!-- Contact Information Cards -->
+      <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="contact-info">
+              <h5>Email</h5>
+              <p>ventastesscochile@gmail.com</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="contact-info">
+              <h5>Teléfono</h5>
+              <p>(+56) 9 30144804</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="contact-card">
+            <div class="contact-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="contact-info">
+              <h5>Dirección</h5>
+              <p>Agustina 972 Oficina 310<br>Metro U. Chile</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Form and Map -->
+      <div class="row">
+        <!-- Contact Form -->
+        <div class="col-lg-6 mb-5">
+          <div class="contact-form-section">
+            <h2>Contáctanos</h2>
+            <p>Escríbenos tus dudas o preguntas y te responderá nuestro equipo de ventas o soporte.</p>
+            
+            <form id="contactForm">
+              <div class="mb-3">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Tu Nombre*" required>
+              </div>
+              <div class="mb-3">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Tu Email*" required>
+              </div>
+              <div class="mb-3">
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Tu Asunto*" required>
+              </div>
+              <div class="mb-3">
+                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Tu Mensaje*" required></textarea>
+              </div>
+              <button type="submit" class="btn btn-send w-100">
+                <i class="fas fa-paper-plane me-2"></i>
+                Enviar Mensaje
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="col-lg-6 mb-5">
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.123456789!2d-70.6482708!3d-33.4488897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662c5a6c8c8c8c8%3A0x1234567890abcdef!2sAgustinas%20972%2C%20Santiago%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses!2scl!4v1234567890123!5m2!1ses!2scl"
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer Container -->
+  <div id="footer"></div>
+
+  <!-- WhatsApp Widget -->
+  <div class="whatsapp-widget">
+    <a href="https://wa.me/56930144804" class="whatsapp-button" target="_blank">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <div class="whatsapp-tooltip">
+      ¿En qué te puedo ayudar?
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../assets/js/plugins.js"></script>
+  <script src="../../assets/js/SmoothScroll.js"></script>
+  <script src="../../components/footer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Inicializar footer
+    document.addEventListener('DOMContentLoaded', function() {
+      const footer = new FooterComponent();
+      footer.init();
+    });
+
+    // Manejar envío del formulario
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Obtener datos del formulario
+      const formData = new FormData(this);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        subject: formData.get('subject'),
+        message: formData.get('message')
+      };
+      
+      // Simular envío (aquí podrías integrar con un servicio de email)
+      console.log('Datos del formulario:', data);
+      
+      // Mostrar mensaje de éxito
+      alert('¡Mensaje enviado correctamente! Te responderemos pronto.');
+      
+      // Limpiar formulario
+      this.reset();
+    });
+  </script>
+  
+  <!-- Header Component -->
+  <!-- Configuración global -->
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../components/header.js"></script>
+  <script src="../../assets/js/ecommerce-config.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../assets/js/smart-navigation.js"></script>
+  <script src="../../assets/js/cart-offcanvas.js"></script>
+
+  <!-- Inicializar Header -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      loadHeader({
+        activeLink: 'contacto',
+        showSearch: true,
+        showCart: true,
+        showWishlist: true
+      });
+    });
+  </script>
+</body>
+</html>

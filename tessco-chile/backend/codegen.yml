@@ -1,0 +1,27 @@
+overwrite: true
+schema: "src/schema.graphql"
+documents: "src/**/*.graphql"
+generates:
+  src/generated/types.ts:
+    plugins:
+      - "typescript"
+      - "typescript-resolvers"
+    config:
+      useIndexSignature: true
+      contextType: "../types/context#Context"
+      mappers:
+        User: "../types/user#User"
+        Product: "../types/product#Product"
+        Order: "../types/order#Order"
+        Category: "../types/category#Category"
+        Brand: "../types/brand#Brand"
+  src/generated/hooks.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
+      apolloReactHooksImportFrom: "@apollo/client"

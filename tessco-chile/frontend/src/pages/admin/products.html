@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestión de Productos - Tessco Chile</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="Tessco Chile">
+  <meta name="keywords" content="admin,productos,gestión,tessco chile">
+  <meta name="description" content="Gestión de productos - Panel de administración Tessco Chile">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/vendor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Estilos específicos para admin -->
+  <style>
+    body {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+    }
+    
+    .container {
+      background-color: transparent !important;
+    }
+    
+    .card {
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+    }
+    
+    .bg-dark {
+      background-color: #2d2d2d !important;
+    }
+    
+    .bg-black {
+      background-color: #000000 !important;
+    }
+    
+    /* Asegurar que no haya fondos blancos */
+    * {
+      background-color: transparent !important;
+    }
+    
+    body, html {
+      background-color: #1a1a1a !important;
+    }
+    
+    .container, .row, .col, .col-md-* {
+      background-color: transparent !important;
+    }
+    
+    /* Corregir z-index y posición del dropdown */
+    .dropdown-menu {
+      z-index: 9999 !important;
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+      position: absolute !important;
+      right: 0 !important;
+      left: auto !important;
+      top: 100% !important;
+      transform: none !important;
+      margin-top: 0.125rem !important;
+    }
+    
+    .dropdown {
+      position: relative !important;
+    }
+    
+    .dropdown-item {
+      color: #ffffff !important;
+    }
+    
+    .dropdown-item:hover {
+      background-color: #404040 !important;
+      color: #ffffff !important;
+    }
+    
+    .dropdown-divider {
+      border-color: #404040 !important;
+    }
+    
+    /* Asegurar que el dropdown se alinee a la derecha */
+    .dropdown-menu[data-bs-popper] {
+      right: 0 !important;
+      left: auto !important;
+    }
+    
+    .table-dark {
+      --bs-table-bg: #2d2d2d;
+      --bs-table-striped-bg: #3a3a3a;
+    }
+    
+    .form-control, .form-select {
+      background-color: #404040 !important;
+      border-color: #555555 !important;
+      color: #ffffff !important;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      background-color: #404040 !important;
+      border-color: #007bff !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+    }
+    
+    .modal-content {
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+    }
+    
+    .modal-header {
+      border-bottom-color: #404040 !important;
+    }
+    
+    .modal-footer {
+      border-top-color: #404040 !important;
+    }
+    
+    /* Filtros modernos */
+    .filters-card {
+      background: linear-gradient(135deg, rgba(45,45,45,0.95), rgba(30,30,30,0.9)) !important;
+      border: 1px solid rgba(255,255,255,0.06) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35) !important;
+      padding: 28px !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .filters-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255, 132, 0, 0.18), transparent 55%);
+      pointer-events: none;
+    }
+
+    .filters-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px !important;
+      position: relative;
+      z-index: 1;
+    }
+
+    .filters-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+      margin: 0 !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filters-title i {
+      color: rgba(255, 132, 0, 0.65);
+    }
+
+    .filters-actions .btn-clear {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      border-radius: 30px !important;
+      padding: 8px 18px !important;
+      font-size: 0.85rem !important;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s ease, border 0.2s ease;
+    }
+
+    .filters-actions .btn-clear:hover {
+      background: rgba(255, 132, 0, 0.18) !important;
+      border-color: rgba(255, 132, 0, 0.36) !important;
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-field {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0 !important;
+    }
+
+    .filter-input {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      border-radius: 12px !important;
+      padding: 12px 14px !important;
+      height: 48px !important;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .filter-input:focus {
+      border-color: rgba(255, 132, 0, 0.5) !important;
+      box-shadow: 0 0 0 3px rgba(255, 132, 0, 0.15) !important;
+    }
+
+    .input-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon-wrapper .filter-input {
+      padding-left: 40px !important;
+    }
+
+    .input-icon-wrapper i {
+      position: absolute;
+      left: 14px;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1199px) {
+      .filters-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      .filters-card {
+        padding: 22px !important;
+      }
+
+      .filters-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      .filters-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .filters-actions {
+        width: 100%;
+      }
+
+      .filters-actions .btn-clear {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    .product-image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    
+    .image-preview {
+      max-width: 200px;
+      max-height: 200px;
+      width: auto;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      margin: 10px 0;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+    
+    #imagePreview, #additionalImagesPreview {
+      position: relative;
+      min-height: 80px;
+    }
+    
+    #imagePreview img {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      max-width: 200px;
+      max-height: 200px;
+      width: auto;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid #404040;
+    }
+    
+    #additionalImagesPreview {
+      display: flex !important;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    
+    #additionalImagesPreview img {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      width: 80px !important;
+      height: 80px !important;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #404040;
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg text-white text-uppercase fs-7 ls-1 py-3 align-items-center">
+    <div class="container-fluid">
+      <div class="row align-items-center w-100">
+        <div class="col-8 col-md-3">
+          <a class="navbar-brand" href="/"><img src="../../assets/images/logo.svg" width="204" height="46" alt="Tessco Chile"></a>
+        </div>
+        <div class="col-4 col-md-9 text-md-end">
+          <div class="dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user me-2"></i>
+              <span id="adminName">Administrador</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/admin"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="/admin/orders"><i class="fas fa-receipt me-2"></i>Pedidos</a></li>
+              <li><a class="dropdown-item" href="/admin/products"><i class="fas fa-box me-2"></i>Productos</a></li>
+              <li><a class="dropdown-item" href="/admin/categories"><i class="fas fa-tags me-2"></i>Categorías</a></li>
+              <li><a class="dropdown-item" href="/admin/users"><i class="fas fa-users me-2"></i>Usuarios</a></li>
+              <li><a class="dropdown-item" href="/admin/images"><i class="fas fa-image me-2"></i>Imágenes</a></li>
+              <li><a class="dropdown-item" href="/admin/settings"><i class="fas fa-cog me-2"></i>Configuración</a></li>
+              <li><a class="dropdown-item" href="/"><i class="fas fa-home me-2"></i>Ir al Sitio</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Products Management -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h1 class="text-white">Gestión de Productos</h1>
+              <p class="text-muted mb-0">Administra el catálogo de productos</p>
+            </div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#productModal" onclick="openProductModal()">
+              <i class="fas fa-plus me-2"></i>Nuevo Producto
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="filters-card">
+            <div class="filters-header">
+              <h2 class="filters-title"><i class="fas fa-sliders-h"></i>Panel de filtros</h2>
+              <div class="filters-actions">
+                <button type="button" class="btn btn-clear" onclick="resetFilters()">
+                  <i class="fas fa-undo"></i>
+                  Limpiar filtros
+                </button>
+              </div>
+            </div>
+            <div class="filters-grid">
+              <div class="filter-field">
+                <span class="filter-label">Categoría</span>
+                <select class="form-select filter-input" id="filterCategory" onchange="filterProducts()">
+                  <option value="">Todas las categorías</option>
+                </select>
+              </div>
+              <div class="filter-field">
+                <span class="filter-label">Marca</span>
+                <select class="form-select filter-input" id="filterBrand" onchange="filterProducts()">
+                  <option value="">Todas las marcas</option>
+                </select>
+              </div>
+              <div class="filter-field">
+                <span class="filter-label">Estado</span>
+                <select class="form-select filter-input" id="filterStatus" onchange="filterProducts()">
+                  <option value="">Todos los estados</option>
+                  <option value="active">Activos</option>
+                  <option value="inactive">Inactivos</option>
+                </select>
+              </div>
+              <div class="filter-field">
+                <span class="filter-label">Buscar</span>
+                <div class="input-icon-wrapper">
+                  <i class="fas fa-search"></i>
+                  <input type="text" class="form-control filter-input" id="searchProducts" placeholder="Buscar productos..." oninput="filterProducts()">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Table -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card bg-dark border-0 shadow-lg">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-dark table-hover">
+                  <thead>
+                    <tr>
+                      <th>Imagen</th>
+                      <th>Nombre</th>
+                      <th>Categoría</th>
+                      <th>Marca</th>
+                      <th>Precio</th>
+                      <th>Stock</th>
+                      <th>Estado</th>
+                      <th>Fecha</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="productsTable">
+                    <tr>
+                      <td colspan="9" class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                          <span class="visually-hidden">Cargando...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Modal -->
+  <div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="productModalTitle">Nuevo Producto</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="productForm" onsubmit="event.preventDefault(); saveProduct();">
+            <input type="hidden" id="productId">
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="productName" class="form-label text-white">Nombre *</label>
+                <input type="text" class="form-control" id="productName" required>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="productPrice" class="form-label text-white">Precio *</label>
+                <div class="input-group">
+                  <span class="input-group-text">$</span>
+                  <input type="number" class="form-control" id="productPrice" step="0.01" min="0" required>
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="productStock" class="form-label text-white">Stock</label>
+                <input type="number" class="form-control" id="productStock" min="0" value="0">
+              </div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="productCategory" class="form-label text-white">Categoría *</label>
+                <div class="input-group">
+                  <select class="form-select" id="productCategory" required>
+                    <option value="">Seleccionar categoría</option>
+                  </select>
+                  <button class="btn btn-outline-secondary" type="button" onclick="refreshCategories()" title="Actualizar categorías">
+                    <i class="fas fa-sync-alt"></i>
+                  </button>
+                  <button class="btn btn-outline-primary" type="button" onclick="openCreateCategory()" title="Crear nueva categoría">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="productBrand" class="form-label text-white">Marca *</label>
+                <input type="text" class="form-control" id="productBrand" placeholder="Escribir nombre de la marca" required>
+                <div class="form-text text-muted">Escribe el nombre de la marca. Se creará automáticamente si no existe.</div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="productDescription" class="form-label text-white">Descripción</label>
+              <textarea class="form-control" id="productDescription" rows="4"></textarea>
+            </div>
+            
+            <div class="mb-3">
+              <label for="productFeatures" class="form-label text-white">Características</label>
+              <textarea class="form-control" id="productFeatures" rows="4" placeholder="Ejemplo:
+Tamaño: 10 metros
+Color: Negro"></textarea>
+              <div class="form-text text-muted">Escribe una característica por línea. Se mostrará exactamente con los saltos de línea que ingreses.</div>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="productImageFile" class="form-label text-white">Imagen Principal</label>
+                <input type="file" class="form-control" id="productImageFile" accept="image/*" onchange="handleMainImageChange()">
+                <div class="form-text text-muted">Sube una imagen para el producto</div>
+                <div id="imagePreview" class="mt-2"></div>
+                <input type="hidden" id="productImage">
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="productImagesFiles" class="form-label text-white">Imágenes Adicionales</label>
+                <input type="file" class="form-control" id="productImagesFiles" accept="image/*" multiple onchange="handleAdditionalImagesChange()">
+                <div class="form-text text-muted">Selecciona múltiples imágenes (máximo 5)</div>
+                <div id="additionalImagesPreview" class="mt-2"></div>
+                <input type="hidden" id="productImages">
+              </div>
+            </div>
+            
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="productActive" checked>
+              <label class="form-check-label text-white" for="productActive">
+                Producto activo
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="cancelProductBtn">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="saveProductBtn" onclick="event.preventDefault(); saveProduct();">
+            <i class="fas fa-save me-2"></i>Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Container -->
+  <div id="alertContainer" class="position-fixed bottom-0 start-0 p-3" style="z-index: 9999; max-width: 400px;"></div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="footer-intro mb-4">
+            <a href="/">
+              <img src="../../assets/images/logo.svg" alt="Tessco Chile">
+            </a>
+            <p class="mt-3">Tessco Chile - Panel de Administración</p>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>&copy; 2025 Tessco Chile. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../assets/js/terminal-logger.js"></script>
+  <script src="../../assets/js/admin.js"></script>
+  
+  <script>
+    let products = [];
+    let categories = [];
+    let categoryHierarchy = { roots: [], map: new Map() };
+    let brands = [];
+    let editingProduct = null;
+    let filteredProducts = [];
+    let uploadedMainImage = '';
+    let uploadedAdditionalImages = [];
+
+    // Verificar autenticación al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        if (!window.auth || !window.auth.isAuthenticated() || !window.auth.isAdmin()) {
+          window.location.href = '/login';
+          return;
+        }
+
+        // Mostrar información del usuario
+        const adminName = document.getElementById('adminName');
+        if (window.auth.user) {
+          adminName.textContent = `${window.auth.user.firstName} ${window.auth.user.lastName}`;
+        }
+
+        // Cargar datos iniciales
+        loadCategories();
+        loadBrands();
+        loadProducts();
+      }, 500);
+    });
+
+    async function loadCategories() {
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/categories`, {
+          headers: window.auth.getAuthHeaders()
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          categories = data.data || [];
+          categoryHierarchy = buildCategoryHierarchy(categories);
+          populateCategorySelects();
+        }
+      } catch (error) {
+        console.error('Error cargando categorías:', error);
+      }
+    }
+
+    async function loadBrands() {
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/brands`, {
+          headers: window.auth.getAuthHeaders()
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          brands = data.data || [];
+          populateBrandSelects();
+        }
+      } catch (error) {
+        console.error('Error cargando marcas:', error);
+      }
+    }
+
+    async function loadProducts() {
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/products`, {
+          headers: window.auth.getAuthHeaders()
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          products = data.data || [];
+          filteredProducts = [...products];
+          renderProductsTable();
+        } else {
+          showAlert('Error al cargar los productos', 'danger');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión al cargar productos', 'danger');
+      }
+    }
+
+    function populateCategorySelects() {
+      const categorySelects = ['filterCategory', 'productCategory'];
+      const flatOptions = flattenHierarchy(categoryHierarchy.roots);
+      
+      categorySelects.forEach(selectId => {
+        const select = document.getElementById(selectId);
+        if (!select) return;
+
+        if (selectId === 'filterCategory') {
+          select.innerHTML = '<option value="">Todas las categorías</option>';
+        } else {
+          select.innerHTML = '<option value="">Seleccionar categoría</option>';
+        }
+        
+        flatOptions.forEach(optionData => {
+          const option = document.createElement('option');
+          option.value = optionData.id;
+          option.textContent = optionData.label;
+          select.appendChild(option);
+        });
+      });
+    }
+
+    function buildCategoryHierarchy(list) {
+      const map = new Map();
+
+      list.forEach(cat => {
+        map.set(cat.id, {
+          ...cat,
+          children: []
+        });
+      });
+
+      const roots = [];
+
+      map.forEach(cat => {
+        if (cat.parentId && map.has(cat.parentId)) {
+          map.get(cat.parentId).children.push(cat);
+        } else {
+          roots.push(cat);
+        }
+      });
+
+      sortHierarchyTree(roots);
+
+      return { roots, map };
+    }
+
+    function sortHierarchyTree(nodes) {
+      nodes.sort((a, b) => a.name.localeCompare(b.name));
+      nodes.forEach(node => {
+        if (node.children.length > 0) {
+          sortHierarchyTree(node.children);
+        }
+      });
+    }
+
+    function flattenHierarchy(nodes, level = 0) {
+      let options = [];
+
+      nodes.forEach(node => {
+        const prefix = level > 0 ? `${'— '.repeat(level)} ` : '';
+        options.push({
+          id: node.id,
+          label: `${prefix}${node.name}`
+        });
+
+        if (node.children.length > 0) {
+          options = options.concat(flattenHierarchy(node.children, level + 1));
+        }
+      });
+
+      return options;
+    }
+
+    function populateBrandSelects() {
+      // Solo poblar el filtro de marcas, el campo de producto ahora es un input de texto
+      const filterBrandSelect = document.getElementById('filterBrand');
+      const previousValue = filterBrandSelect.value;
+      filterBrandSelect.innerHTML = '<option value="">Todas las marcas</option>';
+      
+      brands.forEach(brand => {
+        const option = document.createElement('option');
+        option.value = brand.id;
+        option.textContent = brand.name;
+        filterBrandSelect.appendChild(option);
+      });
+
+      // Restaurar la selección previa si la marca sigue disponible
+      if (previousValue && brands.some(brand => brand.id === previousValue)) {
+        filterBrandSelect.value = previousValue;
+      }
+    }
+
+    function filterProducts() {
+      const categoryFilter = document.getElementById('filterCategory').value;
+      const brandFilter = document.getElementById('filterBrand').value;
+      const statusFilter = document.getElementById('filterStatus').value;
+      const searchTerm = document.getElementById('searchProducts').value.toLowerCase();
+
+      filteredProducts = products.filter(product => {
+        const matchesCategory = !categoryFilter || product.categoryId === categoryFilter;
+        const matchesBrand = !brandFilter || product.brandId === brandFilter;
+        const matchesStatus = !statusFilter || 
+          (statusFilter === 'active' && product.isActive) ||
+          (statusFilter === 'inactive' && !product.isActive);
+        const matchesSearch = !searchTerm || 
+          product.name.toLowerCase().includes(searchTerm) ||
+          product.description?.toLowerCase().includes(searchTerm) ||
+          product.features?.toLowerCase().includes(searchTerm);
+
+        return matchesCategory && matchesBrand && matchesStatus && matchesSearch;
+      });
+
+      renderProductsTable();
+    }
+
+    function resetFilters() {
+      document.getElementById('filterCategory').value = '';
+      document.getElementById('filterBrand').value = '';
+      document.getElementById('filterStatus').value = '';
+      document.getElementById('searchProducts').value = '';
+      filterProducts();
+    }
+
+    function renderProductsTable() {
+      const tbody = document.getElementById('productsTable');
+      
+      if (filteredProducts.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="text-center text-muted">
+              <i class="fas fa-inbox fa-2x mb-3"></i>
+              <p>No hay productos que coincidan con los filtros</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = filteredProducts.map(product => {
+        const category = categories.find(c => c.id === product.categoryId);
+        const brand = brands.find(b => b.id === product.brandId);
+        
+        return `
+          <tr>
+            <td>
+              ${product.imageUrl ? `<img src="${product.imageUrl}" class="product-image" alt="${product.name}">` : '<div class="product-image bg-secondary d-flex align-items-center justify-content-center"><i class="fas fa-image text-muted"></i></div>'}
+            </td>
+            <td>
+              <div>
+                <strong>${product.name}</strong>
+                ${product.description ? `<br><small class="text-muted">${product.description.substring(0, 50)}${product.description.length > 50 ? '...' : ''}</small>` : ''}
+                ${product.features ? `<br><small class="text-muted"><i class="fas fa-list me-1"></i>${product.features.split('\n')[0]}${product.features.includes('\n') ? '…' : ''}</small>` : ''}
+              </div>
+            </td>
+            <td>${category ? category.name : '-'}</td>
+            <td>${brand ? brand.name : '-'}</td>
+            <td><strong>$${product.price.toLocaleString('es-CL')}</strong></td>
+            <td>
+              <span class="badge ${product.stock > 10 ? 'bg-success' : product.stock > 0 ? 'bg-warning' : 'bg-danger'}">
+                ${product.stock}
+              </span>
+            </td>
+            <td>
+              <span class="badge ${product.isActive ? 'bg-success' : 'bg-secondary'}">
+                ${product.isActive ? 'Activo' : 'Inactivo'}
+              </span>
+            </td>
+            <td>
+              <small class="text-muted">
+                ${new Date(product.createdAt).toLocaleDateString('es-CL')}
+              </small>
+            </td>
+            <td>
+              <div class="btn-group btn-group-sm">
+                <button class="btn btn-outline-primary" onclick="editProduct('${product.id}')" title="Editar">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button class="btn btn-outline-danger" onclick="deleteProduct('${product.id}')" title="Eliminar">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function openProductModal(product = null) {
+      editingProduct = product;
+      const modal = document.getElementById('productModal');
+      const modalTitle = document.getElementById('productModalTitle');
+      const form = document.getElementById('productForm');
+      
+      form.reset();
+      document.getElementById('imagePreview').innerHTML = '';
+      document.getElementById('additionalImagesPreview').innerHTML = '';
+      uploadedMainImage = '';
+      uploadedAdditionalImages = [];
+      
+      if (product) {
+        modalTitle.textContent = 'Editar Producto';
+        document.getElementById('productId').value = product.id;
+        document.getElementById('productName').value = product.name;
+        document.getElementById('productPrice').value = product.price;
+        document.getElementById('productStock').value = product.stock;
+        document.getElementById('productCategory').value = product.categoryId;
+        
+        // Para la marca, mostrar el nombre en lugar del ID
+        const brand = brands.find(b => b.id === product.brandId);
+        document.getElementById('productBrand').value = brand ? brand.name : '';
+        
+        document.getElementById('productDescription').value = product.description || '';
+        document.getElementById('productFeatures').value = product.features ? product.features.replace(/\r\n/g, '\n') : '';
+        document.getElementById('productImage').value = product.imageUrl || '';
+        document.getElementById('productImages').value = product.images?.join(', ') || '';
+        document.getElementById('productActive').checked = product.isActive;
+        
+        // Mostrar preview de imagen principal si existe
+        if (product.imageUrl) {
+          const preview = document.getElementById('imagePreview');
+          preview.innerHTML = `<img src="${product.imageUrl}" class="image-preview" alt="Preview">`;
+        }
+        
+        // Mostrar preview de imágenes adicionales si existen
+        if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+          const additionalPreview = document.getElementById('additionalImagesPreview');
+          additionalPreview.innerHTML = product.images.map((imageUrl, index) => {
+            // Usar la URL de la imagen, o si es un objeto con variants, usar la mejor calidad disponible
+            const imageSrc = typeof imageUrl === 'string' 
+              ? imageUrl 
+              : (imageUrl.large || imageUrl.medium || imageUrl.original || imageUrl);
+            
+            return `
+              <div class="position-relative d-inline-block me-2 mb-2" style="width: 80px; height: 80px;">
+                <img src="${imageSrc}" 
+                     class="image-preview" 
+                     alt="Imagen adicional ${index + 1}" 
+                     style="width: 80px !important; height: 80px !important; object-fit: cover; border-radius: 8px; border: 1px solid #404040; display: block !important; visibility: visible !important; opacity: 1 !important;">
+                <button type="button" 
+                        class="btn btn-sm btn-danger position-absolute top-0 end-0" 
+                        style="width: 24px; height: 24px; padding: 0; border-radius: 50%; transform: translate(50%, -50%);"
+                        onclick="removeAdditionalImage(${index})"
+                        title="Eliminar imagen">
+                  <i class="fas fa-times" style="font-size: 10px;"></i>
+                </button>
+              </div>
+            `;
+          }).join('');
+          
+          // Guardar las imágenes adicionales en una variable global para poder eliminarlas
+          uploadedAdditionalImages = [...product.images];
+        }
+      } else {
+        modalTitle.textContent = 'Nuevo Producto';
+        document.getElementById('productActive').checked = true;
+        document.getElementById('productStock').value = 0;
+        document.getElementById('productFeatures').value = '';
+      }
+    }
+
+    async function saveProduct() {
+      console.log('🚀 Función saveProduct() ejecutándose...');
+      
+      const saveBtn = document.getElementById('saveProductBtn');
+      const cancelBtn = document.getElementById('cancelProductBtn');
+      const originalBtnContent = saveBtn ? saveBtn.innerHTML : '';
+      
+      // Mostrar loader en el botón
+      if (saveBtn) {
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Guardando...';
+      }
+      if (cancelBtn) {
+        cancelBtn.disabled = true;
+      }
+      
+      try {
+        const brandName = document.getElementById('productBrand').value.trim();
+        const categoryId = document.getElementById('productCategory').value;
+        
+        console.log('🔍 Datos del formulario:');
+        console.log('🔍 categoryId:', categoryId);
+        console.log('🔍 brandName:', brandName);
+        
+        // Crear FormData para enviar archivos y datos
+        const formData = new FormData();
+        formData.append('name', document.getElementById('productName').value.trim());
+        formData.append('price', parseFloat(document.getElementById('productPrice').value));
+        formData.append('stock', parseInt(document.getElementById('productStock').value) || 0);
+        formData.append('categoryId', categoryId);
+        formData.append('brandName', brandName);
+        formData.append('description', document.getElementById('productDescription').value.trim());
+        const featuresRaw = document.getElementById('productFeatures').value;
+        const normalizedFeatures = featuresRaw ? featuresRaw.replace(/\r\n/g, '\n') : '';
+        formData.append('features', normalizedFeatures);
+        formData.append('isActive', document.getElementById('productActive').checked);
+        
+        // Agregar archivos si existen
+        const productImageFile = document.getElementById('productImageFile').files[0];
+        if (productImageFile) {
+          formData.append('productImageFile', productImageFile);
+        }
+        
+        // Enviar archivos nuevos si hay archivos en el input que aún no se han subido
+        const productImagesFiles = document.getElementById('productImagesFiles').files;
+        for (let i = 0; i < productImagesFiles.length; i++) {
+          formData.append('productImagesFiles', productImagesFiles[i]);
+        }
+        
+        // Enviar las imágenes existentes (incluye las que ya estaban + las que se subieron en esta sesión)
+        // Esto es importante porque si el usuario ya subió imágenes, el input puede estar vacío
+        if (uploadedAdditionalImages && uploadedAdditionalImages.length > 0) {
+          // Asegurarse de que todas las imágenes sean strings (URLs)
+          const imagesToSend = uploadedAdditionalImages.map(img => {
+            if (typeof img === 'string') return img;
+            if (img && typeof img === 'object') {
+              return img.large || img.original || img.medium || img.url || String(img);
+            }
+            return String(img);
+          });
+          
+          formData.append('existingImages', JSON.stringify(imagesToSend));
+          console.log('📸 Enviando imágenes existentes:', imagesToSend.length, 'imágenes');
+          console.log('📸 URLs de imágenes a enviar:', imagesToSend);
+        } else {
+          console.log('⚠️ No hay imágenes adicionales para enviar');
+        }
+        
+        console.log('🔍 FormData creado:');
+        for (let pair of formData.entries()) {
+          console.log(pair[0] + ': ' + pair[1]);
+        }
+
+        if (!formData.get('name') || !formData.get('categoryId') || !formData.get('brandName') || formData.get('price') <= 0) {
+          showAlert('Por favor completa todos los campos obligatorios', 'warning');
+          // Restaurar botón
+          if (saveBtn) {
+            saveBtn.disabled = false;
+            saveBtn.innerHTML = originalBtnContent;
+          }
+          if (cancelBtn) {
+            cancelBtn.disabled = false;
+          }
+          return;
+        }
+
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const url = editingProduct 
+          ? `${apiUrl}/api/products/${editingProduct.id}`
+          : `${apiUrl}/api/products`;
+        
+        const method = editingProduct ? 'PUT' : 'POST';
+        
+        const response = await fetch(url, {
+          method: method,
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+            // No incluir Content-Type para FormData, el navegador lo establece automáticamente
+          },
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          // Actualizar el listado de marcas si se creó o actualizó una nueva
+          if (result?.data?.brand) {
+            const existingBrandIndex = brands.findIndex(brand => brand.id === result.data.brand.id);
+            if (existingBrandIndex === -1) {
+              brands.push(result.data.brand);
+            } else {
+              brands[existingBrandIndex] = {
+                ...brands[existingBrandIndex],
+                ...result.data.brand
+              };
+            }
+            populateBrandSelects();
+          }
+
+          const modal = bootstrap.Modal.getInstance(document.getElementById('productModal'));
+          modal.hide();
+          showAlert(editingProduct ? 'Producto actualizado exitosamente' : 'Producto creado exitosamente', 'success');
+          loadProducts();
+        } else {
+          showAlert(result.message || 'Error al guardar el producto', 'danger');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión', 'danger');
+      } finally {
+        // Restaurar botón siempre
+        if (saveBtn) {
+          saveBtn.disabled = false;
+          saveBtn.innerHTML = originalBtnContent;
+        }
+        if (cancelBtn) {
+          cancelBtn.disabled = false;
+        }
+      }
+    }
+
+    async function editProduct(productId) {
+      const product = products.find(p => p.id === productId);
+      if (product) {
+        openProductModal(product);
+        const modal = new bootstrap.Modal(document.getElementById('productModal'));
+        modal.show();
+      }
+    }
+
+    async function deleteProduct(productId) {
+      if (!confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+        return;
+      }
+
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/products/${productId}`, {
+          method: 'DELETE',
+          headers: window.auth.getAuthHeaders()
+        });
+
+        if (response.ok) {
+          showAlert('Producto eliminado exitosamente', 'success');
+          loadProducts();
+        } else {
+          const error = await response.json();
+          showAlert(error.message || 'Error al eliminar el producto', 'danger');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión', 'danger');
+      }
+    }
+
+    // Función para manejar el cambio de imagen principal (muestra preview y sube)
+    function handleMainImageChange() {
+      const fileInput = document.getElementById('productImageFile');
+      const file = fileInput.files[0];
+      
+      if (!file) {
+        document.getElementById('imagePreview').innerHTML = '';
+        return;
+      }
+      
+      // Mostrar preview local inmediatamente
+      showLocalImagePreview(file, 'imagePreview');
+      
+      // Subir la imagen automáticamente
+      uploadProductImage();
+    }
+    
+    // Función para mostrar preview local de imagen antes de subir
+    function showLocalImagePreview(file, previewElementId) {
+      const preview = document.getElementById(previewElementId);
+      if (!preview) {
+        console.error('Preview element not found:', previewElementId);
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'image-preview';
+        img.alt = 'Preview';
+        img.style.cssText = 'max-width: 200px; max-height: 200px; width: auto; height: auto; border-radius: 8px; border: 1px solid #404040; display: block; visibility: visible; opacity: 1;';
+        preview.innerHTML = '';
+        preview.appendChild(img);
+        console.log('Preview local mostrada para imagen principal');
+      };
+      reader.onerror = function(error) {
+        console.error('Error leyendo archivo:', error);
+        showAlert('Error al leer el archivo de imagen', 'danger');
+      };
+      reader.readAsDataURL(file);
+    }
+    
+    // Función para mostrar preview local de múltiples imágenes
+    function showLocalImagesPreview(files, previewElementId) {
+      const preview = document.getElementById(previewElementId);
+      if (!preview || files.length === 0) {
+        return;
+      }
+      
+      // No limpiar el preview, solo agregar las nuevas imágenes
+      let loadedCount = 0;
+      const totalFiles = files.length;
+      const startIndex = uploadedAdditionalImages.length; // Empezar desde el índice de las imágenes existentes
+      
+      Array.from(files).forEach((file, index) => {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const container = document.createElement('div');
+          container.className = 'position-relative d-inline-block me-2 mb-2';
+          container.style.cssText = 'width: 80px; height: 80px;';
+          
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.className = 'image-preview';
+          img.alt = `Preview ${startIndex + index + 1}`;
+          img.style.cssText = 'width: 80px !important; height: 80px !important; object-fit: cover; border-radius: 8px; border: 1px solid #404040; display: block !important; visibility: visible !important; opacity: 1 !important;';
+          
+          // Botón para eliminar (solo para preview local, no funcional hasta que se suba)
+          const removeBtn = document.createElement('button');
+          removeBtn.type = 'button';
+          removeBtn.className = 'btn btn-sm btn-danger position-absolute top-0 end-0';
+          removeBtn.style.cssText = 'width: 24px; height: 24px; padding: 0; border-radius: 50%; transform: translate(50%, -50%);';
+          removeBtn.title = 'Eliminar imagen';
+          removeBtn.innerHTML = '<i class="fas fa-times" style="font-size: 10px;"></i>';
+          removeBtn.onclick = function() {
+            // Remover el archivo del input
+            const fileInput = document.getElementById('productImagesFiles');
+            const dt = new DataTransfer();
+            Array.from(fileInput.files).forEach((f, i) => {
+              if (i !== startIndex + index) {
+                dt.items.add(f);
+              }
+            });
+            fileInput.files = dt.files;
+            container.remove();
+          };
+          
+          container.appendChild(img);
+          container.appendChild(removeBtn);
+          preview.appendChild(container);
+          loadedCount++;
+          
+          console.log(`Preview local ${loadedCount}/${totalFiles} cargada`);
+          
+          // Cuando todas las imágenes estén cargadas
+          if (loadedCount === totalFiles) {
+            console.log('Todas las previews locales cargadas');
+          }
+        };
+        reader.onerror = function(error) {
+          console.error('Error leyendo archivo:', error);
+          showAlert('Error al leer uno de los archivos de imagen', 'danger');
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function uploadProductImage() {
+      const fileInput = document.getElementById('productImageFile');
+      const file = fileInput.files[0];
+      
+      if (!file) return;
+      
+      // Deshabilitar el input durante la subida
+      fileInput.disabled = true;
+      const originalInputValue = fileInput.value;
+      
+      // Mostrar indicador de carga sobre el preview existente
+      const preview = document.getElementById('imagePreview');
+      const originalPreviewContent = preview ? preview.innerHTML : '';
+      if (preview) {
+        const existingImg = preview.querySelector('img');
+        if (existingImg) {
+          existingImg.style.opacity = '0.5';
+          preview.innerHTML = originalPreviewContent + '<div class="position-absolute top-50 start-50 translate-middle"><div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Subiendo...</span></div><p class="text-muted mt-2 mb-0 small">Subiendo...</p></div>';
+        } else {
+          preview.innerHTML = '<div class="text-center p-3"><div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Subiendo...</span></div><p class="text-muted mt-2 mb-0">Subiendo imagen...</p></div>';
+        }
+      }
+      
+      const formData = new FormData();
+      formData.append('image', file);
+      
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/upload/product`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${window.auth.token}`
+          },
+          body: formData
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          uploadedMainImage = data.data.image.url;
+          document.getElementById('productImage').value = uploadedMainImage;
+          
+          if (preview) {
+            preview.innerHTML = `<img src="${uploadedMainImage}" class="image-preview" alt="Preview" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+          }
+          
+          showAlert('Imagen principal subida exitosamente', 'success');
+        } else {
+          const error = await response.json();
+          showAlert(error.message || 'Error subiendo imagen', 'danger');
+          // Restaurar preview local si falla
+          if (preview && originalPreviewContent) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              preview.innerHTML = `<img src="${e.target.result}" class="image-preview" alt="Preview" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+            };
+            reader.readAsDataURL(file);
+          }
+          fileInput.value = originalInputValue;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión al subir imagen', 'danger');
+        // Restaurar preview local si falla
+        if (preview) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}" class="image-preview" alt="Preview" style="max-width: 200px; max-height: 200px; border-radius: 8px;">`;
+          };
+          reader.readAsDataURL(file);
+        }
+        fileInput.value = originalInputValue;
+      } finally {
+        // Restaurar input
+        fileInput.disabled = false;
+      }
+    }
+
+    // Función para eliminar una imagen adicional del preview
+    function removeAdditionalImage(index) {
+      if (uploadedAdditionalImages && uploadedAdditionalImages.length > index) {
+        uploadedAdditionalImages.splice(index, 1);
+        document.getElementById('productImages').value = uploadedAdditionalImages.join(', ');
+        
+        // Actualizar el preview
+        const additionalPreview = document.getElementById('additionalImagesPreview');
+        if (uploadedAdditionalImages.length === 0) {
+          additionalPreview.innerHTML = '';
+        } else {
+          additionalPreview.innerHTML = uploadedAdditionalImages.map((imageUrl, idx) => {
+            const imageSrc = typeof imageUrl === 'string' 
+              ? imageUrl 
+              : (imageUrl.large || imageUrl.medium || imageUrl.original || imageUrl);
+            
+            return `
+              <div class="position-relative d-inline-block me-2 mb-2" style="width: 80px; height: 80px;">
+                <img src="${imageSrc}" 
+                     class="image-preview" 
+                     alt="Imagen adicional ${idx + 1}" 
+                     style="width: 80px !important; height: 80px !important; object-fit: cover; border-radius: 8px; border: 1px solid #404040; display: block !important; visibility: visible !important; opacity: 1 !important;">
+                <button type="button" 
+                        class="btn btn-sm btn-danger position-absolute top-0 end-0" 
+                        style="width: 24px; height: 24px; padding: 0; border-radius: 50%; transform: translate(50%, -50%);"
+                        onclick="removeAdditionalImage(${idx})"
+                        title="Eliminar imagen">
+                  <i class="fas fa-times" style="font-size: 10px;"></i>
+                </button>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    // Función para manejar el cambio de imágenes adicionales (muestra preview y sube)
+    function handleAdditionalImagesChange() {
+      const fileInput = document.getElementById('productImagesFiles');
+      const files = Array.from(fileInput.files);
+      
+      if (files.length === 0) {
+        document.getElementById('additionalImagesPreview').innerHTML = '';
+        return;
+      }
+      
+      // Limitar a 5 imágenes
+      if (files.length > 5) {
+        showAlert('Solo puedes subir un máximo de 5 imágenes adicionales', 'warning');
+        fileInput.value = '';
+        document.getElementById('additionalImagesPreview').innerHTML = '';
+        return;
+      }
+      
+      // Mostrar preview local inmediatamente
+      showLocalImagesPreview(files, 'additionalImagesPreview');
+      
+      // Subir las imágenes automáticamente
+      uploadProductImages();
+    }
+
+    async function uploadProductImages() {
+      const fileInput = document.getElementById('productImagesFiles');
+      const files = Array.from(fileInput.files);
+      
+      if (files.length === 0) return;
+      
+      // Deshabilitar el input durante la subida
+      fileInput.disabled = true;
+      const originalInputValue = fileInput.value;
+      
+      // Mostrar indicador de carga sobre el preview existente
+      const preview = document.getElementById('additionalImagesPreview');
+      const originalPreviewContent = preview ? preview.innerHTML : '';
+      if (preview) {
+        const existingImgs = preview.querySelectorAll('img');
+        if (existingImgs.length > 0) {
+          existingImgs.forEach(img => img.style.opacity = '0.5');
+          preview.innerHTML = originalPreviewContent + '<div class="position-absolute top-50 start-50 translate-middle"><div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Subiendo...</span></div><p class="text-muted mt-2 mb-0 small">Subiendo...</p></div>';
+        } else {
+          preview.innerHTML = '<div class="text-center p-3"><div class="spinner-border spinner-border-sm text-primary" role="status"><span class="visually-hidden">Subiendo...</span></div><p class="text-muted mt-2 mb-0">Subiendo imágenes...</p></div>';
+        }
+      }
+      
+      const formData = new FormData();
+      files.forEach(file => {
+        formData.append('images', file);
+      });
+      
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/upload/products`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${window.auth.token}`
+          },
+          body: formData
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          // Extraer URLs de las imágenes subidas
+          // El endpoint devuelve objetos con {original, thumbnail}
+          const newImages = data.data.images.map(img => {
+            if (typeof img === 'string') return img;
+            if (img && typeof img === 'object') {
+              // El endpoint de upload devuelve {original, thumbnail}
+              return img.original || img.url || img.large || Object.values(img)[0] || String(img);
+            }
+            return String(img);
+          }).filter(url => url && url !== '');
+          
+          console.log('📸 Imágenes nuevas subidas:', newImages.length, newImages);
+          console.log('📸 Imágenes existentes antes:', uploadedAdditionalImages.length);
+          
+          // Agregar las nuevas imágenes a las existentes
+          uploadedAdditionalImages = [...uploadedAdditionalImages, ...newImages];
+          
+          console.log('📸 Total de imágenes después de agregar:', uploadedAdditionalImages.length);
+          console.log('📸 Todas las imágenes:', uploadedAdditionalImages);
+          
+          document.getElementById('productImages').value = uploadedAdditionalImages.join(', ');
+          
+          // Limpiar el input después de subir exitosamente
+          fileInput.value = '';
+          
+          if (preview) {
+            preview.innerHTML = uploadedAdditionalImages.map((url, idx) => 
+              `<div class="position-relative d-inline-block me-2 mb-2" style="width: 80px; height: 80px;">
+                <img src="${url}" 
+                     class="image-preview" 
+                     alt="Preview ${idx + 1}" 
+                     style="width: 80px !important; height: 80px !important; object-fit: cover; border-radius: 8px; border: 1px solid #404040; display: block !important; visibility: visible !important; opacity: 1 !important;">
+                <button type="button" 
+                        class="btn btn-sm btn-danger position-absolute top-0 end-0" 
+                        style="width: 24px; height: 24px; padding: 0; border-radius: 50%; transform: translate(50%, -50%);"
+                        onclick="removeAdditionalImage(${idx})"
+                        title="Eliminar imagen">
+                  <i class="fas fa-times" style="font-size: 10px;"></i>
+                </button>
+              </div>`
+            ).join('');
+          }
+          
+          showAlert('Imágenes adicionales subidas exitosamente', 'success');
+        } else {
+          const error = await response.json();
+          showAlert(error.message || 'Error subiendo imágenes', 'danger');
+          // Restaurar preview local si falla
+          if (preview && files.length > 0) {
+            showLocalImagesPreview(files, 'additionalImagesPreview');
+          }
+          fileInput.value = originalInputValue;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión al subir imágenes', 'danger');
+        // Restaurar preview local si falla
+        if (preview && files.length > 0) {
+          showLocalImagesPreview(files, 'additionalImagesPreview');
+        }
+        fileInput.value = originalInputValue;
+      } finally {
+        // Restaurar input
+        fileInput.disabled = false;
+      }
+    }
+
+    // Función para actualizar las categorías
+    async function refreshCategories() {
+      try {
+        await loadCategories();
+        showAlert('Categorías actualizadas exitosamente', 'success');
+      } catch (error) {
+        console.error('Error actualizando categorías:', error);
+        showAlert('Error al actualizar las categorías', 'danger');
+      }
+    }
+
+    // Función para abrir la página de categorías en nueva pestaña
+    function openCreateCategory() {
+      window.open('/admin/categories', '_blank');
+    }
+
+    function showAlert(message, type = 'info') {
+      const alertContainer = document.getElementById('alertContainer');
+      const alertId = 'alert-' + Date.now();
+      
+      alertContainer.innerHTML = `
+        <div id="${alertId}" class="alert alert-${type} alert-dismissible fade show" role="alert">
+          ${message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      `;
+      
+      // Auto-dismiss after 5 seconds
+      setTimeout(() => {
+        const alert = document.getElementById(alertId);
+        if (alert) {
+          const bsAlert = new bootstrap.Alert(alert);
+          bsAlert.close();
+        }
+      }, 5000);
+    }
+  </script>
+</body>
+
+</html>

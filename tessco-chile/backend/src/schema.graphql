@@ -1,0 +1,291 @@
+type Query {
+  # Productos
+  products(
+    page: Int = 1
+    limit: Int = 12
+    category: String
+    brand: String
+    search: String
+    minPrice: Float
+    maxPrice: Float
+    sort: String
+    order: String
+  ): ProductConnection!
+  product(id: ID!): Product
+  
+  # Categorías
+  categories: [Category!]!
+  category(id: ID!): Category
+  
+  # Marcas
+  brands: [Brand!]!
+  brand(id: ID!): Brand
+  
+  # Órdenes
+  orders: [Order!]!
+  order(id: ID!): Order
+  
+  # Usuarios
+  me: User
+  users: [User!]!
+  user(id: ID!): User
+}
+
+type Mutation {
+  # Autenticación
+  register(input: RegisterInput!): AuthPayload!
+  login(input: LoginInput!): AuthPayload!
+  refreshToken: AuthPayload!
+  logout: Boolean!
+  
+  # Productos (Admin)
+  createProduct(input: CreateProductInput!): Product!
+  updateProduct(id: ID!, input: UpdateProductInput!): Product!
+  deleteProduct(id: ID!): Boolean!
+  
+  # Categorías (Admin)
+  createCategory(input: CreateCategoryInput!): Category!
+  updateCategory(id: ID!, input: UpdateCategoryInput!): Category!
+  deleteCategory(id: ID!): Boolean!
+  
+  # Marcas (Admin)
+  createBrand(input: CreateBrandInput!): Brand!
+  updateBrand(id: ID!, input: UpdateBrandInput!): Brand!
+  deleteBrand(id: ID!): Boolean!
+  
+  # Órdenes
+  createOrder(input: CreateOrderInput!): Order!
+  updateOrderStatus(id: ID!, status: OrderStatus!): Order!
+  
+  # Usuarios
+  updateProfile(input: UpdateProfileInput!): User!
+  changePassword(input: ChangePasswordInput!): Boolean!
+}
+
+type Subscription {
+  orderUpdated: Order!
+  productUpdated: Product!
+}
+
+# Tipos de Datos
+
+type User {
+  id: ID!
+  email: String!
+  firstName: String
+  lastName: String
+  phone: String
+  role: UserRole!
+  isVerified: Boolean!
+  createdAt: String!
+  updatedAt: String!
+  orders: [Order!]!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  description: String
+  price: Float!
+  imageUrl: String
+  images: [String!]!
+  category: Category!
+  brand: Brand!
+  stock: Int!
+  isActive: Boolean!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Category {
+  id: ID!
+  name: String!
+  slug: String!
+  description: String
+  imageUrl: String
+  isActive: Boolean!
+  createdAt: String!
+  updatedAt: String!
+  parentId: ID
+  parent: Category
+  children: [Category!]!
+  products: [Product!]!
+}
+
+type Brand {
+  id: ID!
+  name: String!
+  slug: String!
+  logoUrl: String
+  isActive: Boolean!
+  createdAt: String!
+  updatedAt: String!
+  products: [Product!]!
+}
+
+type Order {
+  id: ID!
+  user: User!
+  items: [OrderItem!]!
+  total: Float!
+  status: OrderStatus!
+  shippingAddress: ShippingAddress!
+  paymentMethod: String
+  paymentStatus: PaymentStatus!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type OrderItem {
+  id: ID!
+  product: Product!
+  quantity: Int!
+  price: Float!
+  total: Float!
+}
+
+type ShippingAddress {
+  firstName: String!
+  lastName: String!
+  address: String!
+  city: String!
+  region: String!
+  postalCode: String!
+  phone: String!
+}
+
+type ProductConnection {
+  products: [Product!]!
+  totalCount: Int!
+  totalPages: Int!
+  currentPage: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+# Enums
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+# Inputs
+
+input RegisterInput {
+  email: String!
+  password: String!
+  firstName: String!
+  lastName: String!
+  phone: String
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input CreateProductInput {
+  name: String!
+  description: String
+  price: Float!
+  imageUrl: String
+  images: [String!]
+  categoryId: ID!
+  brandId: ID!
+  stock: Int = 0
+}
+
+input UpdateProductInput {
+  name: String
+  description: String
+  price: Float
+  imageUrl: String
+  images: [String!]
+  categoryId: ID
+  brandId: ID
+  stock: Int
+  isActive: Boolean
+}
+
+input CreateCategoryInput {
+  name: String!
+  slug: String!
+  description: String
+  imageUrl: String
+  parentId: ID
+}
+
+input UpdateCategoryInput {
+  name: String
+  slug: String
+  description: String
+  imageUrl: String
+  isActive: Boolean
+  parentId: ID
+}
+
+input CreateBrandInput {
+  name: String!
+  slug: String!
+  logoUrl: String
+}
+
+input UpdateBrandInput {
+  name: String
+  slug: String
+  logoUrl: String
+  isActive: Boolean
+}
+
+input CreateOrderInput {
+  items: [OrderItemInput!]!
+  shippingAddress: ShippingAddressInput!
+  paymentMethod: String
+}
+
+input OrderItemInput {
+  productId: ID!
+  quantity: Int!
+}
+
+input ShippingAddressInput {
+  firstName: String!
+  lastName: String!
+  address: String!
+  city: String!
+  region: String!
+  postalCode: String!
+  phone: String!
+}
+
+input UpdateProfileInput {
+  firstName: String
+  lastName: String
+  phone: String
+}
+
+input ChangePasswordInput {
+  currentPassword: String!
+  newPassword: String!
+}

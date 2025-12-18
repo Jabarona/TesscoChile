@@ -1,0 +1,100 @@
+// Custom Bootstrap variables for Tessco Chile
+// Import Bootstrap source files
+@use "sass:map";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+// Override Bootstrap variables
+$primary: #FF6B35;
+$primary-dark: #E55A2B;
+
+// Custom color palette
+$custom-colors: (
+  "primary": $primary,
+  "primary-dark": $primary-dark,
+  "orange-50": #fff7ed,
+  "orange-100": #ffedd5,
+  "orange-200": #fed7aa,
+  "orange-300": #fdba74,
+  "orange-400": #fb923c,
+  "orange-500": #f97316,
+  "orange-600": #ea580c,
+  "orange-700": #c2410c,
+  "orange-800": #9a3412,
+  "orange-900": #7c2d12,
+);
+
+// Merge custom colors with Bootstrap colors
+$theme-colors: map.merge($theme-colors, $custom-colors);
+
+// Import Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+// Custom components
+.btn-primary {
+  background-color: $primary;
+  border-color: $primary;
+  
+  &:hover {
+    background-color: $primary-dark;
+    border-color: $primary-dark;
+  }
+}
+
+.btn-outline-primary {
+  color: $primary;
+  border-color: $primary;
+  
+  &:hover {
+    background-color: $primary;
+    border-color: $primary;
+  }
+}
+
+// Custom navbar styles
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+// Custom card styles
+.card {
+  border: none;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  transition: box-shadow 0.15s ease-in-out;
+  
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Custom form styles
+.form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #dee2e6;
+  
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 0.2rem rgba($primary, 0.25);
+  }
+}
+
+// Custom button styles
+.btn {
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.15s ease-in-out;
+}
+
+// Custom spacing utilities
+.py-6 { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+.py-7 { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+.py-8 { padding-top: 6rem !important; padding-bottom: 6rem !important; }
+
+// Custom text utilities
+.text-primary { color: $primary !important; }
+.text-primary-dark { color: $primary-dark !important; }
+
+// Custom background utilities
+.bg-primary { background-color: $primary !important; }
+.bg-primary-dark { background-color: $primary-dark !important; }

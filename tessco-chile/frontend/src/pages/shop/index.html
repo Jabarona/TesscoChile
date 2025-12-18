@@ -1,0 +1,2968 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Tienda - Tessco Chile</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="Tessco Chile">
+  <meta name="keywords" content="tecnologia,accesorios,notebooks,smartphones,chile,tessco,tienda">
+  <meta name="description" content="Catálogo completo de tecnología y accesorios en Tessco Chile. Notebooks, smartphones, accesorios y más al mejor precio.">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/vendor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/header.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/cart-offcanvas.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Estilos personalizados para la página de tienda */
+    body {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+    }
+    
+    .card {
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+      color: #ffffff !important;
+    }
+    
+    .card-body {
+      background-color: #2d2d2d !important;
+    }
+    
+    .bg-light {
+      background-color: #404040 !important;
+      color: #ffffff !important;
+    }
+    
+    .text-muted {
+      color: #cccccc !important;
+    }
+    
+    .breadcrumb {
+      background-color: transparent !important;
+    }
+    
+    .breadcrumb-item a {
+      color: #FF6B35 !important;
+      text-decoration: none;
+    }
+    
+    .breadcrumb-item.active {
+      color: #ffffff !important;
+    }
+    
+    .btn-primary {
+      background-color: #FF6B35 !important;
+      border-color: #FF6B35 !important;
+    }
+    
+    .btn-primary:hover {
+      background-color: #E55A2B !important;
+      border-color: #E55A2B !important;
+    }
+    
+    .btn-outline-primary {
+      color: #FF6B35 !important;
+      border-color: #FF6B35 !important;
+    }
+    
+    .btn-outline-primary:hover {
+      background-color: #FF6B35 !important;
+      border-color: #FF6B35 !important;
+      color: white !important;
+    }
+    
+    .text-primary {
+      color: #FF6B35 !important;
+    }
+    
+    /* Iconos del header - color naranja */
+    .navbar svg,
+    .navbar use {
+      color: #FF6B35 !important;
+      fill: #FF6B35 !important;
+    }
+    
+    .navbar a svg {
+      color: #FF6B35 !important;
+    }
+    
+    .navbar .list-unstyled a {
+      color: #FF6B35 !important;
+    }
+    
+    .navbar .list-unstyled svg {
+      color: #FF6B35 !important;
+      fill: #FF6B35 !important;
+    }
+    
+    .navbar .list-unstyled a:hover svg {
+      opacity: 0.8;
+    }
+    
+    /* Badge del carrito */
+    .nav-cart-badge {
+      background-color: #FF6B35 !important;
+    }
+    
+    .form-control, .form-select {
+      background-color: #404040 !important;
+      border-color: #404040 !important;
+      color: #ffffff !important;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      background-color: #404040 !important;
+      border-color: #FF6B35 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25) !important;
+    }
+
+    .sort-select {
+      background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%) !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      padding: 0.45rem 1.5rem !important;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .sort-select:hover {
+      border-color: rgba(255, 107, 53, 0.35) !important;
+      box-shadow: 0 16px 28px rgba(255, 107, 53, 0.18) !important;
+    }
+
+    .sort-select:focus {
+      border-color: rgba(255, 107, 53, 0.45) !important;
+      box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25), 0 18px 32px rgba(255, 107, 53, 0.18) !important;
+    }
+
+    .product-card {
+      cursor: pointer;
+    }
+
+    .wishlist-btn {
+      width: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50% !important;
+      padding: 0.45rem !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .wishlist-btn:hover {
+      background: rgba(255, 107, 53, 0.15) !important;
+      border-color: rgba(255, 107, 53, 0.45) !important;
+    }
+
+    .wishlist-btn.active {
+      background: rgba(255, 107, 53, 0.25) !important;
+      border-color: rgba(255, 107, 53, 0.6) !important;
+      color: #ffffff !important;
+      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.25) !important;
+    }
+
+    .wishlist-btn i {
+      pointer-events: none;
+    }
+    
+    .form-check-input:checked {
+      background-color: #FF6B35 !important;
+      border-color: #FF6B35 !important;
+    }
+    
+    .form-check-input:focus {
+      border-color: #FF6B35 !important;
+      box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25) !important;
+    }
+
+    /* Sidebar de filtros */
+    .filters-sidebar {
+      background: linear-gradient(180deg, rgba(45,45,45,0.95) 0%, rgba(30,30,30,0.92) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35);
+      position: sticky;
+      top: 120px;
+    }
+
+    .filters-sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .filters-sidebar-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 0.04em;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filters-sidebar-title i {
+      color: rgba(255, 107, 53, 0.75);
+    }
+
+    .filters-reset {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: #ffffff;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s ease, border 0.2s ease;
+    }
+
+    .filters-reset:hover {
+      background: rgba(255, 107, 53, 0.2);
+      border-color: rgba(255, 107, 53, 0.35);
+      color: #ffffff;
+    }
+
+    .filter-dropdown {
+      margin-bottom: 20px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+    }
+
+    .filter-dropdown summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 18px;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .filter-dropdown summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .filter-dropdown .dropdown-icon {
+      transition: transform 0.2s ease;
+      color: rgba(255, 255, 255, 0.45);
+    }
+
+    .filter-dropdown[open] .dropdown-icon {
+      transform: rotate(180deg);
+    }
+
+    .filter-dropdown-content {
+      padding: 0 18px 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .filter-dropdown-content .filter-chips {
+      margin-top: 6px;
+    }
+
+    .filter-dropdown-content .price-range {
+      margin-top: 6px;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .filter-chip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .filter-chip input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .filter-chip span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid transparent;
+      color: #ffffff;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease, border 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .filter-chip input:checked + span {
+      background: rgba(255, 107, 53, 0.2);
+      border-color: rgba(255, 107, 53, 0.45);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.18);
+    }
+
+    .filter-chip span:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .price-range {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .price-range-inputs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .price-range-input {
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 12px !important;
+      padding: 10px 14px !important;
+    }
+
+    .price-range-input:focus {
+      border-color: rgba(255, 107, 53, 0.45) !important;
+      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.18) !important;
+    }
+
+    .filters-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .filters-footer .btn-primary {
+      border-radius: 14px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 12px;
+    }
+
+    @media (max-width: 991px) {
+      .filters-sidebar {
+        position: relative;
+        top: 0;
+        margin-bottom: 32px;
+      }
+    }
+
+    /* Ocultar sidebar en móvil, mostrar como offcanvas */
+    @media (max-width: 767px) {
+      .filters-sidebar {
+        display: none;
+      }
+
+      .filters-toggle-btn {
+        display: inline-flex !important;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .filters-toggle-btn {
+        display: none !important;
+      }
+    }
+
+    .filters-toggle-btn {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%) !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(255, 107, 53, 0.35) !important;
+      color: #ffffff !important;
+      padding: 0.75rem 1.5rem !important;
+      font-weight: 600;
+      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.18) !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 1.5rem;
+    }
+
+    .filters-toggle-btn:hover {
+      background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%) !important;
+      border-color: rgba(255, 107, 53, 0.6) !important;
+      box-shadow: 0 16px 28px rgba(255, 107, 53, 0.3) !important;
+      transform: translateY(-2px);
+    }
+
+    .filters-toggle-btn i {
+      font-size: 1.1rem;
+    }
+
+    /* Offcanvas para filtros en móvil */
+    .filters-offcanvas {
+      background: linear-gradient(180deg, rgba(45,45,45,0.98) 0%, rgba(30,30,30,0.95) 100%) !important;
+    }
+
+    .filters-offcanvas .offcanvas-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+    }
+
+    .filters-offcanvas .offcanvas-title {
+      color: #ffffff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filters-offcanvas .offcanvas-title i {
+      color: rgba(255, 107, 53, 0.75);
+    }
+
+    .filters-offcanvas .btn-close {
+      filter: invert(1);
+      opacity: 0.8;
+    }
+
+    .filters-offcanvas .offcanvas-body {
+      padding: 1.5rem;
+    }
+    
+    .pagination .page-link {
+      background-color: #2d2d2d !important;
+      border-color: #404040 !important;
+      color: #ffffff !important;
+    }
+    
+    .pagination .page-link:hover {
+      background-color: #FF6B35 !important;
+      border-color: #FF6B35 !important;
+      color: white !important;
+    }
+    
+    .pagination .page-item.active .page-link {
+      background-color: #FF6B35 !important;
+      border-color: #FF6B35 !important;
+    }
+    
+    /* Estilos para productos */
+    .product-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+    }
+    
+    .product-image-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: var(--image-aspect, 1 / 1);
+      min-height: 220px;
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #f5f5f5, #ffffff);
+      background-size: cover;
+      background-position: center;
+      padding: 0;
+    }
+    
+    .product-image-container img,
+    .product-image-container .image-fallback {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 0.25s ease;
+      border-radius: inherit;
+    }
+    
+    .product-image-container .image-fallback-overlay {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(16, 16, 16, 0.6);
+      backdrop-filter: blur(2px);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.8rem;
+      border-radius: inherit;
+    }
+    
+    .product-image-container img[data-loaded="false"] {
+      filter: blur(18px);
+      transform: scale(1.08);
+    }
+    
+    .product-image-container img[data-loaded="true"] {
+      filter: none;
+    }
+    
+    .product-card:hover .product-image-container img {
+      transform: scale(1.03);
+    }
+
+    @supports not (aspect-ratio: 1 / 1) {
+      .product-image-container::before {
+        content: '';
+        display: block;
+        padding-top: 100%;
+      }
+
+      .product-image-container > * {
+        position: absolute;
+        inset: 0;
+      }
+    }
+    
+    .product-price {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: #FF6B35;
+    }
+    
+    /* Corregir el problema de las cajas blancas */
+    .container {
+      background-color: transparent !important;
+    }
+    
+    .row {
+      background-color: transparent !important;
+    }
+    
+    .col-md-3, .col-md-9, .col-6, .col-12 {
+      background-color: transparent !important;
+    }
+    
+    /* Estilos para la sección de productos relacionados */
+    .bg-black {
+      background-color: #1a1a1a !important;
+    }
+    
+    .text-white {
+      color: #ffffff !important;
+    }
+    
+    
+    /* Estilos para el header y búsqueda */
+    .search-popup {
+      background-color: #1a1a1a !important;
+      padding: 2rem 0;
+    }
+    
+    .search-popup-container {
+      background-color: #1a1a1a !important;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    
+    /* Barra de búsqueda moderna */
+    .search-section {
+      margin-bottom: 2rem;
+    }
+    
+    .search-form {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .search-input-group {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background-color: #2d2d2d;
+      border-radius: 50px;
+      padding: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+    
+    .search-input-group:focus-within {
+      box-shadow: 0 4px 25px rgba(255, 107, 53, 0.2);
+      border: 2px solid #FF6B35;
+    }
+    
+    .search-input {
+      flex: 1;
+      background: transparent !important;
+      border: none !important;
+      color: #ffffff !important;
+      padding: 12px 20px;
+      font-size: 16px;
+      outline: none;
+    }
+    
+    .search-input::placeholder {
+      color: #888888;
+    }
+    
+    .search-button {
+      background-color: #FF6B35;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-left: 8px;
+    }
+    
+    .search-button:hover {
+      background-color: #E55A2B;
+      transform: scale(1.05);
+    }
+    
+    /* Sección de categorías mejorada */
+    .categories-section {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .categories-title {
+      color: #ffffff !important;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .category-item {
+      margin: 0;
+    }
+    
+    .category-link {
+      display: block;
+      background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .category-link:hover {
+      background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%);
+      color: white !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+      border-color: #FF6B35;
+    }
+    
+    .category-link:active {
+      transform: translateY(0);
+    }
+    
+    /* Estilos para la barra de búsqueda principal */
+    .search-box .search-button {
+      color: #ffffff !important;
+      transition: color 0.3s ease;
+    }
+    
+    .search-box .search-button:hover {
+      color: #FF6B35 !important;
+    }
+    
+    /* Responsive para móviles */
+    @media (max-width: 768px) {
+      .search-popup-container {
+        padding: 0 1rem;
+      }
+      
+      .search-input-group {
+        border-radius: 25px;
+        padding: 6px;
+      }
+      
+      .search-input {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+      
+      .search-button {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+      }
+      
+      .categories-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.75rem;
+      }
+      
+      .category-link {
+        padding: 0.75rem 1rem;
+        font-size: 14px;
+      }
+    }
+    
+    /* Ajustes para tablets */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .search-popup-container {
+        max-width: 1200px;
+        padding: 0 1.5rem;
+      }
+    }
+    
+    /* Ajustes para pantallas grandes */
+    @media (min-width: 1400px) {
+      .search-popup-container {
+        max-width: 1600px;
+        padding: 0 3rem;
+      }
+    }
+
+    /* Responsividad mejorada para la página de tienda */
+    @media (max-width: 991.98px) {
+      .sidebar {
+        margin-bottom: 1rem;
+      }
+      
+      .products-grid {
+        margin-top: 1rem;
+      }
+      
+      .product-card {
+        margin-bottom: 1rem;
+      }
+      
+      .filter-section {
+        margin-bottom: 1rem;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      .container-fluid {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+      
+      .sidebar {
+        padding: 1rem;
+      }
+      
+      .products-grid {
+        padding: 0;
+      }
+      
+      .product-card .card-body {
+        padding: 1rem;
+      }
+      
+      .product-card h5 {
+        font-size: 1rem;
+        line-height: 1.3;
+      }
+      
+      .product-card .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+      }
+
+      /* Ajustar sección de tienda */
+      section.py-5 {
+        padding-top: 1.5rem !important;
+        padding-bottom: 1.5rem !important;
+      }
+
+      /* Ajustar productos header */
+      .d-flex.justify-content-between.align-items-center {
+        flex-direction: column;
+        align-items: flex-start !important;
+        gap: 1rem;
+      }
+
+      .d-flex.justify-content-between.align-items-center .d-flex.align-items-center.gap-3 {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      /* Ajustar sort select en móvil */
+      .sort-select {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+    }
+    
+    /* Ajustes para tablets */
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .container-fluid {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+      }
+    }
+
+    /* Evitar superposición de elementos */
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    
+    .col-lg-3, .col-lg-9, .col-md-12 {
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+
+    @media (max-width: 991.98px) {
+      .col-lg-3, .col-lg-9 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
+
+    /* Estilos para el carousel de banners */
+    .banner-carousel-section {
+      width: 100%;
+      margin-top: 0;
+      background-color: #1a1a1a;
+      position: relative;
+    }
+
+    .banner-carousel {
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .banner-carousel .swiper-wrapper {
+      display: flex;
+    }
+
+    .banner-carousel .swiper-slide {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: auto;
+      min-height: 400px;
+    }
+
+    .banner-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      background-color: #1a1a1a;
+    }
+
+    /* Asegurar que las imágenes mantengan su aspect ratio */
+    .banner-carousel .swiper-slide img {
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: auto;
+    }
+
+    .banner-carousel .swiper-pagination {
+      bottom: 20px;
+    }
+
+    .banner-carousel .swiper-pagination-bullet {
+      background-color: #FF6B35;
+      opacity: 0.5;
+      width: 12px;
+      height: 12px;
+    }
+
+    .banner-carousel .swiper-pagination-bullet-active {
+      opacity: 1;
+      background-color: #FF6B35;
+    }
+
+    .banner-carousel .swiper-button-next,
+    .banner-carousel .swiper-button-prev {
+      color: #FF6B35;
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+
+    .banner-carousel .swiper-button-next:after,
+    .banner-carousel .swiper-button-prev:after {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .banner-carousel .swiper-button-next:hover,
+    .banner-carousel .swiper-button-prev:hover {
+      background-color: rgba(255, 107, 53, 0.8);
+      color: white;
+    }
+
+    /* Responsive para el carousel */
+    @media (max-width: 768px) {
+      .banner-carousel .swiper-slide {
+        min-height: 250px;
+      }
+
+      .banner-image {
+        width: 100%;
+        height: auto;
+      }
+
+      .banner-carousel .swiper-button-next,
+      .banner-carousel .swiper-button-prev {
+        width: 36px;
+        height: 36px;
+      }
+
+      .banner-carousel .swiper-button-next:after,
+      .banner-carousel .swiper-button-prev:after {
+        font-size: 16px;
+      }
+    }
+
+    /* Barra de categorías superior */
+    .store-category-bar {
+      background: linear-gradient(90deg, rgba(45,45,45,0.95), rgba(30,30,30,0.9));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 998;
+    }
+
+    .store-category-nav {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 12px 0;
+      overflow: visible;
+      flex-wrap: wrap;
+      row-gap: 12px;
+    }
+
+    .store-category-item {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      padding-bottom: 12px;
+    }
+
+    .store-category-link,
+    .store-subcategory-link {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 999px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .store-category-link:hover,
+    .store-subcategory-link:hover {
+      color: #ffffff;
+      border-color: rgba(255, 107, 53, 0.35);
+      background: rgba(255, 107, 53, 0.15);
+    }
+
+    .store-category-link.active {
+      color: #ffffff;
+      background: rgba(255, 107, 53, 0.2);
+      border-color: rgba(255, 107, 53, 0.45);
+      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.18);
+    }
+
+    .store-category-item.has-children .store-category-link {
+      padding-right: 32px;
+    }
+
+    .store-category-item .category-caret {
+      margin-left: 10px;
+      font-size: 0.7rem;
+      display: inline-flex;
+      transition: transform 0.2s ease;
+      color: rgba(255,255,255,0.55);
+    }
+
+    @media (min-width: 768px) {
+      .store-category-item:hover .category-caret,
+      .store-category-item:focus-within .category-caret {
+        transform: rotate(180deg);
+        color: #ffffff;
+      }
+    }
+
+    .store-subcategory-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 210px;
+      background: rgba(33, 33, 33, 0.98);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.4);
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(12px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 1000;
+    }
+
+    @media (min-width: 768px) {
+      .store-category-item:hover .store-subcategory-dropdown,
+      .store-category-item:focus-within .store-subcategory-dropdown {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+    }
+
+    .store-subcategory-link {
+      border-radius: 10px;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.04);
+      transition: background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .store-subcategory-link:hover {
+      background: rgba(255, 107, 53, 0.15);
+    }
+
+    .store-subcategory-link.active {
+      background: rgba(255, 107, 53, 0.25);
+      color: #ffffff;
+      border-color: rgba(255, 107, 53, 0.45);
+    }
+
+    /* Botón para abrir categorías en móvil */
+    .category-toggle-btn {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #2d2d2d 0%, #3a3a3a 100%) !important;
+      border-radius: 999px !important;
+      border: 1px solid rgba(255, 107, 53, 0.35) !important;
+      color: #ffffff !important;
+      padding: 0.75rem 1.5rem !important;
+      font-weight: 600;
+      box-shadow: 0 12px 24px rgba(255, 107, 53, 0.18) !important;
+      transition: all 0.2s ease !important;
+      margin-bottom: 1rem;
+      width: 100%;
+      justify-content: center;
+    }
+
+    .category-toggle-btn:hover {
+      background: linear-gradient(135deg, #FF6B35 0%, #E55A2B 100%) !important;
+      border-color: rgba(255, 107, 53, 0.6) !important;
+      box-shadow: 0 16px 28px rgba(255, 107, 53, 0.3) !important;
+      transform: translateY(-2px);
+    }
+
+    .category-toggle-btn i {
+      font-size: 1.1rem;
+    }
+
+    /* Offcanvas para categorías en móvil */
+    .categories-offcanvas {
+      background: linear-gradient(180deg, rgba(45,45,45,0.98) 0%, rgba(30,30,30,0.95) 100%) !important;
+    }
+
+    .categories-offcanvas .offcanvas-header {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1.5rem;
+    }
+
+    .categories-offcanvas .offcanvas-title {
+      color: #ffffff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .categories-offcanvas .offcanvas-title i {
+      color: rgba(255, 107, 53, 0.75);
+    }
+
+    .categories-offcanvas .btn-close {
+      filter: invert(1);
+      opacity: 0.8;
+    }
+
+    .categories-offcanvas .offcanvas-body {
+      padding: 0;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 767px) {
+      /* Ocultar barra de categorías en móvil */
+      .store-category-bar {
+        display: none;
+      }
+
+      /* Mostrar botón de categorías */
+      .category-toggle-btn {
+        display: flex !important;
+      }
+
+      /* Estilos para categorías dentro del offcanvas */
+      .categories-offcanvas .store-category-nav {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        align-items: stretch;
+        flex-wrap: nowrap;
+      }
+
+      .categories-offcanvas .store-category-item {
+        width: 100%;
+        padding-bottom: 0;
+        position: static;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .categories-offcanvas .store-category-item:last-child {
+        border-bottom: none;
+      }
+
+      .categories-offcanvas .store-category-link,
+      .categories-offcanvas .store-subcategory-link {
+        font-size: 0.9rem;
+        padding: 12px 16px;
+        width: 100%;
+        border-radius: 0;
+        justify-content: space-between;
+        border: none;
+        background: transparent;
+      }
+
+      .categories-offcanvas .store-category-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .categories-offcanvas .store-category-item.has-children .store-category-link {
+        padding-right: 16px;
+      }
+
+      .categories-offcanvas .store-category-item .category-caret {
+        margin-left: auto;
+        transition: transform 0.3s ease;
+      }
+
+      .categories-offcanvas .store-category-item.expanded .category-caret {
+        transform: rotate(180deg);
+      }
+
+      .categories-offcanvas .store-subcategory-dropdown {
+        position: static;
+        margin-top: 0;
+        margin-left: 0;
+        box-shadow: none;
+        border-radius: 0;
+        opacity: 0;
+        visibility: hidden;
+        max-height: 0;
+        transform: none;
+        background: rgba(20, 20, 20, 0.6);
+        padding: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+        overflow: hidden;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .categories-offcanvas .store-category-item.expanded .store-subcategory-dropdown {
+        opacity: 1;
+        visibility: visible;
+        max-height: 1000px;
+        padding: 8px 0;
+      }
+
+      .categories-offcanvas .store-subcategory-link {
+        display: flex;
+        width: 100%;
+        padding-left: 32px;
+        border-radius: 0;
+        font-size: 0.85rem;
+        background: transparent;
+      }
+
+      .categories-offcanvas .store-subcategory-link:hover {
+        background: rgba(255, 107, 53, 0.1);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .category-toggle-btn {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .category-toggle-container {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+      }
+    }
+
+    /* Para pantallas muy grandes, limitar altura máxima */
+    @media (min-width: 1920px) {
+      .banner-carousel .swiper-slide {
+        max-height: 600px;
+      }
+
+      .banner-image {
+        max-height: 600px;
+        object-fit: contain;
+      }
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <!-- Header Component -->
+  <div id="header"></div>
+
+  <!-- Barra de categorías inspirada en Mercado Libre (solo desktop) -->
+  <section class="store-category-bar">
+    <div class="container-fluid" style="max-width: 1400px; padding-left: 2rem; padding-right: 2rem;">
+      <nav class="store-category-nav" id="store-category-nav" role="navigation" aria-label="Categorías destacadas">
+        <!-- Las categorías principales se cargarán dinámicamente -->
+      </nav>
+    </div>
+  </section>
+
+  <!-- Botón para abrir categorías en móvil -->
+  <div class="container-fluid category-toggle-container" style="max-width: 1400px; padding-left: 2rem; padding-right: 2rem;">
+    <button class="btn category-toggle-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#categoriesOffcanvas" aria-controls="categoriesOffcanvas">
+      <i class="fas fa-th-large"></i>
+      <span id="category-toggle-text">Seleccionar Categoría</span>
+    </button>
+  </div>
+
+  <!-- Offcanvas para categorías en móvil -->
+  <div class="offcanvas offcanvas-start categories-offcanvas" tabindex="-1" id="categoriesOffcanvas" aria-labelledby="categoriesOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="categoriesOffcanvasLabel">
+        <i class="fas fa-th-large"></i>
+        Categorías
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <nav class="store-category-nav" id="store-category-nav-mobile" role="navigation" aria-label="Categorías destacadas">
+        <!-- Las categorías se cargarán dinámicamente aquí también -->
+      </nav>
+    </div>
+  </div>
+
+  <!-- Breadcrumb -->
+  <section class="py-3 bg-black">
+    <div class="container-fluid" style="max-width: 1400px; padding-left: 2rem; padding-right: 2rem;">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0">
+          <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Tienda</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Search and Categories Section -->
+  <div class="search-popup">
+    <div class="search-popup-container">
+      <!-- Barra de búsqueda moderna -->
+      <div class="search-section">
+        <form role="search" method="get" class="search-form" action="">
+          <div class="search-input-group">
+            <input type="search" id="search-form" class="search-input"
+              placeholder="Buscar productos..." value="" name="s" />
+            <button type="submit" class="search-button">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Sección de categorías mejorada -->
+      <div class="categories-section">
+        <h5 class="categories-title">
+          <i class="fas fa-th-large me-2"></i>
+          Explorar Categorías
+        </h5>
+        <div class="categories-grid" id="search-categories">
+          <!-- Las categorías se cargarán dinámicamente -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Banner -->
+  <div id="error-banner" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none; position: fixed; top: 80px; left: 50%; transform: translateX(-50%); z-index: 1050; max-width: 90%;">
+    <i class="fas fa-exclamation-triangle me-2"></i>
+    <span id="error-message">Error al agregar producto al carrito</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <!-- Shop Section -->
+  <section class="py-5">
+    <div class="container-fluid" style="max-width: 1400px; padding-left: 2rem; padding-right: 2rem;">
+      <div class="row">
+        <!-- Botón para abrir filtros en móvil -->
+        <div class="col-12 d-md-none">
+          <button class="btn filters-toggle-btn w-100" type="button" data-bs-toggle="offcanvas" data-bs-target="#filtersOffcanvas" aria-controls="filtersOffcanvas">
+            <i class="fas fa-sliders-h"></i>
+            <span>Filtrar productos</span>
+          </button>
+        </div>
+
+        <!-- Sidebar (oculto en móvil) -->
+        <div class="col-lg-3 col-md-12 d-none d-md-block">
+          <aside class="filters-sidebar">
+            <div class="filters-sidebar-header">
+              <h5 class="filters-sidebar-title"><i class="fas fa-sliders-h"></i>Filtrar productos</h5>
+              <button type="button" class="filters-reset" id="clear-filters" onclick="clearAllFilters()">
+                <i class="fas fa-rotate-left"></i>
+                Limpiar
+              </button>
+            </div>
+
+            <!-- Categorías -->
+            <details class="filter-dropdown">
+              <summary>
+                Categorías
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+              </summary>
+              <div class="filter-dropdown-content">
+                <div class="filter-chips" role="group" aria-label="Categorías">
+                  <label class="filter-chip" for="cat-notebooks">
+                    <input class="form-check-input" type="checkbox" value="notebooks" id="cat-notebooks">
+                    <span>Notebooks</span>
+                  </label>
+                  <label class="filter-chip" for="cat-smartphones">
+                    <input class="form-check-input" type="checkbox" value="smartphones" id="cat-smartphones">
+                    <span>Smartphones</span>
+                  </label>
+                  <label class="filter-chip" for="cat-accesorios">
+                    <input class="form-check-input" type="checkbox" value="accesorios" id="cat-accesorios">
+                    <span>Accesorios</span>
+                  </label>
+                  <label class="filter-chip" for="cat-monitores">
+                    <input class="form-check-input" type="checkbox" value="monitores" id="cat-monitores">
+                    <span>Monitores</span>
+                  </label>
+                </div>
+              </div>
+            </details>
+
+            <!-- Rango de Precios -->
+            <details class="filter-dropdown">
+              <summary>
+                Rango de precios
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+              </summary>
+              <div class="filter-dropdown-content">
+                <div class="price-range">
+                  <div class="price-range-inputs">
+                    <div>
+                      <label class="visually-hidden" for="price-min">Precio mínimo</label>
+                      <input type="number" class="form-control price-range-input" placeholder="Mín" id="price-min">
+                    </div>
+                    <div>
+                      <label class="visually-hidden" for="price-max">Precio máximo</label>
+                      <input type="number" class="form-control price-range-input" placeholder="Máx" id="price-max">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </details>
+
+            <!-- Marca -->
+            <details class="filter-dropdown">
+              <summary>
+                Marcas destacadas
+                <i class="fas fa-chevron-down dropdown-icon"></i>
+              </summary>
+              <div class="filter-dropdown-content">
+                <div class="filter-chips" role="group" aria-label="Marcas">
+                  <label class="filter-chip" for="brand-samsung">
+                    <input class="form-check-input" type="checkbox" value="samsung" id="brand-samsung">
+                    <span>Samsung</span>
+                  </label>
+                  <label class="filter-chip" for="brand-apple">
+                    <input class="form-check-input" type="checkbox" value="apple" id="brand-apple">
+                    <span>Apple</span>
+                  </label>
+                  <label class="filter-chip" for="brand-hp">
+                    <input class="form-check-input" type="checkbox" value="hp" id="brand-hp">
+                    <span>HP</span>
+                  </label>
+                  <label class="filter-chip" for="brand-asus">
+                    <input class="form-check-input" type="checkbox" value="asus" id="brand-asus">
+                    <span>ASUS</span>
+                  </label>
+                </div>
+              </div>
+            </details>
+
+            <div class="filters-footer">
+              <button class="btn btn-primary w-100" onclick="applyFilters()">Aplicar filtros</button>
+            </div>
+          </aside>
+        </div>
+
+        <!-- Offcanvas para filtros en móvil -->
+        <div class="offcanvas offcanvas-start filters-offcanvas" tabindex="-1" id="filtersOffcanvas" aria-labelledby="filtersOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="filtersOffcanvasLabel">
+              <i class="fas fa-sliders-h"></i>
+              Filtrar productos
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <aside class="filters-sidebar" style="position: relative; top: 0; box-shadow: none; border: none; padding: 0;">
+              <div class="filters-sidebar-header">
+                <button type="button" class="filters-reset" id="clear-filters-mobile" onclick="clearAllFilters()">
+                  <i class="fas fa-rotate-left"></i>
+                  Limpiar
+                </button>
+              </div>
+
+              <!-- Categorías -->
+              <details class="filter-dropdown">
+                <summary>
+                  Categorías
+                  <i class="fas fa-chevron-down dropdown-icon"></i>
+                </summary>
+                <div class="filter-dropdown-content">
+                  <div class="filter-chips" role="group" aria-label="Categorías" id="mobile-category-filters">
+                    <!-- Se llenará dinámicamente -->
+                  </div>
+                </div>
+              </details>
+
+              <!-- Rango de Precios -->
+              <details class="filter-dropdown">
+                <summary>
+                  Rango de precios
+                  <i class="fas fa-chevron-down dropdown-icon"></i>
+                </summary>
+                <div class="filter-dropdown-content">
+                  <div class="price-range">
+                    <div class="price-range-inputs">
+                      <div>
+                        <label class="visually-hidden" for="price-min-mobile">Precio mínimo</label>
+                        <input type="number" class="form-control price-range-input" placeholder="Mín" id="price-min-mobile">
+                      </div>
+                      <div>
+                        <label class="visually-hidden" for="price-max-mobile">Precio máximo</label>
+                        <input type="number" class="form-control price-range-input" placeholder="Máx" id="price-max-mobile">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </details>
+
+              <!-- Marca -->
+              <details class="filter-dropdown">
+                <summary>
+                  Marcas destacadas
+                  <i class="fas fa-chevron-down dropdown-icon"></i>
+                </summary>
+                <div class="filter-dropdown-content">
+                  <div class="filter-chips" role="group" aria-label="Marcas" id="mobile-brand-filters">
+                    <!-- Se llenará dinámicamente -->
+                  </div>
+                </div>
+              </details>
+
+              <div class="filters-footer">
+                <button class="btn btn-primary w-100" onclick="applyFilters(); const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('filtersOffcanvas')); if(offcanvas) offcanvas.hide();">Aplicar filtros</button>
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <!-- Productos -->
+        <div class="col-lg-9 col-md-12">
+          <!-- Header de productos -->
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="text-white mb-0">Todos los Productos</h4>
+            <div class="d-flex align-items-center gap-3">
+              <span class="text-white">Ordenar por:</span>
+              <select class="form-select form-select-sm sort-select" style="width: auto;" id="sort-select">
+                <option value="name">Nombre</option>
+                <option value="price-low">Precio: Menor a Mayor</option>
+                <option value="price-high">Precio: Mayor a Menor</option>
+                <option value="newest">Más Recientes</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Grid de productos -->
+          <div class="row" id="products-grid">
+            <!-- Loader inicial -->
+            <div class="col-12 text-center py-5" id="products-loader">
+              <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                <span class="visually-hidden">Cargando productos...</span>
+              </div>
+              <p class="text-white mt-3">Cargando productos...</p>
+            </div>
+          </div>
+
+          <!-- Paginación -->
+          <nav aria-label="Paginación de productos" class="mt-5">
+            <ul class="pagination justify-content-center">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">Siguiente</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Banner Carousel (ubicado al final para destacar promociones) -->
+  <section class="banner-carousel-section">
+    <div class="swiper banner-carousel">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="/images/bannerotro.png" alt="Banner 1" class="banner-image">
+        </div>
+        <div class="swiper-slide">
+          <img src="/images/bannerotro1.png" alt="Banner 2" class="banner-image">
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+  </section>
+
+  <!-- Footer Container -->
+  <div id="footer"></div>
+
+  <!-- Scripts -->
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../assets/js/plugins.js"></script>
+  <script src="../../assets/js/SmoothScroll.js"></script>
+  <script src="../../components/header.js"></script>
+  <script src="../../components/footer.js"></script>
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../assets/js/ecommerce-config.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../assets/js/smart-navigation.js"></script>
+  <script src="../../assets/js/cart.js"></script>
+  <script src="../../assets/js/cart-offcanvas.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="../../assets/js/script.js"></script>
+  
+  <!-- Inicializar Header -->
+  <script>
+    // Cargar header con opciones específicas para la página de tienda
+    document.addEventListener('DOMContentLoaded', function() {
+      loadHeader({
+        activeLink: 'tienda',
+        showSearch: false,  // Ocultar porque ya hay buscador en la página
+        showCart: true,
+        showWishlist: true
+      });
+
+      // Inicializar el carousel de banners
+      const bannerSwiper = new Swiper('.banner-carousel', {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        autoHeight: true, // Permite que el carousel se ajuste a la altura de la imagen
+        autoplay: {
+          delay: 5000, // Cambiar imagen cada 5 segundos
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true,
+        },
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        },
+        speed: 1000,
+        // Asegurar que las imágenes se carguen correctamente
+        on: {
+          imagesReady: function() {
+            this.update();
+          }
+        }
+      });
+    });
+  </script>
+  
+  <script>
+    // Variables globales
+    let allProducts = [];
+    let filteredProducts = [];
+    let currentPage = 1;
+    const productsPerPage = 12;
+    const WISHLIST_STORAGE_BASE_KEY = 'tessco_wishlist';
+    let wishlistItems = loadWishlistFromStorage();
+    let shopCategories = [];
+    let categoryHierarchy = { roots: [], map: new Map() };
+    let activeTopCategoryId = 'all';
+    let activeSubcategoryId = null;
+
+    function escapeHtml(value) {
+      if (value === null || value === undefined) return '';
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function escapeForSingleQuotes(value) {
+      if (value === null || value === undefined) return '';
+      return String(value)
+        .replace(/\\/g, '\\\\')
+        .replace(/'/g, "\\'");
+    }
+
+    function handleProductImageLoad(img) {
+      img.dataset.loaded = 'true';
+      img.style.display = 'block';
+      const fallback = img.nextElementSibling;
+      if (fallback && fallback.classList.contains('image-fallback-overlay')) {
+        fallback.style.display = 'none';
+      }
+      const container = img.closest('.product-image-container');
+      if (container && img.naturalWidth && img.naturalHeight) {
+        const ratio = img.naturalWidth / img.naturalHeight;
+        container.style.setProperty('--image-aspect', `${img.naturalWidth} / ${img.naturalHeight}`);
+        container.dataset.imageAspect = ratio.toFixed(4);
+      }
+    }
+
+    function handleProductImageError(img) {
+      img.style.display = 'none';
+      const fallback = img.nextElementSibling;
+      if (fallback && fallback.classList.contains('image-fallback-overlay')) {
+        fallback.style.display = 'flex';
+      }
+      const container = img.closest('.product-image-container');
+      if (container) {
+        container.style.removeProperty('--image-aspect');
+        delete container.dataset.imageAspect;
+      }
+    }
+
+    // Cargar datos al inicializar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      loadProducts();
+      loadCategories();
+      loadBrands();
+      setupEventListeners();
+
+      setTimeout(() => {
+        initializeWishlistSync();
+      }, 600);
+    });
+
+    function buildCategoryHierarchy(list) {
+      const activeList = list.filter(cat => cat && cat.isActive !== false);
+      const map = new Map();
+
+      activeList.forEach(cat => {
+        map.set(cat.id, {
+          ...cat,
+          children: []
+        });
+      });
+
+      const roots = [];
+
+      map.forEach(cat => {
+        if (cat.parentId && map.has(cat.parentId)) {
+          map.get(cat.parentId).children.push(cat);
+        } else {
+          roots.push(cat);
+        }
+      });
+
+      sortCategoryHierarchy(roots);
+
+      return { roots, map };
+    }
+
+    function sortCategoryHierarchy(nodes) {
+      nodes.sort((a, b) => a.name.localeCompare(b.name));
+      nodes.forEach(node => {
+        if (node.children.length > 0) {
+          sortCategoryHierarchy(node.children);
+        }
+      });
+    }
+
+    function flattenHierarchy(nodes, level = 0) {
+      let result = [];
+
+      nodes.forEach(node => {
+        result.push({
+          ...node,
+          level
+        });
+
+        if (node.children.length > 0) {
+          result = result.concat(flattenHierarchy(node.children, level + 1));
+        }
+      });
+
+      return result;
+    }
+
+    function getDescendantCategoryIds(categoryId, { includeSelf = false } = {}) {
+      if (!categoryHierarchy || !categoryHierarchy.map) {
+        return includeSelf ? [categoryId] : [];
+      }
+
+      const node = categoryHierarchy.map.get(categoryId);
+      if (!node) {
+        return includeSelf ? [categoryId] : [];
+      }
+
+      const ids = [];
+
+      if (includeSelf) {
+        ids.push(node.id);
+      }
+
+      const stack = [...node.children];
+      while (stack.length > 0) {
+        const current = stack.shift();
+        ids.push(current.id);
+        if (current.children && current.children.length > 0) {
+          stack.push(...current.children);
+        }
+      }
+
+      return ids;
+    }
+
+    // Cargar productos del backend
+    async function loadProducts() {
+      const loader = document.getElementById('products-loader');
+      const grid = document.getElementById('products-grid');
+      
+      // Mostrar loader
+      if (loader) {
+        loader.style.display = 'block';
+      }
+      
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/products`);
+        if (response.ok) {
+          const data = await response.json();
+          allProducts = data.data || [];
+          filteredProducts = [...allProducts];
+          
+          // Ocultar loader
+          if (loader) {
+            loader.style.display = 'none';
+          }
+          
+          renderProducts();
+          updatePagination();
+        } else {
+          // Ocultar loader y mostrar error
+          if (loader) {
+            loader.style.display = 'none';
+          }
+          showError('Error al cargar los productos');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        // Ocultar loader y mostrar error
+        if (loader) {
+          loader.style.display = 'none';
+        }
+        showError('Error de conexión');
+      }
+    }
+
+    // Cargar categorías del backend
+    async function loadCategories() {
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/categories`);
+        if (response.ok) {
+          const data = await response.json();
+          shopCategories = (data.data || []).filter(cat => cat && cat.isActive !== false);
+          categoryHierarchy = buildCategoryHierarchy(shopCategories);
+          renderCategoryFilters(categoryHierarchy);
+          renderStoreCategoryNav();
+          renderSearchCategories(shopCategories);
+          
+          // Re-configurar toggle después de renderizar
+          setTimeout(() => {
+            setupMobileCategoryToggle();
+          }, 100);
+        }
+      } catch (error) {
+        console.error('Error cargando categorías:', error);
+      }
+    }
+
+    // Cargar marcas del backend
+    async function loadBrands() {
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}/api/brands`);
+        if (response.ok) {
+          const data = await response.json();
+          const brands = data.data || [];
+          renderBrandFilters(brands);
+        }
+      } catch (error) {
+        console.error('Error cargando marcas:', error);
+      }
+    }
+
+    // Renderizar filtros de categorías dinámicamente
+    function renderCategoryFilters(hierarchy) {
+      const referenceCheckbox = document.querySelector('#cat-notebooks');
+      const mobileCategoryContainer = document.getElementById('mobile-category-filters');
+      
+      const categories = hierarchy && hierarchy.roots ? flattenHierarchy(hierarchy.roots) : [];
+
+      // Renderizar para desktop
+      if (referenceCheckbox) {
+        const categoryContainer = referenceCheckbox.parentElement.parentElement;
+        categoryContainer.innerHTML = '';
+
+        categories.forEach(category => {
+          const checkbox = document.createElement('div');
+          checkbox.className = 'form-check';
+          checkbox.innerHTML = `
+            <input class="form-check-input" type="checkbox" value="${category.id}" id="cat-${category.slug}">
+            <label class="form-check-label text-white" for="cat-${category.slug}">
+              <span class="category-filter-label" style="display: inline-block; padding-left: ${category.level * 16}px;">
+                ${category.name}
+              </span>
+            </label>
+          `;
+          categoryContainer.appendChild(checkbox);
+        });
+      }
+
+      // Renderizar para móvil
+      if (mobileCategoryContainer) {
+        mobileCategoryContainer.innerHTML = '';
+        categories.forEach(category => {
+          const label = document.createElement('label');
+          label.className = 'filter-chip';
+          label.setAttribute('for', `cat-mobile-${category.slug}`);
+          label.innerHTML = `
+            <input class="form-check-input" type="checkbox" value="${category.id}" id="cat-mobile-${category.slug}">
+            <span>${category.name}</span>
+          `;
+          mobileCategoryContainer.appendChild(label);
+        });
+
+        // Sincronizar checkboxes móvil con desktop
+        mobileCategoryContainer.addEventListener('change', function(e) {
+          if (e.target.matches('input[type="checkbox"]')) {
+            const desktopCheckbox = document.getElementById(`cat-${categories.find(c => c.id === e.target.value)?.slug || ''}`);
+            if (desktopCheckbox) {
+              desktopCheckbox.checked = e.target.checked;
+            }
+            applyFilters();
+          }
+        });
+      }
+
+      // Nota: La sincronización desktop-móvil se maneja en setupEventListeners
+    }
+
+    // Renderizar barra superior de categorías dinámicamente
+    function renderStoreCategoryNav() {
+      const nav = document.getElementById('store-category-nav');
+      const navMobile = document.getElementById('store-category-nav-mobile');
+      
+      if (!nav && !navMobile) return;
+
+      if (!categoryHierarchy || !Array.isArray(categoryHierarchy.roots)) {
+        if (nav) nav.innerHTML = '';
+        if (navMobile) navMobile.innerHTML = '';
+        return;
+      }
+
+      const items = [];
+
+      items.push(`
+        <div class="store-category-item">
+          <a href="#" class="store-category-link" data-category="all">
+            <i class="fas fa-th-large me-2"></i>Todos
+          </a>
+        </div>
+      `);
+
+      categoryHierarchy.roots.forEach(category => {
+        items.push(renderStoreCategoryNavItem(category));
+      });
+
+      const navHTML = items.join('');
+      
+      // Renderizar en ambos lugares (desktop y móvil)
+      if (nav) {
+        nav.innerHTML = navHTML;
+      }
+      if (navMobile) {
+        navMobile.innerHTML = navHTML;
+      }
+
+      const currentSelectedCategories = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+        .filter(cb => cb.id && cb.id.startsWith('cat-'))
+        .map(cb => cb.value);
+
+      updateCategoryNavActiveState(currentSelectedCategories);
+      updateCategoryToggleButton();
+
+      // Configurar eventos de click para expandir/colapsar en móvil
+      setupMobileCategoryToggle();
+
+      // Actualizar texto del botón si hay una categoría seleccionada
+      updateCategoryToggleButton();
+
+      const searchSection = document.querySelector('.categories-section');
+      if (searchSection) {
+        searchSection.style.display = 'none';
+      }
+    }
+
+    // Actualizar texto del botón de categorías
+    function updateCategoryToggleButton() {
+      const toggleText = document.getElementById('category-toggle-text');
+      if (!toggleText) return;
+
+      const activeLink = document.querySelector('.store-category-link.active, .store-subcategory-link.active');
+      if (activeLink) {
+        const text = activeLink.textContent.trim();
+        toggleText.textContent = text.length > 20 ? text.substring(0, 20) + '...' : text;
+      } else {
+        toggleText.textContent = 'Seleccionar Categoría';
+      }
+    }
+
+    // Configurar toggle para categorías en móvil
+    function setupMobileCategoryToggle() {
+      // Aplicar tanto en desktop como en móvil (el offcanvas también necesita esto)
+      const categoryItems = document.querySelectorAll('#store-category-nav .store-category-item.has-children, #store-category-nav-mobile .store-category-item.has-children');
+      
+      categoryItems.forEach(item => {
+        const link = item.querySelector('.store-category-link');
+        if (!link) return;
+
+        // Remover eventos previos si existen
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+
+        newLink.addEventListener('click', function(e) {
+          // Si es móvil o está en el offcanvas, manejar toggle
+          const isInOffcanvas = item.closest('#categoriesOffcanvas') !== null;
+          
+          if (window.innerWidth <= 767 || isInOffcanvas) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            // Si se hace click en una categoría que tiene hijos, expandir/colapsar
+            if (item.classList.contains('has-children')) {
+              // Solo una categoría expandida a la vez dentro del mismo contenedor
+              const container = item.closest('#store-category-nav, #store-category-nav-mobile');
+              if (container) {
+                container.querySelectorAll('.store-category-item.has-children').forEach(otherItem => {
+                  if (otherItem !== item) {
+                    otherItem.classList.remove('expanded');
+                  }
+                });
+              }
+              
+              // Toggle de la categoría actual
+              item.classList.toggle('expanded');
+            }
+          }
+          // Si es desktop, el comportamiento normal (hover) sigue funcionando
+        });
+      });
+
+      // Configurar clicks en subcategorías para cerrar el offcanvas en móvil
+      document.querySelectorAll('#store-category-nav-mobile .store-subcategory-link, #store-category-nav-mobile .store-category-link[data-category="all"]').forEach(link => {
+        link.addEventListener('click', function(e) {
+          if (window.innerWidth <= 767) {
+            // Cerrar el offcanvas después de un breve delay para que se vea la selección
+            setTimeout(() => {
+              const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('categoriesOffcanvas'));
+              if (offcanvas) {
+                offcanvas.hide();
+              }
+              updateCategoryToggleButton();
+            }, 300);
+          }
+        });
+      });
+    }
+
+    function renderStoreCategoryNavItem(category) {
+      const childCategories = (category.children || []).filter(child => child.isActive !== false);
+      const hasChildren = childCategories.length > 0;
+
+      const childLinks = hasChildren
+        ? `
+          <div class="store-subcategory-dropdown">
+            ${childCategories.map(child => `
+              <a href="#" class="store-subcategory-link" data-category="${child.id}" data-parent="${category.id}">
+                ${child.name}
+              </a>
+            `).join('')}
+          </div>
+        `
+        : '';
+
+      return `
+        <div class="store-category-item ${hasChildren ? 'has-children' : ''}">
+          <a href="#" class="store-category-link" data-category="${category.id}">
+            ${category.name}
+            ${hasChildren ? '<span class="category-caret"><i class="fas fa-chevron-down"></i></span>' : ''}
+          </a>
+          ${childLinks}
+        </div>
+      `;
+    }
+
+    function updateCategoryNavActiveState(selectedCategories = []) {
+      const nav = document.getElementById('store-category-nav');
+      if (!nav) return;
+
+      nav.querySelectorAll('.store-category-link').forEach(link => link.classList.remove('active'));
+      nav.querySelectorAll('.store-subcategory-link').forEach(link => link.classList.remove('active'));
+
+      if (activeTopCategoryId === 'all' || (activeTopCategoryId === null && selectedCategories.length === 0)) {
+        const allLink = nav.querySelector('.store-category-link[data-category="all"]');
+        if (allLink) {
+          allLink.classList.add('active');
+        }
+        return;
+      }
+
+      if (activeTopCategoryId) {
+        const topLink = nav.querySelector(`.store-category-link[data-category="${activeTopCategoryId}"]`);
+        if (topLink) {
+          topLink.classList.add('active');
+        }
+      }
+
+      if (activeSubcategoryId) {
+        const subLink = nav.querySelector(`.store-subcategory-link[data-category="${activeSubcategoryId}"]`);
+        if (subLink) {
+          subLink.classList.add('active');
+        }
+      } else if (activeTopCategoryId === null && selectedCategories.length === 1) {
+        const selectedId = selectedCategories[0];
+        const node = categoryHierarchy.map ? categoryHierarchy.map.get(selectedId) : null;
+        if (node) {
+          if (node.parentId && nav.querySelector(`.store-category-link[data-category="${node.parentId}"]`)) {
+            const parentLink = nav.querySelector(`.store-category-link[data-category="${node.parentId}"]`);
+            if (parentLink) {
+              parentLink.classList.add('active');
+            }
+            const subLink = nav.querySelector(`.store-subcategory-link[data-category="${node.id}"]`);
+            if (subLink) {
+              subLink.classList.add('active');
+            }
+          } else {
+            const topLink = nav.querySelector(`.store-category-link[data-category="${node.id}"]`);
+            if (topLink) {
+              topLink.classList.add('active');
+            }
+          }
+        }
+      }
+    }
+
+    // Renderizar filtros de marcas dinámicamente
+    function renderBrandFilters(brands) {
+      const referenceBrand = document.querySelector('#brand-samsung');
+      const mobileBrandContainer = document.getElementById('mobile-brand-filters');
+      
+      // Renderizar para desktop
+      if (referenceBrand) {
+        const brandContainer = referenceBrand.parentElement.parentElement;
+        brandContainer.innerHTML = '';
+        
+        brands.forEach(brand => {
+          const checkbox = document.createElement('div');
+          checkbox.className = 'form-check';
+          checkbox.innerHTML = `
+            <input class="form-check-input" type="checkbox" value="${brand.id}" id="brand-${brand.slug}">
+            <label class="form-check-label text-white" for="brand-${brand.slug}">
+              ${brand.name}
+            </label>
+          `;
+          brandContainer.appendChild(checkbox);
+        });
+      }
+
+      // Renderizar para móvil
+      if (mobileBrandContainer) {
+        mobileBrandContainer.innerHTML = '';
+        brands.forEach(brand => {
+          const label = document.createElement('label');
+          label.className = 'filter-chip';
+          label.setAttribute('for', `brand-mobile-${brand.slug}`);
+          label.innerHTML = `
+            <input class="form-check-input" type="checkbox" value="${brand.id}" id="brand-mobile-${brand.slug}">
+            <span>${brand.name}</span>
+          `;
+          mobileBrandContainer.appendChild(label);
+        });
+
+        // Sincronizar checkboxes móvil con desktop
+        mobileBrandContainer.addEventListener('change', function(e) {
+          if (e.target.matches('input[type="checkbox"]')) {
+            const desktopCheckbox = document.getElementById(`brand-${brands.find(b => b.id === e.target.value)?.slug || ''}`);
+            if (desktopCheckbox) {
+              desktopCheckbox.checked = e.target.checked;
+            }
+            applyFilters();
+          }
+        });
+      }
+
+      // Nota: La sincronización desktop-móvil se maneja en setupEventListeners
+    }
+
+    // Renderizar categorías en el popup de búsqueda
+    function renderSearchCategories(categories) {
+      const container = document.getElementById('search-categories');
+      container.innerHTML = '';
+
+      const list = categoryHierarchy && categoryHierarchy.roots
+        ? flattenHierarchy(categoryHierarchy.roots)
+        : categories.map(cat => ({ ...cat, level: 0 }));
+
+      list.forEach(category => {
+        const categoryItem = document.createElement('div');
+        categoryItem.className = 'category-item';
+        categoryItem.innerHTML = `
+          <a href="/shop?category=${category.id}" class="category-link" title="${category.name}">
+            <i class="fas fa-microchip me-2"></i>
+            <span style="padding-left: ${category.level * 12}px;">${category.name}</span>
+          </a>
+        `;
+        container.appendChild(categoryItem);
+      });
+    }
+
+    function getWishlistStorageKey() {
+      const userId = window.auth?.user?.id;
+      return userId ? `${WISHLIST_STORAGE_BASE_KEY}_${userId}` : `${WISHLIST_STORAGE_BASE_KEY}_guest`;
+    }
+
+    function loadWishlistFromStorage() {
+      try {
+        const stored = localStorage.getItem(getWishlistStorageKey());
+        return stored ? JSON.parse(stored) : [];
+      } catch (error) {
+        console.error('Error cargando favoritos desde localStorage:', error);
+        return [];
+      }
+    }
+
+    function saveWishlistToStorage(items, { silent = false, origin = 'shop-page' } = {}) {
+      try {
+        localStorage.setItem(getWishlistStorageKey(), JSON.stringify(items));
+        if (!silent) {
+          window.dispatchEvent(new CustomEvent('wishlist:updated', { detail: { items, origin } }));
+        }
+      } catch (error) {
+        console.error('Error guardando favoritos en localStorage:', error);
+      }
+    }
+
+    function isProductInWishlist(productId) {
+      return wishlistItems.some(item => String(item.productId ?? item.id) === String(productId));
+    }
+
+    function updateWishlistButtons() {
+      const buttons = document.querySelectorAll('.wishlist-btn');
+      buttons.forEach(button => {
+        const productId = button.dataset.productId;
+        const icon = button.querySelector('i');
+        const active = isProductInWishlist(productId);
+
+        button.classList.toggle('active', active);
+        if (icon) {
+          icon.classList.toggle('fas', active);
+          icon.classList.toggle('far', !active);
+        }
+      });
+    }
+
+    function normalizeFavoriteEntry(entry) {
+      if (!entry) return null;
+
+      const productId = entry.productId ?? entry.id;
+      const product = entry.product || null;
+
+      return {
+        id: productId,
+        productId: productId,
+        createdAt: entry.createdAt || null,
+        name: product?.name || entry.name || null,
+        price: product?.price ?? entry.price ?? null,
+      imageUrl: product?.imageUrl || product?.imageThumbnail || entry.imageUrl || null,
+      imageVariants: product?.imageVariants || entry.imageVariants || null,
+        product: product || null,
+      };
+    }
+
+    function isUserLoggedIn() {
+      return !!(window.auth && typeof window.auth.isAuthenticated === 'function' && window.auth.isAuthenticated());
+    }
+
+    function getApiBaseUrl() {
+      return (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+    }
+
+    async function fetchWishlistFromServer({ notify = false } = {}) {
+      if (!isUserLoggedIn()) {
+        wishlistItems = loadWishlistFromStorage();
+        updateWishlistButtons();
+        return;
+      }
+
+      try {
+        const response = await fetch(`${getApiBaseUrl()}/api/favorites`, {
+          headers: window.auth.getAuthHeaders(),
+        });
+
+        if (!response.ok) {
+          throw new Error('No se pudo obtener favoritos');
+        }
+
+        const data = await response.json();
+        const favorites = (data.data || []).map(normalizeFavoriteEntry).filter(Boolean);
+        wishlistItems = favorites;
+        saveWishlistToStorage(wishlistItems, { silent: !notify });
+        updateWishlistButtons();
+      } catch (error) {
+        console.error('Error cargando favoritos:', error);
+      }
+    }
+
+    async function migrateGuestFavoritesToServer() {
+      if (!isUserLoggedIn()) return;
+
+      const guestKey = `${WISHLIST_STORAGE_BASE_KEY}_guest`;
+      let guestItems = [];
+
+      try {
+        guestItems = JSON.parse(localStorage.getItem(guestKey) || '[]');
+      } catch (error) {
+        guestItems = [];
+      }
+
+      if (!Array.isArray(guestItems) || guestItems.length === 0) {
+        return;
+      }
+
+      for (const item of guestItems) {
+        const productId = item?.productId || item?.id;
+        if (!productId) continue;
+
+        try {
+          await fetch(`${getApiBaseUrl()}/api/favorites`, {
+            method: 'POST',
+            headers: window.auth.getAuthHeaders(),
+            body: JSON.stringify({ productId }),
+          });
+        } catch (error) {
+          console.error('Error migrando favorito invitado:', error);
+        }
+      }
+
+      localStorage.removeItem(guestKey);
+    }
+
+    async function initializeWishlistSync() {
+      if (isUserLoggedIn()) {
+        await migrateGuestFavoritesToServer();
+        await fetchWishlistFromServer({ notify: true });
+      } else {
+        wishlistItems = loadWishlistFromStorage();
+        updateWishlistButtons();
+      }
+    }
+
+    window.addEventListener('auth:login', async () => {
+      await initializeWishlistSync();
+      renderProducts();
+      updatePagination();
+    });
+
+    window.addEventListener('auth:logout', () => {
+      wishlistItems = loadWishlistFromStorage();
+      updateWishlistButtons();
+      renderProducts();
+      updatePagination();
+    });
+
+    async function addFavoriteToServer(productId, product) {
+      try {
+        const response = await fetch(`${getApiBaseUrl()}/api/favorites`, {
+          method: 'POST',
+          headers: window.auth.getAuthHeaders(),
+          body: JSON.stringify({ productId }),
+        });
+
+        if (!response.ok) {
+          throw new Error('No se pudo agregar a favoritos');
+        }
+
+        if (product) {
+          showNotification(`${product.name} agregado a tus favoritos`, 'success');
+        }
+      } catch (error) {
+        console.error('Error agregando favorito:', error);
+        showNotification('No se pudo agregar a tus favoritos', 'danger');
+      }
+    }
+
+    async function removeFavoriteFromServer(productId, product) {
+      try {
+        const response = await fetch(`${getApiBaseUrl()}/api/favorites/${productId}`, {
+          method: 'DELETE',
+          headers: window.auth.getAuthHeaders(),
+        });
+
+        if (!response.ok) {
+          throw new Error('No se pudo eliminar el favorito');
+        }
+
+        if (product) {
+          showNotification(`${product.name} eliminado de tus favoritos`, 'info');
+        }
+      } catch (error) {
+        console.error('Error eliminando favorito:', error);
+        showNotification('No se pudo eliminar de tus favoritos', 'danger');
+      }
+    }
+
+    function attachProductCardListeners() {
+      const cards = document.querySelectorAll('.product-card');
+      cards.forEach(card => {
+        const productId = card.dataset.productId;
+        card.addEventListener('click', function(event) {
+          if (event.target.closest('.btn')) {
+            return;
+          }
+          window.location.href = `/product/${productId}`;
+        });
+      });
+    }
+
+    // Renderizar productos
+    function renderProducts() {
+      const container = document.getElementById('products-grid');
+      const loader = document.getElementById('products-loader');
+      
+      // Ocultar loader si existe
+      if (loader) {
+        loader.style.display = 'none';
+      }
+      
+      const startIndex = (currentPage - 1) * productsPerPage;
+      const endIndex = startIndex + productsPerPage;
+      const productsToShow = filteredProducts.slice(startIndex, endIndex);
+
+      if (productsToShow.length === 0) {
+        container.innerHTML = `
+          <div class="col-12 text-center py-5">
+            <i class="fas fa-box-open fa-4x text-muted mb-4"></i>
+            <h3 class="text-muted mb-3">No se encontraron productos</h3>
+            <p class="text-muted">Intenta ajustar los filtros o busca algo diferente.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = productsToShow.map(product => {
+        const inWishlist = isProductInWishlist(product.id);
+        const wishlistActiveClass = inWishlist ? ' active' : '';
+        const heartIconClass = inWishlist ? 'fas' : 'far';
+        const mainVariants = product.imageVariants && typeof product.imageVariants === 'object' ? product.imageVariants : {};
+        const placeholderUrl = mainVariants.placeholder || product.imageThumbnail || mainVariants.thumbnail || product.imageUrl || '';
+        const mediumUrl = mainVariants.medium || product.imageUrl || product.imageThumbnail || placeholderUrl;
+        const smallUrl = mainVariants.small || product.imageThumbnail || mediumUrl;
+        const largeUrl = mainVariants.large || product.imageUrl || mediumUrl;
+        const large2xUrl = mainVariants.large2x || '';
+        const srcsetParts = [];
+
+        if (smallUrl && smallUrl !== mediumUrl) {
+          srcsetParts.push(`${smallUrl} 420w`);
+        }
+        if (mediumUrl) {
+          srcsetParts.push(`${mediumUrl} 700w`);
+        }
+        if (largeUrl && largeUrl !== mediumUrl) {
+          srcsetParts.push(`${largeUrl} 1000w`);
+        }
+        if (large2xUrl) {
+          srcsetParts.push(`${large2xUrl} 2000w`);
+        }
+
+        const srcsetAttr = srcsetParts.length ? ` srcset="${srcsetParts.join(', ')}"` : '';
+        const sizesAttr = srcsetParts.length ? ` sizes="(min-width: 1400px) 240px, (min-width: 1200px) 25vw, (min-width: 992px) 33vw, (min-width: 768px) 45vw, 80vw"` : '';
+        const placeholderStyle = placeholderUrl
+          ? ` style="background-image:url('${escapeForSingleQuotes(placeholderUrl)}');"`
+          : '';
+
+        const imageElement = mediumUrl
+          ? `<img src="${mediumUrl}"${srcsetAttr}${sizesAttr} class="product-image" alt="${escapeHtml(product.name)}" loading="lazy" decoding="async" data-loaded="false" onload="handleProductImageLoad(this)" onerror="handleProductImageError(this)">`
+          : `
+            <div class="image-fallback d-flex align-items-center justify-content-center">
+              <i class="fas fa-image fa-3x text-muted"></i>
+            </div>
+          `;
+
+        return `
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <div class="card product-card h-100" data-product-id="${product.id}">
+            <div class="product-image-container"${placeholderStyle}>
+              ${imageElement}
+              <div class="image-fallback-overlay">
+                <i class="fas fa-image fa-3x text-muted"></i>
+              </div>
+            </div>
+            <div class="card-body d-flex flex-column">
+              <h6 class="card-title">${escapeHtml(product.name)}</h6>
+              <p class="card-text text-muted small flex-grow-1">${product.description ? escapeHtml(product.description.substring(0, 80)) + '...' : ''}</p>
+              <div class="mt-auto">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="product-price">$${product.price.toLocaleString('es-CL')}</span>
+                </div>
+                <div class="d-flex gap-2">
+                  <button type="button" class="btn btn-primary btn-sm flex-grow-1" onclick="addToCart('${product.id}', event)">
+                    <i class="fas fa-cart-plus me-1"></i>
+                    Agregar
+                  </button>
+                  <button type="button" class="btn btn-outline-primary btn-sm wishlist-btn${wishlistActiveClass}" data-product-id="${product.id}" onclick="addToWishlist('${product.id}', event)">
+                    <i class="${heartIconClass} fa-heart"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      }).join('');
+
+      attachProductCardListeners();
+      updateWishlistButtons();
+    }
+
+    // Configurar event listeners
+    function setupEventListeners() {
+      // Limpiar filtros (ambos botones)
+      const clearFiltersBtn = document.getElementById('clear-filters');
+      const clearFiltersMobileBtn = document.getElementById('clear-filters-mobile');
+      if (clearFiltersBtn) {
+        clearFiltersBtn.addEventListener('click', clearAllFilters);
+      }
+      if (clearFiltersMobileBtn) {
+        clearFiltersMobileBtn.addEventListener('click', clearAllFilters);
+      }
+
+      // Filtros de categorías
+      document.addEventListener('change', function(e) {
+        if (e.target.matches('input[type="checkbox"]')) {
+          if (e.target.id && (e.target.id.startsWith('cat-') || e.target.id.startsWith('cat-mobile-'))) {
+            activeTopCategoryId = null;
+            activeSubcategoryId = null;
+            // Sincronizar si es móvil
+            if (e.target.id.startsWith('cat-mobile-')) {
+              const categoryId = e.target.value;
+              const category = shopCategories.find(c => c.id === categoryId);
+              if (category) {
+                const desktopCheckbox = document.getElementById(`cat-${category.slug}`);
+                if (desktopCheckbox) {
+                  desktopCheckbox.checked = e.target.checked;
+                }
+              }
+            } else if (e.target.id.startsWith('cat-') && !e.target.id.includes('mobile')) {
+              const categoryId = e.target.value;
+              const category = shopCategories.find(c => c.id === categoryId);
+              if (category) {
+                const mobileCheckbox = document.getElementById(`cat-mobile-${category.slug}`);
+                if (mobileCheckbox) {
+                  mobileCheckbox.checked = e.target.checked;
+                }
+              }
+            }
+          }
+          applyFilters();
+        }
+      });
+
+      // Rango de precios (desktop y mobile)
+      const priceMinEl = document.getElementById('price-min');
+      const priceMaxEl = document.getElementById('price-max');
+      const priceMinMobileEl = document.getElementById('price-min-mobile');
+      const priceMaxMobileEl = document.getElementById('price-max-mobile');
+
+      if (priceMinEl) priceMinEl.addEventListener('input', applyFilters);
+      if (priceMaxEl) priceMaxEl.addEventListener('input', applyFilters);
+      if (priceMinMobileEl) {
+        priceMinMobileEl.addEventListener('input', function() {
+          if (priceMinEl) priceMinEl.value = this.value;
+          applyFilters();
+        });
+      }
+      if (priceMaxMobileEl) {
+        priceMaxMobileEl.addEventListener('input', function() {
+          if (priceMaxEl) priceMaxEl.value = this.value;
+          applyFilters();
+        });
+      }
+
+      // Sincronizar inputs móvil y desktop
+      if (priceMinEl && priceMinMobileEl) {
+        priceMinEl.addEventListener('input', function() {
+          priceMinMobileEl.value = this.value;
+        });
+      }
+      if (priceMaxEl && priceMaxMobileEl) {
+        priceMaxEl.addEventListener('input', function() {
+          priceMaxMobileEl.value = this.value;
+        });
+      }
+
+      // Ordenamiento
+      document.getElementById('sort-select').addEventListener('change', function() {
+        sortProducts(this.value);
+        renderProducts();
+        updatePagination();
+      });
+
+      const categoryNav = document.getElementById('store-category-nav');
+      if (categoryNav) {
+        categoryNav.addEventListener('click', function(e) {
+          const link = e.target.closest('[data-category]');
+          if (!link) {
+            return;
+          }
+
+          // En móvil, si es una categoría con hijos, no prevenir el default aquí
+          // (se maneja en setupMobileCategoryToggle)
+          const isMobile = window.innerWidth <= 767;
+          const categoryItem = link.closest('.store-category-item');
+          const hasChildren = categoryItem && categoryItem.classList.contains('has-children');
+          
+          // Si es móvil y tiene hijos, el toggle se maneja en setupMobileCategoryToggle
+          // Solo prevenir default si NO es una categoría con hijos en móvil
+          if (!(isMobile && hasChildren && link.classList.contains('store-category-link'))) {
+            e.preventDefault();
+          }
+
+          // Solo procesar el filtro si NO es un click para expandir/colapsar
+          if (isMobile && hasChildren && link.classList.contains('store-category-link')) {
+            // Si la categoría se está expandiendo/colapsando, no aplicar filtros
+            // Esperar a que el usuario haga click en una subcategoría
+            return;
+          }
+
+          const categoryId = link.dataset.category;
+          const categoryCheckboxes = Array.from(document.querySelectorAll('input[id^="cat-"]'));
+
+          if (categoryId === 'all') {
+            activeTopCategoryId = 'all';
+            activeSubcategoryId = null;
+            categoryCheckboxes.forEach(cb => { cb.checked = false; });
+            applyFilters({ fromNav: true });
+            return;
+          }
+
+          const isSubcategory = link.classList.contains('store-subcategory-link');
+
+          if (isSubcategory) {
+            activeTopCategoryId = link.dataset.parent || null;
+            activeSubcategoryId = categoryId;
+            const idsToSelect = new Set([categoryId]);
+            categoryCheckboxes.forEach(cb => {
+              cb.checked = idsToSelect.has(cb.value);
+            });
+          } else {
+            activeTopCategoryId = categoryId;
+            activeSubcategoryId = null;
+            const descendantIds = getDescendantCategoryIds(categoryId, { includeSelf: true });
+            const idsToSelect = new Set(descendantIds.length ? descendantIds : [categoryId]);
+            categoryCheckboxes.forEach(cb => {
+              cb.checked = idsToSelect.has(cb.value);
+            });
+          }
+
+          applyFilters({ fromNav: true });
+          
+          // Actualizar texto del botón después de aplicar filtros
+          setTimeout(() => {
+            updateCategoryToggleButton();
+          }, 100);
+        });
+      }
+    }
+
+    // Limpiar todos los filtros
+    function clearAllFilters() {
+      // Limpiar checkboxes de categorías
+      document.querySelectorAll('input[type="checkbox"][id^="cat-"]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      // Limpiar checkboxes de marcas
+      document.querySelectorAll('input[type="checkbox"][id^="brand-"]').forEach(cb => {
+        cb.checked = false;
+      });
+      
+      // Limpiar precios
+      const priceMinEl = document.getElementById('price-min');
+      const priceMaxEl = document.getElementById('price-max');
+      const priceMinMobileEl = document.getElementById('price-min-mobile');
+      const priceMaxMobileEl = document.getElementById('price-max-mobile');
+      
+      if (priceMinEl) priceMinEl.value = '';
+      if (priceMaxEl) priceMaxEl.value = '';
+      if (priceMinMobileEl) priceMinMobileEl.value = '';
+      if (priceMaxMobileEl) priceMaxMobileEl.value = '';
+      
+      activeTopCategoryId = 'all';
+      activeSubcategoryId = null;
+      
+      applyFilters();
+    }
+
+    // Aplicar filtros
+    function applyFilters(options = {}) {
+      const { fromNav = false } = options;
+      const selectedCategories = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+        .filter(cb => cb.id.startsWith('cat-') && !cb.id.includes('mobile'))
+        .map(cb => cb.value);
+      
+      const selectedBrands = Array.from(document.querySelectorAll('input[type="checkbox"]:checked'))
+        .filter(cb => cb.id.startsWith('brand-') && !cb.id.includes('mobile'))
+        .map(cb => cb.value);
+      
+      const minPriceEl = document.getElementById('price-min') || document.getElementById('price-min-mobile');
+      const maxPriceEl = document.getElementById('price-max') || document.getElementById('price-max-mobile');
+      const minPrice = parseFloat(minPriceEl?.value) || 0;
+      const maxPrice = parseFloat(maxPriceEl?.value) || Infinity;
+
+      if (!fromNav) {
+        if (selectedCategories.length === 0) {
+          activeTopCategoryId = 'all';
+          activeSubcategoryId = null;
+        } else if (selectedCategories.length === 1) {
+          const selectedId = selectedCategories[0];
+          const node = categoryHierarchy.map ? categoryHierarchy.map.get(selectedId) : null;
+          if (node) {
+            if (node.parentId) {
+              activeTopCategoryId = node.parentId;
+              activeSubcategoryId = node.id;
+            } else {
+              activeTopCategoryId = node.id;
+              activeSubcategoryId = null;
+            }
+          } else {
+            activeTopCategoryId = null;
+            activeSubcategoryId = null;
+          }
+        } else {
+          activeTopCategoryId = null;
+          activeSubcategoryId = null;
+        }
+      }
+
+      filteredProducts = allProducts.filter(product => {
+        const categoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.categoryId);
+        const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(product.brandId);
+        const priceMatch = product.price >= minPrice && product.price <= maxPrice;
+        
+        return categoryMatch && brandMatch && priceMatch;
+      });
+
+      updateCategoryNavActiveState(selectedCategories);
+
+      currentPage = 1;
+      renderProducts();
+      updatePagination();
+    }
+
+    // Ordenar productos
+    function sortProducts(sortBy) {
+      switch(sortBy) {
+        case 'name':
+          filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+          break;
+        case 'price-low':
+          filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high':
+          filteredProducts.sort((a, b) => b.price - a.price);
+          break;
+        case 'newest':
+          filteredProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+          break;
+      }
+    }
+
+    // Actualizar paginación
+    function updatePagination() {
+      const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+      const pagination = document.querySelector('.pagination');
+      
+      if (totalPages <= 1) {
+        pagination.style.display = 'none';
+        return;
+      }
+      
+      pagination.style.display = 'flex';
+      
+      let paginationHTML = '';
+      
+      // Botón anterior
+      paginationHTML += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+          <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Anterior</a>
+        </li>
+      `;
+      
+      // Páginas
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+          paginationHTML += `
+            <li class="page-item ${i === currentPage ? 'active' : ''}">
+              <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+            </li>
+          `;
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+          paginationHTML += '<li class="page-item disabled"><span class="page-link">...</span></li>';
+        }
+      }
+      
+      // Botón siguiente
+      paginationHTML += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+          <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Siguiente</a>
+        </li>
+      `;
+      
+      pagination.innerHTML = paginationHTML;
+    }
+
+    // Cambiar página
+    function changePage(page) {
+      const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+      if (page >= 1 && page <= totalPages) {
+        currentPage = page;
+        renderProducts();
+        updatePagination();
+        window.scrollTo(0, 0);
+      }
+    }
+
+    // Agregar al carrito
+    function addToCart(productId, event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      if (window.cart) {
+        // Buscar el producto en la lista de productos cargados
+        const product = window.shopManager?.products?.find(p => p.id === productId) ||
+          allProducts.find(p => String(p.id) === String(productId));
+        if (product) {
+          window.cart.addItem(product, 1);
+          window.cart.showNotification(`${product.name} agregado al carrito`, 'success');
+        } else {
+          // Fallback: usar la función que intenta obtener de la API
+          window.cart.addFromProduct(productId, 1);
+        }
+      } else {
+        // Fallback si el carrito no está inicializado
+        alert(`Agregando producto ${productId} al carrito`);
+      }
+    }
+
+    async function addToWishlist(productId, event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      const normalizedId = String(productId);
+      const product = allProducts.find(p => String(p.id) === normalizedId);
+
+      if (!product) {
+        showNotification('Producto no disponible', 'warning');
+        return;
+      }
+
+      if (isUserLoggedIn()) {
+        if (isProductInWishlist(normalizedId)) {
+          await removeFavoriteFromServer(normalizedId, product);
+        } else {
+          await addFavoriteToServer(normalizedId, product);
+        }
+
+        await fetchWishlistFromServer({ notify: true });
+        updateWishlistButtons();
+      } else {
+        if (isProductInWishlist(normalizedId)) {
+          wishlistItems = wishlistItems.filter(item => String(item.productId ?? item.id) !== normalizedId);
+          saveWishlistToStorage(wishlistItems);
+          updateWishlistButtons();
+          showNotification(`${product.name} eliminado de tus favoritos`, 'info');
+        } else {
+          const wishlistEntry = {
+            id: product.id,
+            productId: product.id,
+            name: product.name,
+            price: product.price,
+            imageUrl: product.imageUrl || null
+          };
+
+          wishlistItems.push(wishlistEntry);
+          saveWishlistToStorage(wishlistItems);
+          updateWishlistButtons();
+          showNotification(`${product.name} agregado a tus favoritos`, 'success');
+        }
+      }
+    }
+
+    // Mostrar error
+    function showError(message) {
+      const errorBanner = document.getElementById('error-banner');
+      const errorMessage = document.getElementById('error-message');
+      
+      if (errorBanner && errorMessage) {
+        errorMessage.textContent = message;
+        errorBanner.style.display = 'block';
+        
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+          errorBanner.style.display = 'none';
+        }, 5000);
+      } else {
+        // Fallback
+        const container = document.getElementById('products-grid');
+        if (container) {
+          container.innerHTML = `
+            <div class="col-12 text-center py-5">
+              <i class="fas fa-exclamation-triangle fa-4x text-warning mb-4"></i>
+              <h3 class="text-muted mb-3">Error</h3>
+              <p class="text-muted">${message}</p>
+            </div>
+          `;
+        }
+      }
+    }
+  </script>
+</body>
+</html>

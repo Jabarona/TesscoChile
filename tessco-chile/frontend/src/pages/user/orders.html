@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Pedidos - Tessco Chile</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/header.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/cart-offcanvas.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+      min-height: 100vh;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, rgba(45,45,45,0.95), rgba(30,30,30,0.85));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 3rem 0;
+    }
+
+    .orders-section {
+      margin-top: 120px;
+    }
+
+    .order-card {
+      background: rgba(45,45,45,0.95);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 1.75rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .order-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 36px rgba(0,0,0,0.3);
+    }
+
+    .order-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .status-badge {
+      border-radius: 999px;
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .status-pending {
+      background: rgba(255, 193, 7, 0.15);
+      color: #ffc107;
+      border: 1px solid rgba(255, 193, 7, 0.35);
+    }
+
+    .status-confirmed {
+      background: rgba(40, 167, 69, 0.15);
+      color: #28a745;
+      border: 1px solid rgba(40, 167, 69, 0.35);
+    }
+
+    .status-cancelled {
+      background: rgba(220, 53, 69, 0.18);
+      color: #ff6b6b;
+      border: 1px solid rgba(220, 53, 69, 0.35);
+    }
+
+    .status-paid {
+      background: rgba(13, 110, 253, 0.18);
+      color: #4dabf7;
+      border: 1px solid rgba(13, 110, 253, 0.35);
+    }
+
+    .order-items {
+      background: rgba(255,255,255,0.03);
+      border-radius: 14px;
+      padding: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    .order-item + .order-item {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 0.9rem;
+      padding-top: 0.9rem;
+    }
+
+    .empty-state {
+      background: rgba(45,45,45,0.85);
+      border: 1px dashed rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .loading-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 2rem;
+      border-radius: 18px;
+      background: rgba(45,45,45,0.75);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .order-meta {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <div id="header"></div>
+
+  <section class="page-header">
+    <div class="container" style="max-width: 1100px;">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3">
+        <div>
+          <h1 class="display-5 fw-bold text-white mb-2">Mis Pedidos</h1>
+          <p class="text-muted mb-0">Consulta el historial de compras y el estado de cada orden.</p>
+        </div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/" class="text-decoration-none text-primary">Inicio</a></li>
+            <li class="breadcrumb-item"><a href="/user/profile" class="text-decoration-none text-primary">Mi Perfil</a></li>
+            <li class="breadcrumb-item active text-white" aria-current="page">Mis Pedidos</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <main class="orders-section py-5">
+    <div class="container" style="max-width: 1100px;">
+      <div id="orders-loading" class="loading-state">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Cargando...</span>
+        </div>
+        <div>
+          <h5 class="mb-1 text-white">Buscando tus pedidos</h5>
+          <p class="mb-0 text-muted">Cargando información desde Tessco Chile…</p>
+        </div>
+      </div>
+
+      <div id="orders-empty" class="empty-state" style="display: none;">
+        <i class="fas fa-box-open fa-3x text-muted mb-3"></i>
+        <h4 class="text-white">Aún no tienes pedidos</h4>
+        <p class="text-muted mb-4">Cuando realices una compra, el resumen aparecerá aquí.</p>
+        <a href="/shop" class="btn btn-primary">
+          <i class="fas fa-store me-2"></i>Ir a la tienda
+        </a>
+      </div>
+
+      <div id="orders-container" class="d-flex flex-column gap-4" style="display: none;"></div>
+    </div>
+  </main>
+
+  <div id="footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../assets/js/ecommerce-config.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../components/header.js"></script>
+  <script src="../../components/footer.js"></script>
+  <script src="../../assets/js/smart-navigation.js"></script>
+  <script src="../../assets/js/cart.js"></script>
+  <script src="../../assets/js/cart-offcanvas.js"></script>
+  <script src="../../assets/js/logo-loader.js"></script>
+
+  <script>
+    const ORDERS_ENDPOINT = '/api/orders';
+    const ordersContainer = document.getElementById('orders-container');
+    const emptyState = document.getElementById('orders-empty');
+    const loadingState = document.getElementById('orders-loading');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadHeader({
+        activeLink: '',
+        showSearch: false,
+        showCart: true,
+        showWishlist: true
+      });
+
+      setTimeout(() => {
+        if (!window.auth || !window.auth.isAuthenticated()) {
+          window.location.href = '/login';
+          return;
+        }
+
+        fetchOrders();
+      }, 450);
+    });
+
+    async function fetchOrders() {
+      toggleState('loading');
+
+      try {
+        const apiUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+        const response = await fetch(`${apiUrl}${ORDERS_ENDPOINT}`, {
+          headers: {
+            'Authorization': `Bearer ${window.auth.token}`,
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error('No se pudo obtener el historial de pedidos');
+        }
+
+        const orders = await response.json();
+        renderOrders(Array.isArray(orders) ? orders : []);
+      } catch (error) {
+        console.error('Error cargando pedidos:', error);
+        showNotification('No pudimos cargar tus pedidos. Intenta nuevamente.', 'danger');
+        toggleState('empty');
+      }
+    }
+
+    function renderOrders(orders) {
+      if (!orders || orders.length === 0) {
+        toggleState('empty');
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+
+      orders.forEach(order => {
+        const card = document.createElement('div');
+        card.className = 'order-card';
+
+        const createdAt = order.createdAt ? new Date(order.createdAt) : new Date();
+        const statusClass = getStatusClass(order.status);
+        const paymentClass = getPaymentClass(order.paymentStatus);
+        const orderId = String(order.id || '');
+        const orderCode = orderId ? orderId.slice(-6).toUpperCase() : '—';
+        const totalAmount = Number(order.total ?? 0);
+
+        card.innerHTML = `
+          <div class="order-header">
+            <div>
+              <h5 class="mb-1 text-white">Orden <span class="text-primary">#${orderCode}</span></h5>
+              <div class="order-meta">
+                <span><i class="fas fa-calendar me-1 text-muted"></i>${createdAt.toLocaleDateString('es-CL')}</span>
+                <span><i class="fas fa-clock me-1 text-muted"></i>${createdAt.toLocaleTimeString('es-CL')}</span>
+              </div>
+            </div>
+            <div class="text-end">
+              <div class="status-badge ${statusClass}">${translateStatus(order.status)}</div>
+              <div class="status-badge ${paymentClass} mt-2">Pago: ${translatePaymentStatus(order.paymentStatus)}</div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap justify-content-between align-items-center">
+            <div class="text-muted">${order.items?.length || 0} productos</div>
+            <div class="fs-4 fw-bold text-white">${formatCurrency(totalAmount)}</div>
+          </div>
+
+          <div class="order-items mt-4">
+            ${(order.items || []).map(item => renderOrderItem(item)).join('')}
+          </div>
+        `;
+
+        fragment.appendChild(card);
+      });
+
+      ordersContainer.innerHTML = '';
+      ordersContainer.appendChild(fragment);
+      toggleState('list');
+    }
+
+    function renderOrderItem(item) {
+      const price = item.price || (item.product?.price ?? 0);
+      const productName = item.product?.name || 'Producto sin nombre';
+      const description = item.product?.description ? item.product.description.substring(0, 90) : '';
+
+      return `
+        <div class="order-item d-flex flex-column flex-md-row justify-content-between gap-3">
+          <div>
+            <h6 class="mb-1 text-white">${productName}</h6>
+            ${description ? `<p class="text-muted mb-2 small">${description}...</p>` : ''}
+            <div class="text-muted small">
+              Cantidad: <span class="text-white fw-semibold">${item.quantity}</span>
+            </div>
+          </div>
+          <div class="text-md-end">
+            <div class="text-muted small">Precio unitario</div>
+            <div class="text-white fw-semibold">${formatCurrency(price)}</div>
+            <div class="text-muted small mt-2">Subtotal</div>
+            <div class="text-primary fw-bold">${formatCurrency((item.quantity || 0) * price)}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function getStatusClass(status = '') {
+      switch (status.toLowerCase()) {
+        case 'confirmed':
+        case 'completed':
+          return 'status-badge status-confirmed';
+        case 'cancelled':
+          return 'status-badge status-cancelled';
+        default:
+          return 'status-badge status-pending';
+      }
+    }
+
+    function getPaymentClass(status = '') {
+      switch (status.toLowerCase()) {
+        case 'paid':
+          return 'status-badge status-paid';
+        case 'failed':
+        case 'refunded':
+          return 'status-badge status-cancelled';
+        default:
+          return 'status-badge status-pending';
+      }
+    }
+
+    function translateStatus(status = '') {
+      const map = {
+        pending: 'Pendiente',
+        confirmed: 'Confirmada',
+        completed: 'Completada',
+        cancelled: 'Cancelada'
+      };
+      return map[status?.toLowerCase()] || 'Pendiente';
+    }
+
+    function translatePaymentStatus(status = '') {
+      const map = {
+        pending: 'Pendiente',
+        paid: 'Pagado',
+        failed: 'Fallido',
+        refunded: 'Reembolsado'
+      };
+      return map[status?.toLowerCase()] || 'Pendiente';
+    }
+
+    function formatCurrency(value) {
+      return new Intl.NumberFormat('es-CL', {
+        style: 'currency',
+        currency: 'CLP',
+        minimumFractionDigits: 0
+      }).format(value || 0);
+    }
+
+    function toggleState(state) {
+      if (state === 'loading') {
+        loadingState.style.display = 'flex';
+        ordersContainer.style.display = 'none';
+        emptyState.style.display = 'none';
+        return;
+      }
+
+      loadingState.style.display = 'none';
+
+      if (state === 'empty') {
+        ordersContainer.style.display = 'none';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      if (state === 'list') {
+        ordersContainer.style.display = 'flex';
+        emptyState.style.display = 'none';
+      }
+    }
+  </script>
+</body>
+
+</html>
+

@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestión de Imágenes - Tessco Chile</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="Tessco Chile">
+  <meta name="keywords" content="admin,imagenes,upload,gestión">
+  <meta name="description" content="Gestión de imágenes para Tessco Chile">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/vendor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Estilos específicos para admin -->
+  <style>
+    body {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+    }
+    
+    .container {
+      background-color: transparent !important;
+    }
+    
+    .card {
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+    }
+    
+    .bg-dark {
+      background-color: #2d2d2d !important;
+    }
+    
+    .bg-black {
+      background-color: #000000 !important;
+    }
+    
+    /* Asegurar que no haya fondos blancos */
+    * {
+      background-color: transparent !important;
+    }
+    
+    body, html {
+      background-color: #1a1a1a !important;
+    }
+    
+    .container, .row, .col, .col-md-* {
+      background-color: transparent !important;
+    }
+    
+    /* Corregir z-index y posición del dropdown */
+    .dropdown-menu {
+      z-index: 9999 !important;
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+      position: absolute !important;
+      right: 0 !important;
+      left: auto !important;
+      top: 100% !important;
+      transform: none !important;
+      margin-top: 0.125rem !important;
+    }
+    
+    /* Estilos específicos para el logo */
+    .current-logo img,
+    .logo-preview img,
+    .logo-img {
+      max-width: 100% !important;
+      max-height: 150px !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      object-position: center !important;
+      border-radius: 8px !important;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+      background-color: white !important;
+      padding: 10px !important;
+    }
+    
+    .current-logo,
+    .logo-preview {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      min-height: 120px !important;
+      background-color: #2d2d2d !important;
+      border: 2px dashed #404040 !important;
+      border-radius: 8px !important;
+      padding: 20px !important;
+    }
+    
+    .current-logo .text-center {
+      width: 100% !important;
+    }
+    
+    /* Estilos específicos para logos en header y footer */
+    .navbar-brand img,
+    .navbar .logo-img,
+    .header-logo img {
+      max-height: 40px !important;
+      max-width: 150px !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      object-position: left center !important;
+    }
+    
+    .footer-logo img,
+    .footer .logo-img {
+      max-height: 50px !important;
+      max-width: 200px !important;
+      width: auto !important;
+      height: auto !important;
+      object-fit: contain !important;
+      object-position: center !important;
+    }
+    
+    /* Asegurar que los contenedores de logo tengan el tamaño correcto */
+    .navbar-brand,
+    .header-logo {
+      display: flex !important;
+      align-items: center !important;
+      height: 50px !important;
+    }
+    
+    .footer-logo {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      min-height: 60px !important;
+    }
+    
+    .dropdown {
+      position: relative !important;
+    }
+    
+    .dropdown-item {
+      color: #ffffff !important;
+    }
+    
+    .dropdown-item:hover {
+      background-color: #404040 !important;
+      color: #ffffff !important;
+    }
+    
+    .dropdown-divider {
+      border-color: #404040 !important;
+    }
+    
+    /* Asegurar que el dropdown se alinee a la derecha */
+    .dropdown-menu[data-bs-popper] {
+      right: 0 !important;
+      left: auto !important;
+    }
+
+    /* Estilos para upload */
+    .upload-area {
+      border: 2px dashed #404040;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .upload-area:hover {
+      border-color: #007bff;
+      background-color: #2a2a2a;
+    }
+
+    .upload-area.dragover {
+      border-color: #007bff;
+      background-color: #2a2a2a;
+    }
+
+    .image-preview {
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .image-item {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .image-actions {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .image-item:hover .image-actions {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg text-white text-uppercase fs-7 ls-1 py-3 align-items-center">
+    <div class="container-fluid">
+      <div class="row align-items-center w-100">
+        <div class="col-8 col-md-3">
+          <a class="navbar-brand" href="/"><img src="../../assets/images/logo.svg" width="204" height="46" alt="Tessco Chile"></a>
+        </div>
+        <div class="col-4 col-md-9 text-md-end">
+          <div class="dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user me-2"></i>
+              <span id="adminName">Administrador</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/admin"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="/admin/orders"><i class="fas fa-receipt me-2"></i>Pedidos</a></li>
+              <li><a class="dropdown-item" href="/admin/products"><i class="fas fa-box me-2"></i>Productos</a></li>
+              <li><a class="dropdown-item" href="/admin/categories"><i class="fas fa-tags me-2"></i>Categorías</a></li>
+              <li><a class="dropdown-item" href="/admin/users"><i class="fas fa-users me-2"></i>Usuarios</a></li>
+              <li><a class="dropdown-item" href="/admin/images"><i class="fas fa-image me-2"></i>Imágenes</a></li>
+              <li><a class="dropdown-item" href="/"><i class="fas fa-home me-2"></i>Ir al Sitio</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Images Management -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-white">Gestión de Imágenes</h1>
+            <div class="text-muted">
+              <i class="fas fa-calendar me-2"></i>
+              <span id="currentDate"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="card bg-dark border-0 shadow-lg">
+            <div class="card-body">
+              <h5 class="text-white mb-3">Subir Imágenes</h5>
+              
+              <!-- Tabs para diferentes tipos de imágenes -->
+              <ul class="nav nav-tabs mb-3" id="uploadTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="logo-tab" data-bs-toggle="tab" data-bs-target="#logo" type="button" role="tab">
+                    <i class="fas fa-crown me-2"></i>Logo
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="products-tab" data-bs-toggle="tab" data-bs-target="#products" type="button" role="tab">
+                    <i class="fas fa-box me-2"></i>Productos
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="banners-tab" data-bs-toggle="tab" data-bs-target="#banners" type="button" role="tab">
+                    <i class="fas fa-image me-2"></i>Banners
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="categories-tab" data-bs-toggle="tab" data-bs-target="#categories" type="button" role="tab">
+                    <i class="fas fa-tags me-2"></i>Categorías
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="brands-tab" data-bs-toggle="tab" data-bs-target="#brands" type="button" role="tab">
+                    <i class="fas fa-trademark me-2"></i>Marcas
+                  </button>
+                </li>
+              </ul>
+
+              <div class="tab-content" id="uploadTabsContent">
+                <!-- Logo -->
+                <div class="tab-pane fade" id="logo" role="tabpanel">
+                  <div class="upload-area" id="logoUploadArea">
+                    <div class="upload-content text-center">
+                      <i class="fas fa-crown fa-3x text-warning mb-3"></i>
+                      <h6 class="text-white mb-2">Logo de la Empresa</h6>
+                      <p class="text-muted mb-3">Sube el logo que aparecerá en toda la página web</p>
+                      <div class="mb-3">
+                        <input type="file" id="logoFileInput" accept="image/*" class="d-none">
+                        <button class="btn btn-warning" onclick="document.getElementById('logoFileInput').click()">
+                          <i class="fas fa-upload me-2"></i>Seleccionar Logo
+                        </button>
+                      </div>
+                      <div class="logo-preview" id="logoPreview" style="display: none;">
+                        <img id="logoPreviewImg" class="img-fluid" style="max-height: 100px;" alt="Logo Preview">
+                        <div class="mt-2">
+                          <button class="btn btn-success btn-sm me-2" onclick="imageManager.uploadLogo()">
+                            <i class="fas fa-check me-1"></i>Confirmar Logo
+                          </button>
+                          <button class="btn btn-secondary btn-sm" onclick="imageManager.cancelLogoUpload()">
+                            <i class="fas fa-times me-1"></i>Cancelar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Logo actual -->
+                  <div class="mt-4">
+                    <h6 class="text-white mb-3">Logo Actual</h6>
+                    <div class="current-logo" id="currentLogo">
+                      <div class="text-center text-muted">
+                        <i class="fas fa-image fa-2x mb-2"></i>
+                        <p>No hay logo configurado</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Productos -->
+                <div class="tab-pane fade show active" id="products" role="tabpanel">
+                  <div class="upload-area" id="productsUploadArea">
+                    <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                    <h5 class="text-white">Arrastra imágenes de productos aquí</h5>
+                    <p class="text-muted">o haz clic para seleccionar archivos</p>
+                    <input type="file" id="productsInput" multiple accept="image/*" style="display: none;">
+                    <button class="btn btn-primary" onclick="document.getElementById('productsInput').click()">
+                      <i class="fas fa-plus me-2"></i>Seleccionar Imágenes
+                    </button>
+                  </div>
+                  <div id="productsPreview" class="row mt-3"></div>
+                </div>
+
+                <!-- Banners -->
+                <div class="tab-pane fade" id="banners" role="tabpanel">
+                  <div class="upload-area" id="bannersUploadArea">
+                    <i class="fas fa-image fa-3x text-muted mb-3"></i>
+                    <h5 class="text-white">Arrastra banners aquí</h5>
+                    <p class="text-muted">o haz clic para seleccionar archivo</p>
+                    <input type="file" id="bannersInput" accept="image/*" style="display: none;">
+                    <button class="btn btn-primary" onclick="document.getElementById('bannersInput').click()">
+                      <i class="fas fa-plus me-2"></i>Seleccionar Banner
+                    </button>
+                  </div>
+                  <div id="bannersPreview" class="row mt-3"></div>
+                </div>
+
+                <!-- Categorías -->
+                <div class="tab-pane fade" id="categories" role="tabpanel">
+                  <div class="upload-area" id="categoriesUploadArea">
+                    <i class="fas fa-tags fa-3x text-muted mb-3"></i>
+                    <h5 class="text-white">Arrastra imagen de categoría aquí</h5>
+                    <p class="text-muted">o haz clic para seleccionar archivo</p>
+                    <input type="file" id="categoriesInput" accept="image/*" style="display: none;">
+                    <button class="btn btn-primary" onclick="document.getElementById('categoriesInput').click()">
+                      <i class="fas fa-plus me-2"></i>Seleccionar Imagen
+                    </button>
+                  </div>
+                  <div id="categoriesPreview" class="row mt-3"></div>
+                </div>
+
+                <!-- Marcas -->
+                <div class="tab-pane fade" id="brands" role="tabpanel">
+                  <div class="upload-area" id="brandsUploadArea">
+                    <i class="fas fa-trademark fa-3x text-muted mb-3"></i>
+                    <h5 class="text-white">Arrastra logo de marca aquí</h5>
+                    <p class="text-muted">o haz clic para seleccionar archivo</p>
+                    <input type="file" id="brandsInput" accept="image/*" style="display: none;">
+                    <button class="btn btn-primary" onclick="document.getElementById('brandsInput').click()">
+                      <i class="fas fa-plus me-2"></i>Seleccionar Logo
+                    </button>
+                  </div>
+                  <div id="brandsPreview" class="row mt-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gallery Section -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card bg-dark border-0 shadow-lg">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="text-white mb-0">Galería de Imágenes</h5>
+                <div class="btn-group" role="group">
+                  <button class="btn btn-outline-primary btn-sm" onclick="loadImages('products')">
+                    <i class="fas fa-box me-1"></i>Productos
+                  </button>
+                  <button class="btn btn-outline-primary btn-sm" onclick="loadImages('banners')">
+                    <i class="fas fa-image me-1"></i>Banners
+                  </button>
+                  <button class="btn btn-outline-primary btn-sm" onclick="loadImages('categories')">
+                    <i class="fas fa-tags me-1"></i>Categorías
+                  </button>
+                  <button class="btn btn-outline-primary btn-sm" onclick="loadImages('brands')">
+                    <i class="fas fa-trademark me-1"></i>Marcas
+                  </button>
+                </div>
+              </div>
+              <div id="imagesGallery" class="row">
+                <!-- Las imágenes se cargarán aquí -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="footer-intro mb-4">
+            <a href="/">
+              <img src="../../assets/images/logo.svg" alt="Tessco Chile">
+            </a>
+            <p class="mt-3">Tessco Chile - Gestión de Imágenes</p>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>&copy; 2024 Tessco Chile. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="https://unpkg.com/jarallax@1/dist/jarallax.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/isotope/3.0.6/isotope.pkgd.min.js"></script>
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../assets/js/logo-loader.js"></script>
+  <script src="../../assets/js/script.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../assets/js/image-manager.js"></script>
+  <script src="../../assets/js/debug-logo.js"></script>
+  <script>
+    // Verificar autenticación al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      // Esperar a que auth esté disponible
+      setTimeout(() => {
+        if (!window.auth || !window.auth.isAuthenticated()) {
+          window.location.href = '/login';
+          return;
+        }
+
+        if (!window.auth.isAdmin()) {
+          window.location.href = '/';
+          return;
+        }
+
+        // Mostrar información del usuario
+        const adminName = document.getElementById('adminName');
+        if (window.auth.user) {
+          adminName.textContent = `${window.auth.user.firstName} ${window.auth.user.lastName}`;
+        }
+
+        // Mostrar fecha actual
+        const currentDate = document.getElementById('currentDate');
+        currentDate.textContent = new Date().toLocaleDateString('es-CL');
+
+        // Cargar imágenes por defecto
+        loadImages('products');
+      }, 1000); // Esperar 1 segundo para que auth esté disponible
+    });
+  </script>
+</body>
+
+</html>

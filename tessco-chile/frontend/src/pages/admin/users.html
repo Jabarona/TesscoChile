@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestión de Usuarios - Tessco Chile</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="Tessco Chile">
+  <meta name="keywords" content="admin,usuarios,gestión,tessco chile">
+  <meta name="description" content="Gestión de usuarios - Panel de administración Tessco Chile">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/vendor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body,
+    html {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+    }
+
+    .card {
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+      border-radius: 20px !important;
+    }
+
+    .stats-card {
+      border-radius: 18px !important;
+      background: radial-gradient(circle at top right, rgba(255, 132, 0, 0.16), rgba(32, 32, 32, 0.95)) !important;
+      border: 1px solid rgba(255, 255, 255, 0.06) !important;
+      backdrop-filter: blur(12px);
+    }
+
+    .filters-card {
+      background: linear-gradient(135deg, rgba(45, 45, 45, 0.95), rgba(30, 30, 30, 0.9)) !important;
+      border: 1px solid rgba(255, 255, 255, 0.06) !important;
+      border-radius: 18px !important;
+      box-shadow: 0 22px 45px rgba(0, 0, 0, 0.35) !important;
+      padding: 28px !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .filters-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(255, 132, 0, 0.18), transparent 55%);
+      pointer-events: none;
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .filters-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin: 0 !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .filter-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0 !important;
+    }
+
+    .filter-input {
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      color: #ffffff !important;
+      border-radius: 12px !important;
+      padding: 12px 14px !important;
+      height: 48px !important;
+      transition: border 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .filter-input option,
+    .filter-input optgroup {
+      background-color: #1f1f1f !important;
+      color: #ffffff !important;
+    }
+
+    .filter-input:focus {
+      border-color: rgba(255, 132, 0, 0.5) !important;
+      box-shadow: 0 0 0 3px rgba(255, 132, 0, 0.15) !important;
+    }
+
+    .input-icon-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon-wrapper .filter-input {
+      padding-left: 40px !important;
+    }
+
+    .input-icon-wrapper i {
+      position: absolute;
+      left: 14px;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 0.95rem;
+    }
+
+    .dropdown-menu {
+      z-index: 9999 !important;
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+      position: absolute !important;
+      right: 0 !important;
+      left: auto !important;
+      top: 100% !important;
+      transform: none !important;
+      margin-top: 0.125rem !important;
+    }
+
+    .dropdown {
+      position: relative !important;
+    }
+
+    .dropdown-item {
+      color: #ffffff !important;
+    }
+
+    .dropdown-item:hover {
+      background-color: #404040 !important;
+      color: #ffffff !important;
+    }
+
+    .dropdown-divider {
+      border-color: #404040 !important;
+    }
+
+    .dropdown-menu[data-bs-popper] {
+      right: 0 !important;
+      left: auto !important;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      padding: 0.5rem 0.8rem;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .table thead th {
+      background-color: rgba(255, 255, 255, 0.05) !important;
+      border: none !important;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .table tbody td {
+      vertical-align: middle;
+      border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .users-empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .users-empty-state i {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      color: rgba(255, 132, 0, 0.6);
+    }
+
+    .pagination .page-item .page-link {
+      background-color: transparent !important;
+      border-color: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
+    }
+
+    .pagination .page-item.active .page-link {
+      background: linear-gradient(135deg, #ff8400, #ffb347) !important;
+      border-color: transparent !important;
+      color: #1a1a1a !important;
+      font-weight: 600;
+    }
+
+    .modal-content {
+      background-color: #2d2d2d !important;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .form-switch .form-check-input {
+      width: 2.5em;
+    }
+
+    @media (max-width: 1199px) {
+      .filters-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      .filters-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+      }
+
+      .card {
+        border-radius: 16px !important;
+      }
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg text-white text-uppercase fs-7 ls-1 py-3 align-items-center">
+    <div class="container-fluid">
+      <div class="row align-items-center w-100">
+        <div class="col-8 col-md-3">
+          <a class="navbar-brand" href="/"><img src="../../assets/images/logo.svg" width="204" height="46" alt="Tessco Chile"></a>
+        </div>
+        <div class="col-4 col-md-9 text-md-end">
+          <div class="dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user me-2"></i>
+              <span id="adminName">Administrador</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/admin"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="/admin/orders"><i class="fas fa-receipt me-2"></i>Pedidos</a></li>
+              <li><a class="dropdown-item" href="/admin/products"><i class="fas fa-box me-2"></i>Productos</a></li>
+              <li><a class="dropdown-item" href="/admin/categories"><i class="fas fa-tags me-2"></i>Categorías</a></li>
+              <li><a class="dropdown-item" href="/admin/images"><i class="fas fa-image me-2"></i>Imágenes</a></li>
+              <li><a class="dropdown-item" href="/admin/users"><i class="fas fa-users me-2"></i>Usuarios</a></li>
+              <li><a class="dropdown-item" href="/"><i class="fas fa-home me-2"></i>Ir al Sitio</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+        <div>
+          <h1 class="text-white mb-1">Gestión de Usuarios</h1>
+          <p class="text-muted mb-0">Administra las cuentas registradas en el sitio y sus permisos.</p>
+        </div>
+        <div class="d-flex gap-2">
+          <button class="btn btn-outline-light" id="refreshUsersBtn">
+            <i class="fas fa-rotate me-2"></i>Actualizar
+          </button>
+        </div>
+      </div>
+
+      <div class="row gy-3 mb-4" id="usersStatsWrapper">
+        <div class="col-12 col-md-3">
+          <div class="card stats-card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted text-uppercase small">Usuarios totales</span>
+                <span class="badge bg-primary-subtle text-primary"><i class="fas fa-users"></i></span>
+              </div>
+              <h3 class="text-white mb-0" id="statTotalUsers">-</h3>
+              <small class="text-muted">Usuarios registrados</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="card stats-card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted text-uppercase small">Administradores</span>
+                <span class="badge bg-warning-subtle text-warning"><i class="fas fa-user-shield"></i></span>
+              </div>
+              <h3 class="text-white mb-0" id="statAdmins">-</h3>
+              <small class="text-muted">Usuarios con permisos elevados</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="card stats-card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted text-uppercase small">Verificados</span>
+                <span class="badge bg-success-subtle text-success"><i class="fas fa-check-circle"></i></span>
+              </div>
+              <h3 class="text-white mb-0" id="statVerified">-</h3>
+              <small class="text-muted">Cuentas con correo validado</small>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="card stats-card h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="text-muted text-uppercase small">Nuevos (7 días)</span>
+                <span class="badge bg-info-subtle text-info"><i class="fas fa-fire"></i></span>
+              </div>
+              <h3 class="text-white mb-0" id="statRecent">-</h3>
+              <small class="text-muted">Altas recientes</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filters-card mb-4">
+        <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center mb-3 gap-3">
+          <h2 class="filters-title"><i class="fas fa-sliders-h"></i>Panel de filtros</h2>
+          <div class="filters-actions">
+            <button type="button" class="btn btn-clear btn-sm" id="clearFiltersBtn">
+              <i class="fas fa-undo"></i>Limpiar filtros
+            </button>
+          </div>
+        </div>
+        <div class="filters-grid">
+          <div class="filter-field">
+            <span class="filter-label">Rol</span>
+            <select class="form-select filter-input" id="roleFilter">
+              <option value="">Todos</option>
+              <option value="admin">Administradores</option>
+              <option value="user">Usuarios</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <span class="filter-label">Verificación</span>
+            <select class="form-select filter-input" id="verifiedFilter">
+              <option value="">Todos</option>
+              <option value="true">Verificados</option>
+              <option value="false">No verificados</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <span class="filter-label">Buscar</span>
+            <div class="input-icon-wrapper">
+              <i class="fas fa-search"></i>
+              <input type="text" class="form-control filter-input" id="searchFilter" placeholder="Nombre, correo, RUT o teléfono">
+            </div>
+          </div>
+          <div class="filter-field">
+            <span class="filter-label">Ordenar por</span>
+            <select class="form-select filter-input" id="sortFilter">
+              <option value="createdAt:desc">Recientes primero</option>
+              <option value="createdAt:asc">Más antiguos</option>
+              <option value="firstName:asc">Nombre (A-Z)</option>
+              <option value="firstName:desc">Nombre (Z-A)</option>
+              <option value="role:asc">Rol (A-Z)</option>
+              <option value="role:desc">Rol (Z-A)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow-lg">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle mb-0" id="usersTable">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Contacto</th>
+                  <th>Rol</th>
+                  <th>Verificado</th>
+                  <th>Pedidos</th>
+                  <th>Última orden</th>
+                  <th>Creado</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="users-empty-state d-none" id="usersEmptyState">
+            <i class="fas fa-user-slash"></i>
+            <h4 class="text-white fw-semibold">No se encontraron usuarios</h4>
+            <p class="mb-0">Prueba ajustando los filtros o verifica más tarde.</p>
+          </div>
+
+          <nav class="mt-4">
+            <ul class="pagination justify-content-end mb-0" id="usersPagination"></ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="pt-5 pb-3 mt-5 border-top border-secondary border-opacity-25">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="footer-intro mb-4">
+            <a href="/">
+              <img src="../../assets/images/logo.svg" alt="Tessco Chile">
+            </a>
+            <p class="mt-3">Tessco Chile - Panel de Administración</p>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>&copy; 2025 Tessco Chile. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Detalle Usuario -->
+  <div class="modal fade" id="userDetailsModal" tabindex="-1" aria-labelledby="userDetailsLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title" id="userDetailsLabel">Detalle del usuario</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="userForm">
+            <input type="hidden" id="modalUserId">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label text-muted text-uppercase small">Nombre</label>
+                <input type="text" class="form-control" id="modalFirstName" placeholder="Nombre">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted text-uppercase small">Apellido</label>
+                <input type="text" class="form-control" id="modalLastName" placeholder="Apellido">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted text-uppercase small">Correo</label>
+                <input type="email" class="form-control" id="modalEmail" disabled>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted text-uppercase small">Teléfono</label>
+                <input type="text" class="form-control" id="modalPhone" placeholder="+56...">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted text-uppercase small">RUT</label>
+                <input type="text" class="form-control" id="modalRut" placeholder="11.111.111-1">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-muted text-uppercase small">Rol</label>
+                <select class="form-select" id="modalRole">
+                  <option value="user">Usuario</option>
+                  <option value="admin">Administrador</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label text-muted text-uppercase small">Dirección</label>
+                <textarea class="form-control" id="modalAddress" rows="3" placeholder="Información de dirección (JSON)"></textarea>
+                <small class="text-muted">Puedes pegar un JSON con la estructura de la dirección o dejarlo vacío.</small>
+              </div>
+              <div class="col-12">
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="modalVerified">
+                  <label class="form-check-label" for="modalVerified">Usuario verificado</label>
+                </div>
+              </div>
+            </div>
+          </form>
+          <div class="border-top border-secondary border-opacity-25 mt-3 pt-3">
+            <h6 class="text-uppercase text-muted fw-semibold mb-2">Resumen de actividad</h6>
+            <p class="mb-1"><span class="text-muted">Pedidos:</span> <span id="modalOrdersCount" class="fw-semibold"></span></p>
+            <p class="mb-1"><span class="text-muted">Último pedido:</span> <span id="modalLastOrder"></span></p>
+            <p class="mb-0"><span class="text-muted">Creado:</span> <span id="modalCreatedAt"></span></p>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-between border-secondary border-opacity-25">
+          <button type="button" class="btn btn-outline-danger" id="modalDeleteUserBtn">
+            <i class="fas fa-trash-alt me-2"></i>Eliminar usuario
+          </button>
+          <div class="d-flex gap-2">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-primary" id="modalSaveUserBtn">
+              <i class="fas fa-save me-2"></i>Guardar cambios
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Confirmación Eliminación -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-secondary border-opacity-25">
+          <h5 class="modal-title" id="confirmDeleteLabel">Eliminar usuario</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <div class="text-center py-3">
+            <i class="fas fa-user-slash fa-3x text-danger mb-3"></i>
+            <p class="mb-0">Esta acción eliminará la cuenta del usuario y no se puede deshacer. ¿Deseas continuar?</p>
+          </div>
+        </div>
+        <div class="modal-footer border-secondary border-opacity-25">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../assets/js/terminal-logger.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../assets/js/admin.js"></script>
+  <script src="../../assets/js/admin-users.js"></script>
+</body>
+
+</html>
+

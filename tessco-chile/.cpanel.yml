@@ -1,0 +1,33 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home7/cte55395/public_html/beta.tesscochile.cl
+    - /bin/mkdir -p $DEPLOYPATH
+
+    # Copiar archivos raíz
+    - /bin/cp frontend/.htaccess                             $DEPLOYPATH/.htaccess
+    - /bin/cp frontend/src/pages/shop/index.html             $DEPLOYPATH/index.html
+
+    # Limpiar artefactos anteriores
+    - /bin/rm -rf $DEPLOYPATH/pages
+
+    # Limpiar y copiar assets compartidos
+    - /bin/rm -rf $DEPLOYPATH/assets
+    - /bin/cp -a frontend/src/assets                         $DEPLOYPATH/assets
+
+    - /bin/rm -rf $DEPLOYPATH/components
+    - /bin/cp -a frontend/src/components                     $DEPLOYPATH/components
+
+    - /bin/rm -rf $DEPLOYPATH/config
+    - /bin/cp -a frontend/src/config                         $DEPLOYPATH/config
+
+    # Copiar páginas seccionadas al raíz
+    - if [ -d frontend/src/pages/home ]; then /bin/rm -rf $DEPLOYPATH/home && /bin/cp -a frontend/src/pages/home $DEPLOYPATH/home; fi
+    - if [ -d frontend/src/pages/shop ]; then /bin/rm -rf $DEPLOYPATH/shop && /bin/cp -a frontend/src/pages/shop $DEPLOYPATH/shop; fi
+    - if [ -d frontend/src/pages/product ]; then /bin/rm -rf $DEPLOYPATH/product && /bin/cp -a frontend/src/pages/product $DEPLOYPATH/product; fi
+    - if [ -d frontend/src/pages/admin ]; then /bin/rm -rf $DEPLOYPATH/admin && /bin/cp -a frontend/src/pages/admin $DEPLOYPATH/admin; fi
+    - if [ -d frontend/src/pages/user ]; then /bin/rm -rf $DEPLOYPATH/user && /bin/cp -a frontend/src/pages/user $DEPLOYPATH/user; fi
+    - if [ -d frontend/src/pages/checkout ]; then /bin/rm -rf $DEPLOYPATH/checkout && /bin/cp -a frontend/src/pages/checkout $DEPLOYPATH/checkout; fi
+    - if [ -d frontend/src/pages/auth ]; then /bin/rm -rf $DEPLOYPATH/auth && /bin/cp -a frontend/src/pages/auth $DEPLOYPATH/auth; fi
+    - if [ -d frontend/src/pages/contact ]; then /bin/rm -rf $DEPLOYPATH/contact && /bin/cp -a frontend/src/pages/contact $DEPLOYPATH/contact; fi
+    - if [ -d frontend/src/pages/cart ]; then /bin/rm -rf $DEPLOYPATH/cart && /bin/cp -a frontend/src/pages/cart $DEPLOYPATH/cart; fi

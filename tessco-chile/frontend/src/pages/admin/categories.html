@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>Gestión de Categorías - Tessco Chile</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="author" content="Tessco Chile">
+  <meta name="keywords" content="admin,categorias,productos,tessco chile">
+  <meta name="description" content="Gestión de categorías - Panel de administración Tessco Chile">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/vendor.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome para iconos -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Estilos específicos para admin -->
+  <style>
+    body {
+      background-color: #1a1a1a !important;
+      color: #ffffff !important;
+    }
+    
+    .container {
+      background-color: transparent !important;
+    }
+    
+    .card {
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+    }
+    
+    .bg-dark {
+      background-color: #2d2d2d !important;
+    }
+    
+    .bg-black {
+      background-color: #000000 !important;
+    }
+    
+    /* Asegurar que no haya fondos blancos */
+    * {
+      background-color: transparent !important;
+    }
+    
+    body, html {
+      background-color: #1a1a1a !important;
+    }
+    
+    .container, .row, .col, .col-md-* {
+      background-color: transparent !important;
+    }
+    
+    /* Corregir z-index y posición del dropdown */
+    .dropdown-menu {
+      z-index: 9999 !important;
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+      position: absolute !important;
+      right: 0 !important;
+      left: auto !important;
+      top: 100% !important;
+      transform: none !important;
+      margin-top: 0.125rem !important;
+    }
+    
+    .dropdown {
+      position: relative !important;
+    }
+    
+    .dropdown-item {
+      color: #ffffff !important;
+    }
+    
+    .dropdown-item:hover {
+      background-color: #404040 !important;
+      color: #ffffff !important;
+    }
+    
+    .dropdown-divider {
+      border-color: #404040 !important;
+    }
+    
+    /* Asegurar que el dropdown se alinee a la derecha */
+    .dropdown-menu[data-bs-popper] {
+      right: 0 !important;
+      left: auto !important;
+    }
+    
+    .table-dark {
+      --bs-table-bg: #2d2d2d;
+      --bs-table-striped-bg: #3a3a3a;
+    }
+    
+    .form-control, .form-select {
+      background-color: #404040 !important;
+      border-color: #555555 !important;
+      color: #ffffff !important;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      background-color: #404040 !important;
+      border-color: #007bff !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;
+    }
+    
+    .modal-content {
+      background-color: #2d2d2d !important;
+      border: 1px solid #404040 !important;
+    }
+    
+    .modal-header {
+      border-bottom-color: #404040 !important;
+    }
+    
+    .modal-footer {
+      border-top-color: #404040 !important;
+    }
+  </style>
+</head>
+
+<body data-bs-theme="dark">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg text-white text-uppercase fs-7 ls-1 py-3 align-items-center">
+    <div class="container-fluid">
+      <div class="row align-items-center w-100">
+        <div class="col-8 col-md-3">
+          <a class="navbar-brand" href="/"><img src="../../assets/images/logo.svg" width="204" height="46" alt="Tessco Chile"></a>
+        </div>
+        <div class="col-4 col-md-9 text-md-end">
+          <div class="dropdown">
+            <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              <i class="fas fa-user me-2"></i>
+              <span id="adminName">Administrador</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/admin"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
+              <li><a class="dropdown-item" href="/admin/orders"><i class="fas fa-receipt me-2"></i>Pedidos</a></li>
+              <li><a class="dropdown-item" href="/admin/products"><i class="fas fa-box me-2"></i>Productos</a></li>
+              <li><a class="dropdown-item" href="/admin/categories"><i class="fas fa-tags me-2"></i>Categorías</a></li>
+              <li><a class="dropdown-item" href="/admin/users"><i class="fas fa-users me-2"></i>Usuarios</a></li>
+              <li><a class="dropdown-item" href="/admin/images"><i class="fas fa-image me-2"></i>Imágenes</a></li>
+              <li><a class="dropdown-item" href="/"><i class="fas fa-home me-2"></i>Ir al Sitio</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Cerrar Sesión</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Categories Management -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+              <h1 class="text-white">Gestión de Categorías</h1>
+              <p class="text-muted mb-0">Administra las categorías de productos</p>
+            </div>
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoryModal" onclick="openCategoryModal()">
+              <i class="fas fa-plus me-2"></i>Nueva Categoría
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories Table -->
+      <div class="row">
+        <div class="col-12">
+          <div class="card bg-dark border-0 shadow-lg">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-dark table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Slug</th>
+                      <th>Descripción</th>
+                      <th>Estado</th>
+                      <th>Subcategorías</th>
+                      <th>Productos</th>
+                      <th>Fecha</th>
+                      <th>Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="categoriesTable">
+                    <tr>
+                      <td colspan="8" class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                          <span class="visually-hidden">Cargando...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Modal -->
+  <div class="modal fade" id="categoryModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title text-white" id="categoryModalTitle">Nueva Categoría</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="categoryForm">
+            <input type="hidden" id="categoryId">
+            
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="categoryName" class="form-label text-white">Nombre *</label>
+                <input type="text" class="form-control" id="categoryName" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="categorySlug" class="form-label text-white">Slug *</label>
+                <input type="text" class="form-control" id="categorySlug" required>
+                <div class="form-text text-muted">URL amigable (ej: electronica-smartphones)</div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="categoryParent" class="form-label text-white">Categoría padre</label>
+                <select class="form-select" id="categoryParent">
+                  <option value="">Nivel principal (sin categoría padre)</option>
+                </select>
+                <div class="form-text text-muted">Selecciona si esta categoría depende de otra existente</div>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="categoryDescription" class="form-label text-white">Descripción</label>
+              <textarea class="form-control" id="categoryDescription" rows="3"></textarea>
+            </div>
+            
+            <div class="mb-3">
+              <label for="categoryImageFile" class="form-label text-white">Imagen de la Categoría</label>
+              <input type="file" class="form-control" id="categoryImageFile" accept="image/*" onchange="uploadCategoryImage()">
+              <div class="form-text text-muted">Sube una imagen representativa para la categoría</div>
+              <div id="categoryImagePreview" class="mt-2"></div>
+              <input type="hidden" id="categoryImage">
+            </div>
+            
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="categoryActive" checked>
+              <label class="form-check-label text-white" for="categoryActive">
+                Categoría activa
+              </label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" onclick="saveCategory()">
+            <i class="fas fa-save me-2"></i>Guardar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Container -->
+  <div id="alertContainer" class="position-fixed top-0 end-0 p-3" style="z-index: 9999;"></div>
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="footer-intro mb-4">
+            <a href="/">
+              <img src="../../assets/images/logo.svg" alt="Tessco Chile">
+            </a>
+            <p class="mt-3">Tessco Chile - Panel de Administración</p>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p>&copy; 2025 Tessco Chile. Todos los derechos reservados.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../../assets/js/jquery.min.js"></script>
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <script src="../../assets/js/auth.js"></script>
+  <script src="../../assets/js/terminal-logger.js"></script>
+  <script src="../../assets/js/admin.js"></script>
+  
+  <script>
+    // Verificar que el terminal logger esté cargado
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        if (window.terminalLogger) {
+          console.log('✅ Terminal Logger cargado correctamente');
+          window.terminalLogger.success('Terminal Logger inicializado en categorías');
+        } else {
+          console.error('❌ Terminal Logger NO está disponible');
+        }
+      }, 1000);
+    });
+  </script>
+  
+  <script>
+    let categories = [];
+    let editingCategory = null;
+    let categoryHierarchy = { roots: [], map: new Map() };
+    const apiBaseUrl = (window.config && window.config.apiBaseUrl) || 'http://localhost:4000';
+
+    // Verificar autenticación al cargar la página
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(() => {
+        if (!window.auth || !window.auth.isAuthenticated() || !window.auth.isAdmin()) {
+          window.location.href = '/login';
+          return;
+        }
+
+        // Mostrar información del usuario
+        const adminName = document.getElementById('adminName');
+        if (window.auth.user) {
+          adminName.textContent = `${window.auth.user.firstName} ${window.auth.user.lastName}`;
+        }
+
+        // Cargar categorías
+        loadCategories();
+        
+        // Auto-generar slug desde el nombre
+        document.getElementById('categoryName').addEventListener('input', function() {
+          const slug = this.value
+            .toLowerCase()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-+|-+$/g, '') // Remover guiones al inicio y final
+            .trim();
+          document.getElementById('categorySlug').value = slug;
+        });
+      }, 500);
+    });
+
+    async function loadCategories() {
+      try {
+        const response = await fetch(`${apiBaseUrl}/api/categories`, {
+          headers: window.auth.getAuthHeaders()
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          categories = data.data || [];
+          renderCategoriesTable();
+          if (window.terminalLogger) {
+            window.terminalLogger.success('Categorías cargadas exitosamente', { count: categories.length });
+          }
+        } else {
+          showAlert('Error al cargar las categorías', 'danger');
+          if (window.terminalLogger) {
+            window.terminalLogger.error('Error al cargar las categorías', { status: response.status });
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión al cargar categorías', 'danger');
+      }
+    }
+
+    function renderCategoriesTable() {
+      const tbody = document.getElementById('categoriesTable');
+
+      if (!Array.isArray(categories) || categories.length === 0) {
+        categoryHierarchy = { roots: [], map: new Map() };
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" class="text-center text-muted">
+              <i class="fas fa-inbox fa-2x mb-3"></i>
+              <p>No hay categorías registradas</p>
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      categoryHierarchy = buildCategoryHierarchy(categories);
+      const rowsHtml = renderCategoryRows(categoryHierarchy.roots);
+      tbody.innerHTML = rowsHtml;
+    }
+
+    function buildCategoryHierarchy(list) {
+      const map = new Map();
+
+      list.forEach(cat => {
+        map.set(cat.id, {
+          ...cat,
+          children: []
+        });
+      });
+
+      const roots = [];
+
+      map.forEach(cat => {
+        if (cat.parentId && map.has(cat.parentId)) {
+          map.get(cat.parentId).children.push(cat);
+        } else {
+          roots.push(cat);
+        }
+      });
+
+      sortHierarchy(roots);
+
+      return { roots, map };
+    }
+
+    function sortHierarchy(nodes) {
+      nodes.sort((a, b) => a.name.localeCompare(b.name));
+      nodes.forEach(node => {
+        if (node.children.length > 0) {
+          sortHierarchy(node.children);
+        }
+      });
+    }
+
+    function renderCategoryRows(nodes, level = 0) {
+      return nodes.map(node => {
+        const currentRow = renderCategoryRow(node, level);
+        const childRows = node.children.length > 0 ? renderCategoryRows(node.children, level + 1) : '';
+        return currentRow + childRows;
+      }).join('');
+    }
+
+    function renderCategoryRow(category, level) {
+      const indent = level * 24;
+      const isSubcategory = level > 0;
+      const iconClass = isSubcategory ? 'fa-angle-right' : 'fa-layer-group';
+      const badgeLabel = isSubcategory ? 'Subcategoría' : 'Principal';
+      const badgeClass = isSubcategory ? 'bg-secondary' : 'bg-primary';
+      const subcategoryCount = category.children.length;
+      const productsCount = category.products?.length || 0;
+      const createdAt = category.createdAt ? new Date(category.createdAt).toLocaleDateString('es-CL') : '-';
+      const parentName = getParentName(category);
+      const imageMarkup = category.imageUrl
+        ? `<img src="${category.imageUrl}" class="rounded me-2" width="32" height="32" style="object-fit: cover;">`
+        : '';
+
+      return `
+        <tr>
+          <td><code>${category.id.substring(0, 8)}...</code></td>
+          <td>
+            <div class="d-flex align-items-center">
+              ${imageMarkup}
+              <div class="flex-grow-1">
+                <div class="d-flex align-items-center" style="margin-left: ${indent}px;">
+                  <i class="fas ${iconClass} me-2 text-muted"></i>
+                  <span>${category.name}</span>
+                  <span class="badge ${badgeClass} ms-2">${badgeLabel}</span>
+                </div>
+                ${parentName ? `<div class="text-muted small" style="margin-left: ${indent + 24}px;">Depende de ${parentName}</div>` : ''}
+              </div>
+            </div>
+          </td>
+          <td><code>${category.slug}</code></td>
+          <td>${category.description || '-'}</td>
+          <td>
+            <span class="badge ${category.isActive ? 'bg-success' : 'bg-secondary'}">
+              ${category.isActive ? 'Activa' : 'Inactiva'}
+            </span>
+          </td>
+          <td>
+            <span class="badge ${subcategoryCount > 0 ? 'bg-info' : 'bg-secondary'}">${subcategoryCount}</span>
+          </td>
+          <td>
+            <span class="badge ${productsCount > 0 ? 'bg-info' : 'bg-secondary'}">${productsCount}</span>
+          </td>
+          <td>
+            <small class="text-muted">${createdAt}</small>
+          </td>
+          <td>
+            <div class="btn-group btn-group-sm">
+              <button class="btn btn-outline-success" onclick="createSubcategory('${category.id}')" title="Agregar subcategoría">
+                <i class="fas fa-sitemap"></i>
+              </button>
+              <button class="btn btn-outline-primary" onclick="editCategory('${category.id}')" title="Editar">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button class="btn btn-outline-danger" onclick="deleteCategory('${category.id}')" title="Eliminar">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }
+
+    function getParentName(category) {
+      if (!category.parentId) {
+        return null;
+      }
+
+      const parentNode = categoryHierarchy.map.get(category.parentId);
+      if (parentNode) {
+        return parentNode.name;
+      }
+
+      const parentCategory = categories.find(cat => cat.id === category.parentId);
+      return parentCategory ? parentCategory.name : null;
+    }
+
+    function populateParentSelect(excludeCategoryId = null, selectedParentId = null) {
+      const parentSelect = document.getElementById('categoryParent');
+      if (!parentSelect) return;
+
+      const options = ['<option value="">Nivel principal (sin categoría padre)</option>'];
+
+      const flatOptions = flattenHierarchyForSelect(categoryHierarchy.roots);
+
+      flatOptions.forEach(option => {
+        if (excludeCategoryId && option.id === excludeCategoryId) {
+          return;
+        }
+
+        if (excludeCategoryId && isDescendant(option.id, excludeCategoryId)) {
+          return;
+        }
+
+        options.push(`<option value="${option.id}">${option.label}</option>`);
+      });
+
+      parentSelect.innerHTML = options.join('');
+      if (selectedParentId) {
+        parentSelect.value = selectedParentId;
+      }
+    }
+
+    function flattenHierarchyForSelect(nodes, level = 0) {
+      let items = [];
+
+      nodes.forEach(node => {
+        const prefix = level > 0 ? `${'— '.repeat(level)}` : '';
+        items.push({
+          id: node.id,
+          label: `${prefix}${node.name}`
+        });
+
+        if (node.children.length > 0) {
+          items = items.concat(flattenHierarchyForSelect(node.children, level + 1));
+        }
+      });
+
+      return items;
+    }
+
+    function isDescendant(parentId, targetId) {
+      const parentNode = categoryHierarchy.map.get(parentId);
+      if (!parentNode) {
+        return false;
+      }
+
+      const stack = [...parentNode.children];
+      while (stack.length) {
+        const current = stack.pop();
+        if (current.id === targetId) {
+          return true;
+        }
+
+        if (current.children.length > 0) {
+          stack.push(...current.children);
+        }
+      }
+
+      return false;
+    }
+
+    function createSubcategory(parentId) {
+      const parentCategory = categories.find(c => c.id === parentId);
+      openCategoryModal(null, parentId);
+      const modalElement = document.getElementById('categoryModal');
+      const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+      const modalTitle = document.getElementById('categoryModalTitle');
+      if (parentCategory) {
+        modalTitle.textContent = `Nueva Subcategoría de ${parentCategory.name}`;
+      } else {
+        modalTitle.textContent = 'Nueva Subcategoría';
+      }
+      modal.show();
+    }
+
+    function openCategoryModal(category = null, preselectedParentId = null) {
+      editingCategory = category;
+      const modalTitle = document.getElementById('categoryModalTitle');
+      const form = document.getElementById('categoryForm');
+      const imagePreview = document.getElementById('categoryImagePreview');
+      const imageInput = document.getElementById('categoryImage');
+
+      form.reset();
+      imagePreview.innerHTML = '';
+      imageInput.value = '';
+
+      const excludeId = category ? category.id : null;
+      const selectedParentId = category ? (category.parentId || '') : (preselectedParentId || '');
+      populateParentSelect(excludeId, selectedParentId);
+
+      if (category) {
+        modalTitle.textContent = 'Editar Categoría';
+        document.getElementById('categoryId').value = category.id;
+        document.getElementById('categoryName').value = category.name;
+        document.getElementById('categorySlug').value = category.slug;
+        document.getElementById('categoryDescription').value = category.description || '';
+        imageInput.value = category.imageUrl || '';
+        document.getElementById('categoryActive').checked = category.isActive;
+
+        if (category.imageUrl) {
+          const imageFullUrl = (window.config && window.config.getImageUrl)
+            ? window.config.getImageUrl(category.imageUrl)
+            : `${apiBaseUrl}${category.imageUrl}`;
+          imagePreview.innerHTML = `<img src="${imageFullUrl}" class="image-preview" alt="Preview" style="max-width: 200px; max-height: 200px;">`;
+        }
+      } else {
+        document.getElementById('categoryId').value = '';
+        modalTitle.textContent = 'Nueva Categoría';
+        document.getElementById('categoryActive').checked = true;
+
+        if (preselectedParentId) {
+          const parentNode = categoryHierarchy.map.get(preselectedParentId);
+          modalTitle.textContent = parentNode
+            ? `Nueva Subcategoría de ${parentNode.name}`
+            : 'Nueva Subcategoría';
+        }
+      }
+
+      document.getElementById('categoryParent').value = selectedParentId || '';
+    }
+
+    async function saveCategory() {
+      const categoryData = {
+        name: document.getElementById('categoryName').value.trim(),
+        slug: document.getElementById('categorySlug').value.trim(),
+        description: document.getElementById('categoryDescription').value.trim() || null,
+        imageUrl: document.getElementById('categoryImage').value.trim() || null,
+        isActive: document.getElementById('categoryActive').checked
+      };
+
+      const parentValue = document.getElementById('categoryParent').value;
+      categoryData.parentId = parentValue ? parentValue : null;
+
+      if (!categoryData.name || !categoryData.slug) {
+        showAlert('Nombre y slug son obligatorios', 'warning');
+        return;
+      }
+
+      try {
+        const url = editingCategory 
+          ? `${apiBaseUrl}/api/categories/${editingCategory.id}`
+          : `${apiBaseUrl}/api/categories`;
+        
+        const method = editingCategory ? 'PUT' : 'POST';
+        
+        const response = await fetch(url, {
+          method: method,
+          headers: {
+            ...window.auth.getAuthHeaders(),
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(categoryData)
+        });
+
+        if (response.ok) {
+          const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
+          modal.hide();
+          showAlert(editingCategory ? 'Categoría actualizada exitosamente' : 'Categoría creada exitosamente', 'success');
+          loadCategories();
+          if (window.terminalLogger) {
+            window.terminalLogger.success(editingCategory ? 'Categoría actualizada exitosamente' : 'Categoría creada exitosamente', { 
+              categoryData: categoryData 
+            });
+          }
+        } else {
+          const error = await response.json();
+          showAlert(error.message || 'Error al guardar la categoría', 'danger');
+          if (window.terminalLogger) {
+            window.terminalLogger.error('Error al guardar la categoría', { 
+              error: error.message, 
+              errors: error.errors,
+              categoryData: categoryData 
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión', 'danger');
+      }
+    }
+
+    async function editCategory(categoryId) {
+      const category = categories.find(c => c.id === categoryId);
+      if (category) {
+        openCategoryModal(category);
+        const modalElement = document.getElementById('categoryModal');
+        const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+        modal.show();
+      }
+    }
+
+    async function deleteCategory(categoryId) {
+      const categoryNode = categoryHierarchy.map.get(categoryId);
+
+      if (categoryNode && categoryNode.children.length > 0) {
+        showAlert('No puedes eliminar una categoría que tiene subcategorías asociadas. Elimina o reasigna primero esas subcategorías.', 'warning');
+        return;
+      }
+
+      if (categoryNode && categoryNode.products && categoryNode.products.length > 0) {
+        showAlert('No puedes eliminar una categoría que tiene productos asociados.', 'warning');
+        return;
+      }
+
+      if (!confirm('¿Estás seguro de que quieres eliminar esta categoría?')) {
+        return;
+      }
+
+      try {
+        const response = await fetch(`${apiBaseUrl}/api/categories/${categoryId}`, {
+          method: 'DELETE',
+          headers: window.auth.getAuthHeaders()
+        });
+
+        if (response.ok) {
+          showAlert('Categoría eliminada exitosamente', 'success');
+          loadCategories();
+        } else {
+          const error = await response.json();
+          showAlert(error.message || 'Error al eliminar la categoría', 'danger');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión', 'danger');
+      }
+    }
+
+    async function uploadCategoryImage() {
+      const fileInput = document.getElementById('categoryImageFile');
+      const file = fileInput.files[0];
+      
+      if (!file) return;
+      
+      const formData = new FormData();
+      formData.append('image', file);
+      
+      try {
+        const response = await fetch(`${apiBaseUrl}/api/upload/category`, {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${window.auth.token}`
+          },
+          body: formData
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          const imageUrl = data.data.image.original;
+          document.getElementById('categoryImage').value = imageUrl;
+          
+          const preview = document.getElementById('categoryImagePreview');
+          const imageFullUrl = (window.config && window.config.getImageUrl) 
+            ? window.config.getImageUrl(imageUrl) 
+            : `${apiBaseUrl}${imageUrl}`;
+          preview.innerHTML = `<img src="${imageFullUrl}" class="image-preview" alt="Preview" style="max-width: 200px; max-height: 200px;">`;
+          
+          showAlert('Imagen de categoría subida exitosamente', 'success');
+        } else {
+          const error = await response.json();
+          showAlert(error.message || 'Error subiendo imagen', 'danger');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        showAlert('Error de conexión al subir imagen', 'danger');
+      }
+    }
+
+    function showAlert(message, type = 'info') {
+      const alertContainer = document.getElementById('alertContainer');
+      const alertId = 'alert-' + Date.now();
+      
+      alertContainer.innerHTML = `
+        <div id="${alertId}" class="alert alert-${type} alert-dismissible fade show" role="alert">
+          ${message}
+          <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+      `;
+      
+      // Auto-dismiss after 5 seconds
+      setTimeout(() => {
+        const alert = document.getElementById(alertId);
+        if (alert) {
+          const bsAlert = new bootstrap.Alert(alert);
+          bsAlert.close();
+        }
+      }, 5000);
+    }
+  </script>
+</body>
+
+</html>

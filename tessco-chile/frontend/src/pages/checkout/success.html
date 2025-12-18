@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compra Exitosa - Tessco Chile</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/custom-bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/vendor.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/header.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/css/cart-offcanvas.css">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary-color: #FF6B35;
+      --secondary-color: #E55A2B;
+      --dark-bg: #1a1a1a;
+      --card-bg: #2a2a2a;
+      --text-light: #ffffff;
+      --success-color: #28a745;
+    }
+
+    body {
+      background-color: var(--dark-bg) !important;
+      color: var(--text-light) !important;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Asegurar que todos los textos sean visibles */
+    .text-muted {
+      color: #b5b5b5 !important;
+    }
+    
+    .text-white {
+      color: #ffffff !important;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      color: #ffffff !important;
+    }
+    
+    p, span, div {
+      color: inherit;
+    }
+
+    .success-container {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1f1f1f 100%);
+      border-radius: 20px;
+      padding: 3rem;
+      margin: 2rem 0;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      text-align: center;
+      border: 1px solid #404040;
+    }
+    
+    @media (max-width: 768px) {
+      .success-container {
+        padding: 2rem 1.5rem;
+        margin: 1rem 0;
+        border-radius: 15px;
+      }
+    }
+
+    .success-icon {
+      font-size: 4rem;
+      color: var(--success-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .order-details {
+      background: linear-gradient(135deg, #2f2f2f 0%, #252525 100%);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: left;
+      border: 1px solid #404040;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #4a4a4a;
+      color: #ffffff !important;
+    }
+    
+    .detail-row span {
+      color: #ffffff !important;
+    }
+
+    .detail-row:last-child {
+      border-bottom: none;
+    }
+
+    .detail-row.total {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .detail-row.status {
+      border-bottom: none;
+    }
+
+    .action-btn {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 53, 0.4);
+      color: white;
+      text-decoration: none;
+    }
+
+    .action-btn.secondary {
+      background-color: transparent;
+      border: 2px solid var(--primary-color);
+      color: var(--primary-color);
+    }
+
+    .action-btn.secondary:hover {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .info-section {
+      background: linear-gradient(135deg, #2f2f2f 0%, #252525 100%);
+      border-radius: 15px;
+      padding: 1.75rem;
+      margin-bottom: 1.75rem;
+      text-align: left;
+      border: 1px solid #404040;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .info-section h5 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1.25rem;
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .info-grid.two-columns {
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .info-card {
+      background-color: #2f2f2f;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      height: 100%;
+    }
+
+    .info-label {
+      display: block;
+      font-size: 0.75rem;
+      color: #b5b5b5;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-value {
+      font-size: 1rem;
+      color: #ffffff;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .status-badge.success {
+      background-color: rgba(40, 167, 69, 0.18);
+      color: #28a745;
+    }
+
+    .status-badge.warning {
+      background-color: rgba(255, 193, 7, 0.18);
+      color: #ffc107;
+    }
+
+    .status-badge.danger {
+      background-color: rgba(220, 53, 69, 0.18);
+      color: #dc3545;
+    }
+
+    .status-badge.info {
+      background-color: rgba(13, 202, 240, 0.18);
+      color: #0dcaf0;
+    }
+
+    .items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .item-card {
+      background-color: #2f2f2f;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .item-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid #3d3d3d;
+      background-color: #1f1f1f;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-info h6 {
+      color: #ffffff;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .item-meta {
+      font-size: 0.85rem;
+      color: #b5b5b5;
+    }
+
+    .item-price {
+      text-align: right;
+      min-width: 120px;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #2f2f2f;
+      border-radius: 12px;
+      color: #b5b5b5;
+      font-size: 0.95rem;
+    }
+
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .info-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+
+    .info-list span.label {
+      color: #b5b5b5;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .info-list span.value {
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .totals-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 576px) {
+      .item-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .item-price {
+        width: 100%;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Component -->
+  <div id="header"></div>
+
+  <!-- Main Content -->
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="success-container">
+          <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          
+          <h1 class="text-white mb-3" style="color: #ffffff !important;">¡Compra Realizada Exitosamente!</h1>
+          <p class="text-muted mb-4" style="color: #b5b5b5 !important;">
+            Gracias por tu compra en Tessco Chile. Tu pedido ha sido procesado y recibirás un email de confirmación en breve.
+          </p>
+
+          <!-- Order Details -->
+          <div class="order-details">
+            <h4 class="text-white mb-3">
+              <i class="fas fa-receipt me-2"></i>
+              Detalles del Pedido
+            </h4>
+            
+            <div class="detail-row">
+              <span>Número de Orden:</span>
+              <span id="order-number">#000000</span>
+            </div>
+            
+            <div class="detail-row">
+              <span>Fecha:</span>
+              <span id="order-date">-</span>
+            </div>
+            
+            <div class="detail-row">
+              <span>Subtotal:</span>
+              <span id="order-subtotal">$0</span>
+            </div>
+            
+            <div class="detail-row">
+              <span>Envío:</span>
+              <span id="order-shipping">$0</span>
+            </div>
+            
+            <div class="detail-row total">
+              <span>Total Pagado:</span>
+              <span id="order-total">$0</span>
+            </div>
+            
+            <div class="detail-row status">
+              <span>Estado del Pedido:</span>
+              <span id="order-status" class="status-badge info">Pendiente</span>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h5 class="text-white">
+              <i class="fas fa-shield-check me-2"></i>
+              Información del Pago
+            </h5>
+            <div class="info-grid two-columns">
+              <div class="info-card">
+                <span class="info-label">Método de Pago</span>
+                <span class="info-value" id="payment-method">-</span>
+              </div>
+              <div class="info-card">
+                <span class="info-label">Estado del Pago</span>
+                <span class="info-value">
+                  <span id="payment-status-badge" class="status-badge info">Procesando</span>
+                </span>
+              </div>
+              <div class="info-card" id="payment-id-card" style="display: none;">
+                <span class="info-label">ID de Pago</span>
+                <span class="info-value" id="payment-id">-</span>
+              </div>
+              <div class="info-card" id="preference-id-card" style="display: none;">
+                <span class="info-label">Preferencia</span>
+                <span class="info-value" id="preference-id">-</span>
+              </div>
+              <div class="info-card" id="merchant-order-card" style="display: none;">
+                <span class="info-label">Orden MercadoPago</span>
+                <span class="info-value" id="merchant-order-id">-</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <h5 class="text-white">
+              <i class="fas fa-box-open me-2"></i>
+              Productos de tu Pedido
+            </h5>
+            <div id="order-items-list" class="items-list"></div>
+          </div>
+
+          <div class="info-section">
+            <h5 class="text-white">
+              <i class="fas fa-map-marker-alt me-2"></i>
+              Información de Entrega y Contacto
+            </h5>
+            <div class="info-grid two-columns">
+              <div class="info-card">
+                <h6 class="text-white mb-3">Datos de Contacto</h6>
+                <ul class="info-list">
+                  <li>
+                    <span class="label">Nombre</span>
+                    <span class="value" id="contact-name">-</span>
+                  </li>
+                  <li>
+                    <span class="label">Email</span>
+                    <span class="value" id="contact-email">-</span>
+                  </li>
+                  <li>
+                    <span class="label">Teléfono</span>
+                    <span class="value" id="contact-phone">-</span>
+                  </li>
+                  <li>
+                    <span class="label">RUT</span>
+                    <span class="value" id="contact-rut">-</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h6 class="text-white mb-3">Entrega</h6>
+                <ul class="info-list">
+                  <li>
+                    <span class="label">Método</span>
+                    <span class="value" id="delivery-method">-</span>
+                  </li>
+                  <li>
+                    <span class="label">Dirección</span>
+                    <span class="value" id="delivery-address">-</span>
+                  </li>
+                  <li>
+                    <span class="label">Costo de Envío</span>
+                    <span class="value" id="delivery-cost">$0</span>
+                  </li>
+                  <li>
+                    <span class="label">Notas</span>
+                    <span class="value" id="delivery-notes">-</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Steps -->
+          <div class="mt-4">
+            <h5 class="text-white mb-3">¿Qué sigue ahora?</h5>
+            <div class="row text-start">
+              <div class="col-md-4 mb-3">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-envelope text-primary me-3"></i>
+                  <div>
+                    <h6 class="text-white mb-1">Email de Confirmación</h6>
+                    <small class="text-muted">Recibirás un email con los detalles de tu pedido</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-box text-primary me-3"></i>
+                  <div>
+                    <h6 class="text-white mb-1">Preparación</h6>
+                    <small class="text-muted">Tu pedido será preparado en 24-48 horas</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-truck text-primary me-3"></i>
+                  <div>
+                    <h6 class="text-white mb-1">Envío</h6>
+                    <small class="text-muted">Recibirás información de seguimiento</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="mt-4">
+            <a href="/shop" class="action-btn">
+              <i class="fas fa-shopping-bag me-2"></i>
+              Seguir Comprando
+            </a>
+            <a href="/profile" class="action-btn secondary">
+              <i class="fas fa-user me-2"></i>
+              Ver Mi Perfil
+            </a>
+          </div>
+
+          <!-- Support Info -->
+          <div class="mt-4 pt-4 border-top border-secondary">
+            <p class="text-muted mb-0">
+              <i class="fas fa-question-circle me-2"></i>
+              ¿Tienes alguna pregunta? Contacta nuestro 
+              <a href="/contact" class="text-primary">servicio al cliente</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div id="footer"></div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Configuración global -->
+  <script src="../../config/env.js"></script>
+  <script src="../../config/app.js"></script>
+  <!-- Header Component -->
+  <script src="../../components/header.js"></script>
+  <!-- Footer Component -->
+  <script src="../../components/footer.js"></script>
+  <!-- Cart Offcanvas -->
+  <script src="../../assets/js/cart-offcanvas.js"></script>
+  
+  <script>
+    const API_BASE_URL = (window.config && window.config.apiBaseUrl) || window.API_URL || 'http://localhost:4000';
+    window.API_URL = API_BASE_URL;
+
+    const FALLBACK_IMAGE = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Crect width='80' height='80' fill='%232d2d2d'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial' font-size='12' fill='%23999'%3ESin%20Imagen%3C/text%3E%3C/svg%3E";
+    const STORE_PICKUP_ADDRESS = 'Agustina 972 Oficina 310, Santiago Centro, Región Metropolitana';
+
+    const STATUS_MAP = {
+      approved: { label: 'Pagado', variant: 'success' },
+      paid: { label: 'Pagado', variant: 'success' },
+      confirmed: { label: 'Confirmado', variant: 'success' },
+      pending: { label: 'Pendiente', variant: 'warning' },
+      in_process: { label: 'En proceso', variant: 'info' },
+      processing: { label: 'Procesando', variant: 'info' },
+      authorized: { label: 'Autorizado', variant: 'info' },
+      confirmed: { label: 'Confirmado', variant: 'success' },
+      fulfilled: { label: 'Completado', variant: 'success' },
+      shipped: { label: 'Despachado', variant: 'info' },
+      cancelled: { label: 'Cancelado', variant: 'danger' },
+      canceled: { label: 'Cancelado', variant: 'danger' },
+      rejected: { label: 'Rechazado', variant: 'danger' },
+      failed: { label: 'Fallido', variant: 'danger' },
+      refunded: { label: 'Reembolsado', variant: 'warning' }
+    };
+
+    const humanizePaymentMethod = (method) => {
+      if (!method) return 'MercadoPago';
+      const value = method.toString().toLowerCase();
+      if (value === 'mercadopago') return 'MercadoPago';
+      if (value === 'webpay') return 'Webpay';
+      return method.charAt(0).toUpperCase() + method.slice(1);
+    };
+
+    const capitalize = (text) => {
+      if (!text) return '';
+      return text.charAt(0).toUpperCase() + text.slice(1);
+    };
+
+    const formatCLP = (value) => {
+      const number = Number(value ?? 0);
+      if (Number.isNaN(number)) {
+        return '$0';
+      }
+      return `$${number.toLocaleString('es-CL')}`;
+    };
+
+    const formatDate = (value) => {
+      try {
+        return new Date(value || Date.now()).toLocaleString('es-CL', {
+          dateStyle: 'long',
+          timeStyle: 'short'
+        });
+      } catch (error) {
+        console.warn('No se pudo formatear la fecha', error);
+        return new Date().toLocaleDateString('es-CL');
+      }
+    };
+
+    const formatPhone = (phone) => {
+      if (!phone) return '-';
+      const digits = phone.toString().replace(/\D/g, '');
+      if (digits.length >= 9) {
+        const local = digits.slice(-9);
+        return `+56 ${local.slice(0, 1)} ${local.slice(1, 5)} ${local.slice(5)}`.trim();
+      }
+      return phone;
+    };
+
+    const buildAddressText = (address) => {
+      if (!address) return STORE_PICKUP_ADDRESS;
+      const parts = [
+        [address.street, address.streetNumber].filter(Boolean).join(' ').trim(),
+        address.apartmentNumber ? `Depto ${address.apartmentNumber}` : null,
+        address.comuna || address.city || null,
+        address.region || null
+      ];
+      return parts.filter(Boolean).join(', ') || '-';
+    };
+
+    const setStatusBadge = (element, status, fallbackLabel = 'Pendiente', defaultVariant = 'info') => {
+      if (!element) return;
+      const normalized = (status || '').toString().toLowerCase();
+      const config = STATUS_MAP[normalized] || {
+        label: status ? capitalize(status) : fallbackLabel,
+        variant: defaultVariant
+      };
+      element.textContent = config.label;
+      element.className = `status-badge ${config.variant}`;
+    };
+
+    const normalizeItems = (items) => {
+      if (!Array.isArray(items) || items.length === 0) {
+        return [];
+      }
+
+      return items.map((item) => {
+        const product = item.product || {};
+        const quantity = Number(item.quantity ?? item.q ?? 1) || 1;
+        const unitPriceRaw = item.price ?? product.price ?? item.unit_price ?? 0;
+        const unitPrice = Number(unitPriceRaw) || 0;
+        const totalRaw = item.total ?? unitPrice * quantity;
+
+        return {
+          id: item.productId || product.id || item.id || Math.random().toString(36).slice(2),
+          name: product.name || item.name || 'Producto sin nombre',
+          quantity,
+          price: unitPrice,
+          total: Number(totalRaw) || unitPrice * quantity,
+          image: product.imageUrl || product.image || item.imageUrl || ''
+        };
+      });
+    };
+
+    const computeSummary = (source) => {
+      const normalizedItems = normalizeItems(source?.items || []);
+      const subtotal = normalizedItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+      const shippingCost = (() => {
+        if (source?.shippingAddress?.cost != null) return Number(source.shippingAddress.cost);
+        if (source?.delivery?.cost != null) return Number(source.delivery.cost);
+        if (source?.summary?.shipping != null) return Number(source.summary.shipping);
+        return 0;
+      })();
+
+      const total = source?.total != null ? Number(source.total) : subtotal + shippingCost;
+
+      return {
+        subtotal,
+        shipping: shippingCost,
+        total
+      };
+    };
+
+    const getAuthToken = () => localStorage.getItem('authToken');
+
+    const fetchOrderDetails = async (orderId) => {
+      const token = getAuthToken();
+      
+      // Preparar headers (token opcional para usuarios guest)
+      const headers = {};
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}`, {
+          headers
+        });
+
+        if (!response.ok) {
+          console.error('❌ No se pudo obtener la orden:', response.status);
+          return null;
+        }
+
+        return await response.json();
+      } catch (error) {
+        console.error('❌ Error consultando orden:', error);
+        return null;
+      }
+    };
+
+    const buildRenderData = (apiOrder, cachedOrder) => {
+      if (!apiOrder && !cachedOrder) {
+        return null;
+      }
+
+      const merged = {
+        ...(cachedOrder || {}),
+        ...(apiOrder || {})
+      };
+
+      merged.items = Array.isArray(apiOrder?.items) && apiOrder.items.length
+        ? apiOrder.items
+        : (Array.isArray(cachedOrder?.items) ? cachedOrder.items : []);
+
+      merged.shippingAddress = apiOrder?.shippingAddress || cachedOrder?.shippingAddress || null;
+
+      if (!merged.customer && cachedOrder?.customer) {
+        merged.customer = cachedOrder.customer;
+      }
+
+      if (!merged.delivery && cachedOrder?.delivery) {
+        merged.delivery = cachedOrder.delivery;
+      }
+
+      if (!merged.payment && cachedOrder?.payment) {
+        merged.payment = cachedOrder.payment;
+      }
+
+      if (!merged.paymentMethod && cachedOrder?.paymentMethod) {
+        merged.paymentMethod = cachedOrder.paymentMethod;
+      }
+
+      if (!merged.paymentStatus && cachedOrder?.paymentStatus) {
+        merged.paymentStatus = cachedOrder.paymentStatus;
+      }
+
+      if (!merged.summary && cachedOrder?.summary) {
+        merged.summary = cachedOrder.summary;
+      }
+
+      if (!merged.summary) {
+        merged.summary = computeSummary(merged);
+      }
+
+      return merged;
+    };
+
+    const renderItems = (items) => {
+      const container = document.getElementById('order-items-list');
+      if (!container) return;
+
+      if (!items || items.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            No encontramos los productos de esta compra. Si necesitas ayuda, contáctanos.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map((item) => {
+        const imageSrc = item.image || FALLBACK_IMAGE;
+        return `
+          <div class="item-card">
+            <img src="${imageSrc}" alt="${item.name}">
+            <div class="item-info">
+              <h6>${item.name}</h6>
+              <div class="item-meta">Cantidad: ${item.quantity} · Precio unitario: ${formatCLP(item.price)}</div>
+            </div>
+            <div class="item-price">
+              <strong>${formatCLP(item.total)}</strong>
+            </div>
+          </div>
+        `;
+      }).join('');
+    };
+
+    const renderContactInfo = (order) => {
+      const contact = order?.shippingAddress?.contact
+        || order?.customer
+        || order?.delivery?.contact
+        || order?.shippingAddress
+        || {};
+
+      const contactName = [contact.firstName || contact.name, contact.lastName].filter(Boolean).join(' ').trim();
+
+      document.getElementById('contact-name').textContent = contactName || '-';
+      document.getElementById('contact-email').textContent = contact.email || '-';
+      document.getElementById('contact-phone').textContent = contact.phone ? formatPhone(contact.phone) : '-';
+      document.getElementById('contact-rut').textContent = contact.rut || '—';
+    };
+
+    const renderDeliveryInfo = (order) => {
+      const shipping = order?.shippingAddress || {};
+      const delivery = order?.delivery || {};
+
+      const method = (shipping.method || delivery.method || 'pickup').toLowerCase();
+      const address = shipping.address || delivery.address || null;
+      const notes = shipping.notes || delivery.notes || delivery.additionalInfo || (address && address.additionalInfo) || null;
+      const cost = shipping.cost ?? delivery.cost ?? order?.summary?.shipping ?? 0;
+
+      const methodLabel = method === 'pickup'
+        ? 'Retiro en tienda'
+        : method === 'home'
+          ? 'Despacho a domicilio'
+          : capitalize(method);
+
+      document.getElementById('delivery-method').textContent = methodLabel;
+      document.getElementById('delivery-address').textContent = method === 'pickup'
+        ? STORE_PICKUP_ADDRESS
+        : buildAddressText(address);
+      document.getElementById('delivery-cost').textContent = formatCLP(cost);
+      document.getElementById('delivery-notes').textContent = notes || (method === 'pickup'
+        ? 'Nos pondremos en contacto para coordinar el retiro.'
+        : 'Te avisaremos cuando el pedido esté en camino.');
+    };
+
+    const renderSummary = (order) => {
+      const summary = order?.summary || computeSummary(order);
+      document.getElementById('order-subtotal').textContent = formatCLP(summary.subtotal);
+      document.getElementById('order-shipping').textContent = summary.shipping === 0 ? 'Envío gratis' : formatCLP(summary.shipping);
+      document.getElementById('order-total').textContent = formatCLP(summary.total);
+    };
+
+    const renderPaymentInfo = (order, meta = {}) => {
+      const paymentMethodEl = document.getElementById('payment-method');
+      const paymentStatusEl = document.getElementById('payment-status-badge');
+      const paymentIdCard = document.getElementById('payment-id-card');
+      const paymentIdEl = document.getElementById('payment-id');
+      const preferenceCard = document.getElementById('preference-id-card');
+      const preferenceEl = document.getElementById('preference-id');
+      const merchantCard = document.getElementById('merchant-order-card');
+      const merchantEl = document.getElementById('merchant-order-id');
+
+      const method = humanizePaymentMethod(order?.paymentMethod || order?.payment?.method || 'MercadoPago');
+      paymentMethodEl.textContent = method;
+
+      const paymentStatus = (meta.paymentStatusParam || order?.paymentStatus || order?.payment?.status || order?.status);
+      setStatusBadge(paymentStatusEl, paymentStatus, 'Procesando', 'info');
+
+      const paymentId = meta.paymentId || order?.payment?.id || null;
+      if (paymentId) {
+        paymentIdEl.textContent = paymentId;
+        paymentIdCard.style.display = 'block';
+      } else {
+        paymentIdCard.style.display = 'none';
+      }
+
+      const preferenceId = meta.preferenceId
+        || order?.payment?.preferenceId
+        || order?.payment?.preference?.id
+        || null;
+      if (preferenceId) {
+        preferenceEl.textContent = preferenceId;
+        preferenceCard.style.display = 'block';
+      } else {
+        preferenceCard.style.display = 'none';
+      }
+
+      const merchantOrderId = meta.merchantOrderId || order?.payment?.merchantOrderId || null;
+      if (merchantOrderId) {
+        merchantEl.textContent = merchantOrderId;
+        merchantCard.style.display = 'block';
+      } else {
+        merchantCard.style.display = 'none';
+      }
+    };
+
+    const renderOrderHeader = (order, orderIdFallback) => {
+      const orderNumberEl = document.getElementById('order-number');
+      const orderDateEl = document.getElementById('order-date');
+      const orderStatusEl = document.getElementById('order-status');
+
+      orderNumberEl.textContent = order?.id ? `#${order.id}` : (orderIdFallback ? `#${orderIdFallback}` : '#-');
+      orderDateEl.textContent = formatDate(order?.createdAt);
+
+      setStatusBadge(orderStatusEl, order?.status || order?.paymentStatus || 'pending', 'Pendiente', 'info');
+    };
+
+    const showFallbackOrder = (orderIdFallback) => {
+      renderOrderHeader(null, orderIdFallback);
+      document.getElementById('order-subtotal').textContent = '$0';
+      document.getElementById('order-shipping').textContent = '$0';
+      document.getElementById('order-total').textContent = '$0';
+      renderItems([]);
+      renderContactInfo({});
+      renderDeliveryInfo({});
+      renderPaymentInfo({});
+    };
+
+    const renderCompleteOrder = (order, fallbackId, meta) => {
+      renderOrderHeader(order, fallbackId);
+      renderSummary(order);
+      renderItems(normalizeItems(order?.items));
+      renderContactInfo(order);
+      renderDeliveryInfo(order);
+      renderPaymentInfo(order, meta);
+    };
+
+    const confirmPaymentWithBackend = async ({ orderId, paymentId, statusHint }) => {
+      if (!orderId) {
+        return null;
+      }
+
+      const token = getAuthToken();
+      
+      // Preparar headers (token opcional para usuarios guest)
+      const headers = {
+        'Content-Type': 'application/json'
+      };
+      if (token) {
+        headers['Authorization'] = `Bearer ${token}`;
+      }
+
+      const payload = {
+        orderId,
+        paymentId,
+        statusHint
+      };
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/api/payments/mercadopago/confirm`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+          console.warn('No se pudo confirmar el pago con el backend:', response.status);
+          return null;
+        }
+
+        const data = await response.json();
+        return data?.order ? data : null;
+      } catch (error) {
+        console.error('Error confirmando pago con el backend:', error);
+        return null;
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderId = urlParams.get('orderId');
+      const paymentStatusParam = urlParams.get('status') || urlParams.get('collection_status');
+      const paymentIdParam = urlParams.get('payment_id') || urlParams.get('collection_id');
+      const preferenceIdParam = urlParams.get('preference_id');
+      const merchantOrderParam = urlParams.get('merchant_order_id');
+
+      const cachedOrder = JSON.parse(localStorage.getItem('tessco_last_order') || 'null');
+
+      let apiOrder = null;
+      if (orderId) {
+        apiOrder = await fetchOrderDetails(orderId);
+      }
+
+      const orderData = buildRenderData(apiOrder, cachedOrder);
+
+      const shouldConfirmWithBackend = Boolean(
+        (paymentIdParam || paymentStatusParam === 'approved') &&
+        (orderId || orderData?.id)
+      );
+
+      const confirmation = shouldConfirmWithBackend
+        ? await confirmPaymentWithBackend({
+            orderId: orderId || orderData?.id,
+            paymentId: paymentIdParam,
+            statusHint: paymentStatusParam
+          })
+        : null;
+
+      const resolvedOrderData = confirmation?.order
+        ? buildRenderData(confirmation.order, orderData || confirmation.order)
+        : orderData;
+
+      if (!resolvedOrderData) {
+        showFallbackOrder(orderId);
+      } else {
+        renderCompleteOrder(resolvedOrderData, orderId, {
+          paymentStatusParam,
+          paymentId: paymentIdParam,
+          preferenceId: preferenceIdParam || resolvedOrderData?.payment?.preferenceId,
+          merchantOrderId: merchantOrderParam
+        });
+      }
+
+      // Limpiar carrito y datos temporales
+      localStorage.removeItem('tessco_cart');
+      localStorage.removeItem('tessco_last_order');
+      window.dispatchEvent(new CustomEvent('cart:updated', { detail: { items: [], count: 0 } }));
+    });
+  </script>
+</body>
+</html>

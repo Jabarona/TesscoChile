@@ -1,0 +1,874 @@
+/* header.css - Estilos para el componente de header de Tessco Chile */
+
+/* Colores primarios */
+:root {
+  --primary-color: #FF6B35;
+  --primary-dark: #E55A2B;
+  --dark-bg: #1a1a1a;
+  --card-bg: #2d2d2d;
+  --border-color: #404040;
+}
+
+/* Navbar principal */
+.navbar {
+  background-color: var(--dark-bg) !important;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+.navbar .container-fluid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-brand img {
+  transition: transform 0.3s ease;
+}
+
+.navbar-brand:hover img {
+  transform: scale(1.05);
+}
+
+/* Estructura del navbar */
+.navbar .row {
+  margin: 0;
+  width: 100%;
+  align-items: center;
+}
+
+.navbar .row > div {
+  padding: 0 0.5rem;
+}
+
+/* Links de navegación */
+.navbar-nav {
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  padding: 0.5rem 1rem !important;
+  background: transparent !important;
+  border-radius: 0;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+  background: transparent !important;
+}
+
+.nav-link.active {
+  color: var(--primary-color) !important;
+  background: transparent !important;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  background-color: var(--primary-color);
+}
+
+/* Botón Mi Cuenta */
+.btn-outline-light {
+  color: #ffffff !important;
+  border-color: var(--primary-color) !important;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-light:hover {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  color: white !important;
+}
+
+.account-button {
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Iconos del header - color naranja */
+.navbar svg,
+.navbar use {
+  color: var(--primary-color) !important;
+  fill: var(--primary-color) !important;
+}
+
+.navbar a svg {
+  color: var(--primary-color) !important;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .list-unstyled a {
+  color: var(--primary-color) !important;
+}
+
+.navbar .list-unstyled svg {
+  color: var(--primary-color) !important;
+  fill: var(--primary-color) !important;
+}
+
+.navbar .list-unstyled a:hover svg {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+/* Badge del carrito */
+.nav-cart-badge {
+  background-color: var(--primary-color) !important;
+  font-size: 0.7rem !important;
+}
+
+/* Offcanvas del carrito */
+.offcanvas {
+  background-color: var(--card-bg) !important;
+  color: #ffffff;
+}
+
+.offcanvas-header {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.offcanvas-body {
+  background-color: var(--card-bg);
+}
+
+.offcanvas .text-primary {
+  color: var(--primary-color) !important;
+}
+
+.offcanvas .badge {
+  background-color: var(--primary-color) !important;
+}
+
+.offcanvas .list-group-item {
+  background-color: var(--dark-bg);
+  border-color: var(--border-color);
+  color: #ffffff;
+}
+
+/* Botones primarios */
+.btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark) !important;
+  border-color: var(--primary-dark) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+/* Mobile menu */
+.offcanvas.offcanvas-end {
+  background-color: var(--dark-bg) !important;
+  border-left: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.offcanvas-header {
+  background-color: var(--dark-bg);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+  padding: 1.5rem;
+}
+
+.offcanvas-title {
+  color: var(--primary-color) !important;
+  font-weight: 600;
+}
+
+.offcanvas-body {
+  background-color: var(--dark-bg);
+  padding: 2rem 1rem;
+}
+
+.navbar-toggler {
+  border-color: var(--primary-color) !important;
+  padding: 0.5rem;
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 0.25rem rgba(255, 107, 53, 0.25);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23FF6B35' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Preloader */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dark-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.preloader.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive */
+@media (max-width: 991.98px) {
+  .navbar .container-fluid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .navbar-nav {
+    padding: 1rem 0;
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem !important;
+    border-radius: 8px;
+  }
+
+  .nav-link:hover {
+    background-color: rgba(255, 107, 53, 0.1) !important;
+  }
+
+  .nav-item {
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .account-button {
+    margin-top: 1rem;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .offcanvas-body .navbar-nav {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    padding: 0.5rem 0;
+    overflow-x: hidden;
+  }
+
+  .navbar .container-fluid {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Ajustar el layout del row para móvil */
+  .navbar .row {
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem;
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Logo más pequeño y con max-width */
+  .navbar .col-auto:first-child {
+    flex: 0 0 auto;
+    min-width: 0;
+    max-width: 60%;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    overflow: hidden;
+  }
+
+  .navbar-brand {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    flex-shrink: 1;
+    margin-right: 0;
+    padding: 0;
+  }
+
+  .navbar-brand img {
+    width: auto;
+    max-width: 90px;
+    height: auto;
+    max-height: 28px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* Espacio para el menú hamburguesa */
+  .navbar-toggler {
+    flex-shrink: 0;
+    padding: 0.2rem 0.4rem;
+    margin-left: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  /* Área de iconos con más espacio y sin superposición */
+  .navbar .col-auto.ms-auto {
+    flex: 0 0 auto;
+    min-width: 0;
+    max-width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: visible;
+    position: relative;
+  }
+
+  /* Permitir que el dropdown se muestre fuera del contenedor si es necesario */
+  .navbar .col-auto.ms-auto .list-unstyled {
+    position: relative;
+    overflow: visible;
+  }
+
+  .list-unstyled {
+    gap: 0.2rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: center;
+    width: auto;
+  }
+
+  .list-unstyled svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    display: block;
+  }
+
+  .list-unstyled li {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-icon-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2rem;
+    min-width: 24px;
+  }
+
+  /* Ajustar el botón de cuenta en móvil */
+  .account-button {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem !important;
+    white-space: nowrap;
+    flex-shrink: 0;
+    min-width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .account-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .account-text {
+    white-space: nowrap;
+  }
+
+  /* Posicionamiento del botón de cuenta */
+  #accountDropdownWrapper {
+    position: relative;
+    z-index: 1030;
+  }
+
+  /* Estilos para el offcanvas de cuenta - ya no se usa dropdown */
+  /* Los estilos antiguos del dropdown se mantienen comentados por si se necesitan en el futuro */
+  /* #accountMenu.dropdown-menu {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    min-width: 100vw !important;
+    max-width: 100vw !important;
+    width: 100vw !important;
+    background-color: var(--card-bg) !important;
+    border: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    border-radius: 20px 20px 0 0 !important;
+    z-index: 1051 !important;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5) !important;
+    display: none;
+    margin: 0 !important;
+    transform: translateY(100%) !important;
+    transition: transform 0.3s ease-out !important;
+    padding: 1rem 0 !important;
+  }
+
+  /* Asegurar que el dropdown se muestre correctamente con animación */
+  #accountMenu.show,
+  #accountMenu.dropdown-menu.show {
+    display: block !important;
+    position: fixed !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    /* Optimizaciones para evitar pixeleo */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+  }
+
+  /* Deshabilitar transformaciones de Popper en móvil */
+  #accountMenu[data-bs-popper] {
+    transform: translateY(100%) !important;
+    margin: 0 !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    width: 100vw !important;
+  }
+
+  #accountMenu[data-bs-popper].show {
+    transform: translateY(0) !important;
+  }
+
+  /* Overlay para cerrar el dropdown al hacer click fuera */
+  body.dropdown-open::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    pointer-events: all;
+    /* Removido backdrop-filter para evitar problemas de renderizado/pixeleo */
+    /* Optimizaciones para mejor renderizado */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    will-change: opacity;
+    transition: opacity 0.3s ease;
+  }
+
+  /* Overlay real creado con JavaScript */
+  #accountDropdownOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1050;
+    background: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    pointer-events: all;
+    transition: opacity 0.3s ease;
+    display: none;
+    /* Asegurar que NO bloquee clicks en elementos con z-index mayor */
+    touch-action: none;
+  }
+
+  /* El overlay NO debe bloquear elementos con z-index mayor */
+  #accountDropdownOverlay + *,
+  body > #accountMenu {
+    pointer-events: auto !important;
+  }
+
+  /* Asegurar que el dropdown esté por encima del overlay */
+  #accountDropdownOverlay ~ * #accountMenu.dropdown-menu.show,
+  body.dropdown-open #accountMenu.dropdown-menu.show {
+    z-index: 1052 !important;
+    pointer-events: all !important;
+  }
+
+  /* Asegurar que los items del dropdown sean clickeables */
+  #accountMenu.dropdown-menu.show .dropdown-item {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 1053 !important;
+    display: block !important;
+  }
+
+  /* Asegurar que el overlay NO bloquee clicks en el dropdown */
+  body.dropdown-open #accountMenu.dropdown-menu.show {
+    position: relative;
+    z-index: 1052 !important;
+  }
+
+  body.dropdown-open #accountMenu.dropdown-menu.show * {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1053 !important;
+  }
+
+  /* Asegurar que el dropdown esté por encima del overlay pero por debajo del offcanvas */
+  #accountMenu.dropdown-menu.show {
+    z-index: 1051 !important;
+    pointer-events: all !important;
+  }
+
+  /* Asegurar que los items del dropdown sean clickeables */
+  #accountMenu.dropdown-menu.show .dropdown-item {
+    pointer-events: all !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 1052;
+  }
+
+  /* Asegurar que el offcanvas de categorías esté por encima del dropdown y del header */
+  .categories-offcanvas {
+    z-index: 1045 !important; /* Bootstrap default para offcanvas, pero lo aseguremos */
+  }
+
+  .categories-offcanvas.show {
+    z-index: 1045 !important;
+  }
+
+  /* Cuando el offcanvas está abierto, el header debe estar por debajo */
+  .categories-offcanvas.show ~ * .navbar,
+  .categories-offcanvas.show ~ * #accountDropdownWrapper {
+    z-index: 1039 !important;
+  }
+
+  /* Asegurar que cuando hay un offcanvas abierto, el dropdown se cierre */
+  /* Usamos una clase JavaScript en lugar de :has() para mejor compatibilidad */
+  body.offcanvas-open #accountMenu.dropdown-menu.show {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  body.offcanvas-open body.dropdown-open::before {
+    display: none !important;
+  }
+
+  /* Reducir z-index del navbar cuando hay un offcanvas abierto */
+  body.offcanvas-open .navbar {
+    z-index: 1039 !important;
+  }
+
+  body.offcanvas-open #accountDropdownWrapper {
+    z-index: 1039 !important;
+  }
+
+  /* Estilos para los items del dropdown */
+  #accountMenu .dropdown-item {
+    color: #ffffff !important;
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  #accountMenu .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  #accountMenu .dropdown-item:hover,
+  #accountMenu .dropdown-item:active {
+    background-color: rgba(255, 107, 53, 0.15) !important;
+    color: #ffffff !important;
+  }
+
+  #accountMenu .dropdown-item::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  #accountMenu .dropdown-item[href*="login"]::before {
+    content: '👤';
+  }
+
+  #accountMenu .dropdown-item[href*="register"]::before {
+    content: '➕';
+  } */
+
+  /* Estilos para el offcanvas de cuenta */
+  .account-offcanvas {
+    background: linear-gradient(180deg, rgba(45,45,45,0.98) 0%, rgba(30,30,30,0.95) 100%) !important;
+  }
+
+  .account-offcanvas .offcanvas-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.5rem;
+  }
+
+  .account-offcanvas .offcanvas-title {
+    color: #ffffff;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .account-offcanvas .offcanvas-title i {
+    color: rgba(255, 107, 53, 0.75);
+  }
+
+  .account-offcanvas .btn-close {
+    filter: invert(1);
+    opacity: 0.8;
+  }
+
+  .account-offcanvas .offcanvas-body {
+    padding: 2rem 1.5rem;
+  }
+
+  .account-offcanvas .account-action-btn {
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .account-offcanvas .account-action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  }
+
+  .account-offcanvas .account-action-btn i {
+    font-size: 1.2rem;
+  }
+
+  /* Ocultar texto y mostrar solo icono en pantallas muy pequeñas */
+  @media (max-width: 400px) {
+    .account-text {
+      font-size: 0.6rem;
+    }
+    
+    #accountMenu {
+      right: -0.5rem !important;
+      min-width: 140px;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .account-text {
+      display: none !important;
+    }
+    
+    .account-icon {
+      display: inline-block !important;
+    }
+    
+    .account-button {
+      width: 36px;
+      height: 36px;
+      padding: 0 !important;
+      border-radius: 50% !important;
+      min-width: 36px;
+    }
+    
+    #accountMenu {
+      right: -1rem !important;
+      min-width: 130px;
+    }
+  }
+
+  /* Asegurar que no haya overflow */
+  .navbar .row > div {
+    overflow: visible;
+  }
+
+  /* Prevenir que elementos se salgan del contenedor */
+  .navbar .row {
+    max-width: 100%;
+    position: relative;
+  }
+
+  /* Permitir que el dropdown se muestre fuera del navbar si es necesario */
+  .navbar {
+    max-width: 100vw;
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+  }
+
+  .navbar .container-fluid {
+    position: relative;
+    overflow: visible;
+  }
+
+  /* Prevenir overflow en toda la página, pero permitir dropdowns */
+  html, body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  /* Asegurar que el dropdown no se corte en el borde derecho */
+  #accountMenu.dropdown-menu {
+    /* Si el dropdown se sale del viewport, ajustarlo */
+    max-width: calc(100vw - 1rem);
+    right: 0 !important;
+  }
+
+  /* En pantallas pequeñas, ajustar el dropdown para que no se salga */
+  @media (max-width: 400px) {
+    #accountMenu.dropdown-menu {
+      right: 0 !important;
+      max-width: calc(100vw - 0.75rem);
+    }
+  }
+}
+
+  @media (min-width: 768px) {
+    /* En desktop, el dropdown funciona normalmente con Popper */
+    #accountMenu.dropdown-menu {
+      position: absolute !important;
+      bottom: auto !important;
+      top: 100% !important;
+      left: auto !important;
+      right: 0 !important;
+      width: auto !important;
+      min-width: 150px !important;
+      max-width: none !important;
+      transform: none !important;
+      border-radius: 8px !important;
+      border-top: 1px solid var(--border-color) !important;
+      padding: 0.5rem 0 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+      margin-top: 0.5rem !important;
+    }
+
+    #accountMenu.dropdown-menu.show {
+      transform: none !important;
+    }
+
+    #accountMenu[data-bs-popper] {
+      position: absolute !important;
+      bottom: auto !important;
+      top: 100% !important;
+      left: auto !important;
+      right: 0 !important;
+      width: auto !important;
+      transform: none !important;
+    }
+
+    body.dropdown-open::before {
+      display: none;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .navbar-nav {
+      margin: 0 auto;
+    }
+
+    .offcanvas-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+/* Limpiar fondos no deseados */
+.navbar .col-md-6,
+.navbar .col-md-3,
+.navbar .col-8,
+.navbar .col-3,
+.navbar .col-1 {
+  background: transparent !important;
+}
+
+.navbar .d-md-flex {
+  background: transparent !important;
+}
+
+.offcanvas-body,
+.offcanvas-body > * {
+  background: transparent !important;
+}
+
+/* Asegurar que el menú esté centrado */
+.navbar .col-md-6.d-md-flex {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Iconos del header */
+.navbar .list-unstyled {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar .list-unstyled li {
+  list-style: none;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar {
+  animation: fadeIn 0.5s ease;
+}
+
+/* Estilos para el badge pulsante del carrito cuando hay items */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.nav-cart-badge.has-items {
+  animation: pulse 2s infinite;
+}
+
